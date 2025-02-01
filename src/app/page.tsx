@@ -4,17 +4,12 @@ import { useEffect, useState } from "react";
 
 import type { Column, ColumnFiltersState } from "@tanstack/react-table";
 import {
-    ColumnFilter,
     createColumnHelper,
     flexRender,
     getCoreRowModel,
     getFilteredRowModel,
-    getPaginationRowModel,
-    getSortedRowModel,
     useReactTable,
 } from "@tanstack/react-table";
-
-import { trpcClient } from "./_trpc/client";
 
 type Person = {
     firstName: string;
@@ -97,8 +92,6 @@ const Home: React.FC = () => {
         columns,
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
-        getSortedRowModel: getSortedRowModel(),
         onColumnFiltersChange: setColumnFilters,
         state: {
             columnFilters,

@@ -25,7 +25,14 @@ module.exports = {
         "plugin:prettier/recommended",
         "prettier",
     ],
-    plugins: ["import", "simple-import-sort", "prefer-arrow", "no-only-tests", "prettier"],
+    plugins: [
+        "import",
+        "simple-import-sort",
+        "unused-imports",
+        "prefer-arrow",
+        "no-only-tests",
+        "prettier",
+    ],
     rules: {
         "prettier/prettier": ["error", {}, { usePrettierrc: true }],
         "react/prop-types": "error",
@@ -122,6 +129,7 @@ module.exports = {
                 ],
             },
         ],
+        "unused-imports/no-unused-imports": "error",
         "object-shorthand": ["error", "always", { avoidQuotes: true }],
         "react/react-in-jsx-scope": "off",
         "max-params": ["error", { max: 3 }],
@@ -145,7 +153,7 @@ module.exports = {
             ],
             rules: {
                 "no-restricted-imports": ["error", "assert"],
-                "@typescript-eslint/no-unused-vars": "error",
+                "@typescript-eslint/no-unused-vars": "warn",
                 "@typescript-eslint/no-namespace": "error",
                 "@typescript-eslint/no-floating-promises": "error",
                 "@typescript-eslint/no-misused-promises": "error",
