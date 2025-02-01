@@ -1,8 +1,12 @@
-import { AppRouter } from '@/backend/routers';
-import { NextResponse } from 'next/server';
-import { serverClient } from '../_trpc';
+import { NextResponse } from "next/server";
 
-const handler = async (): Promise<NextResponse<Awaited<ReturnType<AppRouter['getLiveliness']>>>> => {
+import type { AppRouter } from "@/backend/routers";
+
+import { serverClient } from "../_trpc";
+
+const handler = async (): Promise<
+    NextResponse<Awaited<ReturnType<AppRouter["getLiveliness"]>>>
+> => {
     const getLivelinessResult = await serverClient.getLiveliness();
 
     return NextResponse.json(getLivelinessResult);

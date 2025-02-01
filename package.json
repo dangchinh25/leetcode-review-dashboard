@@ -6,11 +6,16 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
     "temp-database-up": "docker-compose -f docker-compose.dev.yml up -d",
     "temp-database-down": "docker-compose down",
     "temp-database-migrate": "npx prisma migrate dev",
-    "temp-database-seed": "npx prisma db seed"
+    "temp-database-seed": "npx prisma db seed",
+    "lint": "next lint",
+    "lint:eslint": "DEBUG=eslint:cli-engine pnpm eslint --fix --ext .ts,.tsx,.js,.jsx src",
+    "lint:eslint:check": "pnpm eslint --ext .ts,.tsx,.js,.jsx src",
+    "lint:prettier": "pnpm prettier --write 'src/**/*.{ts,tsx,js,jsx}'",
+    "lint:prettier:check": "pnpm prettier --check 'src/**/*.{ts,tsx,js,jsx}'",
+    "lint:fix:all": "pnpm lint:eslint && pnpm lint:prettier"
   },
   "prisma": {
     "seed": "ts-node src/backend/seed/seed.ts"
@@ -33,12 +38,24 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@eslint/js": "^9.19.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
+    "@typescript-eslint/eslint-plugin": "^8.22.0",
+    "@typescript-eslint/parser": "^8.22.0",
+    "eslint": "8.57.0",
     "eslint-config-next": "15.1.6",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-no-only-tests": "^3.3.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "postcss": "^8",
+    "prettier": "^3.4.2",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
