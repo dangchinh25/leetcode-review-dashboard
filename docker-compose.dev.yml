@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:15-bullseye
+    container_name: ${POSTGRES_DB}
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    ports:
+      - ${POSTGRES_PORT}:5432

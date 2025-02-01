@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Problem {
+  id         Int    @id @default(autoincrement())
+  title      String @map("title")
+  titleSlug  String @unique @map("title_slug")
+  difficulty String @map("difficulty")
+  questionId String @unique @map("question_id")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tags        ProblemTag[]
+  proficiency Proficiency[]
+
+  @@map("problems")
+}
+
+model Tag {
+  id   Int    @id @default(autoincrement())
+  name String @unique @map("name")
+  slug String @unique @map("slug")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  problems ProblemTag[]
+
+  @@map("tags")
+}
+
+model ProblemTag {
+  id        Int @id @default(autoincrement())
+  problemId Int @map("problem_id")
+  tagId     Int @map("tag_id")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tag     Tag     @relation(fields: [tagId], references: [id])
+  problem Problem @relation(fields: [problemId], references: [id])
+
+  @@unique([problemId, tagId])
+  @@map("problem_tags")
+}
+
+model Proficiency {
+  id                 Int      @id @default(autoincrement())
+  problemId          Int      @map("problem_id")
+  proficiency        Int      @map("proficiency")
+  lastSubmissionTime String   @map("last_submission_time")
+  nextReviewTime     String   @map("next_review_time")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  problem Problem @relation(fields: [problemId], references: [id])
+
+  @@map("proficiencies")
+}
