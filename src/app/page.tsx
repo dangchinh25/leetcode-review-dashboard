@@ -71,13 +71,15 @@ const columns = [
     columnHelper.accessor("name", {
         header: "Problem",
         cell: (info) => (
-            <div className="text-orange-500 hover:underline cursor-pointer">{info.getValue()}</div>
+            <div className="text-orange-500 hover:underline cursor-pointer truncate max-w-[300px]">
+                {info.getValue()}
+            </div>
         ),
     }),
     columnHelper.accessor("progressLevel", {
         header: "Progress Level",
         cell: (info) => (
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 w-[200px]">
                 <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
                     <div
                         className="h-full bg-green-500"
@@ -91,13 +93,13 @@ const columns = [
     }),
     columnHelper.accessor("delay", {
         header: "Delay",
-        cell: (info) => info.getValue(),
+        cell: (info) => <div className="w-[100px]">{info.getValue()}</div>,
         enableColumnFilter: false,
     }),
     columnHelper.accessor("problemId", {
         header: "Operation",
         cell: () => (
-            <div className="flex gap-2">
+            <div className="flex gap-2 w-[100px]">
                 <button className="text-gray-500 hover:text-gray-700">✓</button>
                 <button className="text-gray-500 hover:text-gray-700">↻</button>
                 <button className="text-gray-500 hover:text-gray-700">□</button>
@@ -155,7 +157,7 @@ const Home: React.FC = () => {
                     </button>
                 ))}
             </div>
-            <table className="border-collapse">
+            <table className="border-collapse table-fixed w-[700px]">
                 <thead>
                     {table.getHeaderGroups().map((headerGroup) => (
                         <tr key={headerGroup.id}>
@@ -194,7 +196,12 @@ const Home: React.FC = () => {
     );
 };
 
-const Filter: React.FC<{ column: Column<Problem, unknown> }> = ({ column }) => {
+const Filter: React.FC<{
+    column: Column<Problem, unknown> & {
+        getFilterValue: () => string;
+        setFilterValue: (value: string) => void;
+    };
+}> = ({ column }) => {
     const columnFilterValue = column.getFilterValue();
 
     return (
