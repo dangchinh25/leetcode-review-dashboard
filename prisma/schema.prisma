@@ -26,6 +26,8 @@ model Problem {
   tags        ProblemTag[]
   proficiency Proficiency[]
 
+  @@index([titleSlug])
+  @@index([title])
   @@map("problems")
 }
 
@@ -68,5 +70,6 @@ model Proficiency {
 
   problem Problem @relation(fields: [problemId], references: [id])
 
+  @@index([problemId])
   @@map("proficiencies")
 }
