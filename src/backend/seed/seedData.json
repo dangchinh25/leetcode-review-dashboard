@@ -1,0 +1,2592 @@
+{
+    "1": {
+        "index": "1",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1738300441155,
+        "name": "1. Two Sum",
+        "proficiency": 4,
+        "submissionTime": 1738300441155,
+        "url": "https://leetcode.com/problems/two-sum/"
+    },
+    "2": {
+        "index": "2",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737919987392,
+        "name": "2. Add Two Numbers",
+        "proficiency": 4,
+        "submissionTime": 1737919987392,
+        "url": "https://leetcode.com/problems/add-two-numbers/"
+    },
+    "3": {
+        "index": "3",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737937225362,
+        "name": "3. Longest Substring Without Repeating Characters",
+        "proficiency": 3,
+        "submissionTime": 1737937225362,
+        "url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/"
+    },
+    "5": {
+        "index": "5",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1735513254544,
+        "name": "5. Longest Palindromic Substring",
+        "proficiency": 1,
+        "submissionTime": 1735513254544,
+        "url": "https://leetcode.com/problems/longest-palindromic-substring/"
+    },
+    "15": {
+        "index": "15",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736843382699,
+        "name": "15. 3Sum",
+        "proficiency": 4,
+        "submissionTime": 1736843382699,
+        "url": "https://leetcode.com/problems/3sum/"
+    },
+    "17": {
+        "index": "17",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736912191039,
+        "name": "17. Letter Combinations of a Phone Number",
+        "proficiency": 3,
+        "submissionTime": 1736912191039,
+        "url": "https://leetcode.com/problems/letter-combinations-of-a-phone-number/"
+    },
+    "19": {
+        "index": "19",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737797232021,
+        "name": "19. Remove Nth Node From End of List",
+        "proficiency": 4,
+        "submissionTime": 1737797232021,
+        "url": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/"
+    },
+    "20": {
+        "index": "20",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737259061509,
+        "name": "20. Valid Parentheses",
+        "proficiency": 2,
+        "submissionTime": 1737259061509,
+        "url": "https://leetcode.com/problems/valid-parentheses/"
+    },
+    "21": {
+        "index": "21",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737870165951,
+        "name": "21. Merge Two Sorted Lists",
+        "proficiency": 4,
+        "submissionTime": 1737870165951,
+        "url": "https://leetcode.com/problems/merge-two-sorted-lists/"
+    },
+    "24": {
+        "index": "24",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737090561032,
+        "name": "24. Swap Nodes in Pairs",
+        "proficiency": 1,
+        "submissionTime": 1737090561032,
+        "url": "https://leetcode.com/problems/swap-nodes-in-pairs/"
+    },
+    "26": {
+        "index": "26",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737227723298,
+        "name": "26. Remove Duplicates from Sorted Array",
+        "proficiency": 2,
+        "submissionTime": 1737227723298,
+        "url": "https://leetcode.com/problems/remove-duplicates-from-sorted-array/?envType=company&envId=facebook&favoriteSlug=facebook-three-months"
+    },
+    "31": {
+        "index": "31",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737838050900,
+        "name": "31. Next Permutation",
+        "proficiency": 2,
+        "submissionTime": 1737838050900,
+        "url": "https://leetcode.com/problems/next-permutation/"
+    },
+    "33": {
+        "index": "33",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737172047219,
+        "name": "33. Search in Rotated Sorted Array",
+        "proficiency": 4,
+        "submissionTime": 1737172047219,
+        "url": "https://leetcode.com/problems/search-in-rotated-sorted-array/"
+    },
+    "34": {
+        "index": "34",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737169749999,
+        "name": "34. Find First and Last Position of Element in Sorted Array",
+        "proficiency": 1,
+        "submissionTime": 1737169749999,
+        "url": "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/"
+    },
+    "38": {
+        "index": "38",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737237488292,
+        "name": "38. Count and Say",
+        "proficiency": 1,
+        "submissionTime": 1737237488292,
+        "url": "https://leetcode.com/problems/count-and-say/"
+    },
+    "39": {
+        "index": "39",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737167945463,
+        "name": "39. Combination Sum",
+        "proficiency": 4,
+        "submissionTime": 1737167945463,
+        "url": "https://leetcode.com/problems/combination-sum/"
+    },
+    "40": {
+        "index": "40",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737169111774,
+        "name": "40. Combination Sum II",
+        "proficiency": 4,
+        "submissionTime": 1737169111774,
+        "url": "https://leetcode.com/problems/combination-sum-ii/"
+    },
+    "46": {
+        "index": "46",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737595107338,
+        "name": "46. Permutations",
+        "proficiency": 3,
+        "submissionTime": 1737595107338,
+        "url": "https://leetcode.com/problems/permutations/"
+    },
+    "48": {
+        "index": "48",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737675710084,
+        "name": "48. Rotate Image",
+        "proficiency": 1,
+        "submissionTime": 1737675710084,
+        "url": "https://leetcode.com/problems/rotate-image/"
+    },
+    "49": {
+        "index": "49",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1735188164149,
+        "name": "49. Group Anagrams",
+        "proficiency": 1,
+        "submissionTime": 1735188164149,
+        "url": "https://leetcode.com/problems/group-anagrams/"
+    },
+    "51": {
+        "index": "51",
+        "isDeleted": false,
+        "level": "Hard",
+        "modificationTime": 1738298841787,
+        "name": "51. N-Queens",
+        "proficiency": 1,
+        "submissionTime": 1738298841787,
+        "url": "https://leetcode.com/problems/n-queens/"
+    },
+    "53": {
+        "index": "53",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737082748850,
+        "name": "53. Maximum Subarray",
+        "proficiency": 1,
+        "submissionTime": 1737082748850,
+        "url": "https://leetcode.com/problems/maximum-subarray/"
+    },
+    "54": {
+        "index": "54",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737669427953,
+        "name": "54. Spiral Matrix",
+        "proficiency": 1,
+        "submissionTime": 1737669427953,
+        "url": "https://leetcode.com/problems/spiral-matrix/"
+    },
+    "55": {
+        "index": "55",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737429935743,
+        "name": "55. Jump Game",
+        "proficiency": 1,
+        "submissionTime": 1737429935743,
+        "url": "https://leetcode.com/problems/jump-game/"
+    },
+    "56": {
+        "index": "56",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736719238083,
+        "name": "56. Merge Intervals",
+        "proficiency": 3,
+        "submissionTime": 1736719238083,
+        "url": "https://leetcode.com/problems/merge-intervals/"
+    },
+    "57": {
+        "index": "57",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737941013598,
+        "name": "57. Insert Interval",
+        "proficiency": 2,
+        "submissionTime": 1737941013598,
+        "url": "https://leetcode.com/problems/insert-interval/"
+    },
+    "59": {
+        "index": "59",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737690586175,
+        "name": "59. Spiral Matrix II",
+        "proficiency": 1,
+        "submissionTime": 1737690586175,
+        "url": "https://leetcode.com/problems/spiral-matrix-ii/"
+    },
+    "62": {
+        "index": "62",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736990977925,
+        "name": "62. Unique Paths",
+        "proficiency": 2,
+        "submissionTime": 1736990977925,
+        "url": "https://leetcode.com/problems/unique-paths/"
+    },
+    "66": {
+        "index": "66",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1738214604626,
+        "name": "66. Plus One",
+        "proficiency": 1,
+        "submissionTime": 1738214604626,
+        "url": "https://leetcode.com/problems/plus-one/"
+    },
+    "70": {
+        "index": "70",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1735693786494,
+        "name": "70. Climbing Stairs",
+        "proficiency": 2,
+        "submissionTime": 1735693786494,
+        "url": "https://leetcode.com/problems/climbing-stairs/"
+    },
+    "71": {
+        "index": "71",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736825091902,
+        "name": "71. Simplify Path",
+        "proficiency": 1,
+        "submissionTime": 1736825091901,
+        "url": "https://leetcode.com/problems/simplify-path/"
+    },
+    "72": {
+        "index": "72",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1735765259040,
+        "name": "72. Edit Distance",
+        "proficiency": 1,
+        "submissionTime": 1735765259040,
+        "url": "https://leetcode.com/problems/edit-distance/"
+    },
+    "74": {
+        "index": "74",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737797569983,
+        "name": "74. Search a 2D Matrix",
+        "proficiency": 2,
+        "submissionTime": 1737797569983,
+        "url": "https://leetcode.com/problems/search-a-2d-matrix/"
+    },
+    "75": {
+        "index": "75",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737172361381,
+        "name": "75. Sort Colors",
+        "proficiency": 2,
+        "submissionTime": 1737172361381,
+        "url": "https://leetcode.com/problems/sort-colors/"
+    },
+    "77": {
+        "index": "77",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737168818277,
+        "name": "77. Combinations",
+        "proficiency": 4,
+        "submissionTime": 1737168818277,
+        "url": "https://leetcode.com/problems/combinations/"
+    },
+    "78": {
+        "index": "78",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737515820670,
+        "name": "78. Subsets",
+        "proficiency": 4,
+        "submissionTime": 1737515820670,
+        "url": "https://leetcode.com/problems/subsets/"
+    },
+    "83": {
+        "index": "83",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1736915008317,
+        "name": "83. Remove Duplicates from Sorted List",
+        "proficiency": 1,
+        "submissionTime": 1736915008317,
+        "url": "https://leetcode.com/problems/remove-duplicates-from-sorted-list/"
+    },
+    "88": {
+        "index": "88",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737086494158,
+        "name": "88. Merge Sorted Array",
+        "proficiency": 1,
+        "submissionTime": 1737086494158,
+        "url": "https://leetcode.com/problems/merge-sorted-array/"
+    },
+    "90": {
+        "index": "90",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737886485974,
+        "name": "90. Subsets II",
+        "proficiency": 3,
+        "submissionTime": 1737886485974,
+        "url": "https://leetcode.com/problems/subsets-ii/"
+    },
+    "92": {
+        "index": "92",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736745989414,
+        "name": "92. Reverse Linked List II",
+        "proficiency": 1,
+        "submissionTime": 1736745989414,
+        "url": "https://leetcode.com/problems/reverse-linked-list-ii/"
+    },
+    "94": {
+        "index": "94",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737227660739,
+        "name": "94. Binary Tree Inorder Traversal",
+        "proficiency": 2,
+        "submissionTime": 1737227660739,
+        "url": "https://leetcode.com/problems/binary-tree-inorder-traversal/"
+    },
+    "98": {
+        "index": "98",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736846485773,
+        "name": "98. Validate Binary Search Tree",
+        "proficiency": 4,
+        "submissionTime": 1736846485773,
+        "url": "https://leetcode.com/problems/validate-binary-search-tree/"
+    },
+    "100": {
+        "index": "100",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737227682067,
+        "name": "100. Same Tree",
+        "proficiency": 2,
+        "submissionTime": 1737227682067,
+        "url": "https://leetcode.com/problems/same-tree/"
+    },
+    "102": {
+        "index": "102",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738055703523,
+        "name": "102. Binary Tree Level Order Traversal",
+        "proficiency": 3,
+        "submissionTime": 1738055703523,
+        "url": "https://leetcode.com/problems/binary-tree-level-order-traversal/"
+    },
+    "103": {
+        "index": "103",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737329416052,
+        "name": "103. Binary Tree Zigzag Level Order Traversal",
+        "proficiency": 1,
+        "submissionTime": 1737329416052,
+        "url": "https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/"
+    },
+    "104": {
+        "index": "104",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737929133826,
+        "name": "104. Maximum Depth of Binary Tree",
+        "proficiency": 4,
+        "submissionTime": 1737929133826,
+        "url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/"
+    },
+    "105": {
+        "index": "105",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736113945233,
+        "name": "105. Construct Binary Tree from Preorder and Inorder Traversal",
+        "proficiency": 2,
+        "submissionTime": 1736113945233,
+        "url": "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/"
+    },
+    "108": {
+        "index": "108",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1736409097282,
+        "name": "108. Convert Sorted Array to Binary Search Tree",
+        "proficiency": 2,
+        "submissionTime": 1736409097282,
+        "url": "https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/"
+    },
+    "110": {
+        "index": "110",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1736926163769,
+        "name": "110. Balanced Binary Tree",
+        "proficiency": 3,
+        "submissionTime": 1736926163769,
+        "url": "https://leetcode.com/problems/balanced-binary-tree/"
+    },
+    "116": {
+        "index": "116",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737022493146,
+        "name": "116. Populating Next Right Pointers in Each Node",
+        "proficiency": 1,
+        "submissionTime": 1737022493146,
+        "url": "https://leetcode.com/problems/populating-next-right-pointers-in-each-node/"
+    },
+    "117": {
+        "index": "117",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737077066397,
+        "name": "117. Populating Next Right Pointers in Each Node II",
+        "proficiency": 1,
+        "submissionTime": 1737077066397,
+        "url": "https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/"
+    },
+    "121": {
+        "index": "121",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737869408922,
+        "name": "121. Best Time to Buy and Sell Stock",
+        "proficiency": 3,
+        "submissionTime": 1737869408922,
+        "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"
+    },
+    "128": {
+        "index": "128",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736995773932,
+        "name": "128. Longest Consecutive Sequence",
+        "proficiency": 3,
+        "submissionTime": 1736995773932,
+        "url": "https://leetcode.com/problems/longest-consecutive-sequence/"
+    },
+    "129": {
+        "index": "129",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737077386908,
+        "name": "129. Sum Root to Leaf Numbers",
+        "proficiency": 2,
+        "submissionTime": 1737077386908,
+        "url": "https://leetcode.com/problems/sum-root-to-leaf-numbers/"
+    },
+    "130": {
+        "index": "130",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737330625984,
+        "name": "130. Surrounded Regions",
+        "proficiency": 1,
+        "submissionTime": 1737330625984,
+        "url": "https://leetcode.com/problems/surrounded-regions/"
+    },
+    "131": {
+        "index": "131",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736976756339,
+        "name": "131. Palindrome Partitioning",
+        "proficiency": 2,
+        "submissionTime": 1736976756339,
+        "url": "https://leetcode.com/problems/palindrome-partitioning/"
+    },
+    "133": {
+        "index": "133",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737227966117,
+        "name": "133. Clone Graph",
+        "proficiency": 2,
+        "submissionTime": 1737227966117,
+        "url": "https://leetcode.com/problems/clone-graph/"
+    },
+    "138": {
+        "index": "138",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737021912266,
+        "name": "138. Copy List with Random Pointer",
+        "proficiency": 1,
+        "submissionTime": 1737021912266,
+        "url": "https://leetcode.com/problems/copy-list-with-random-pointer/"
+    },
+    "139": {
+        "index": "139",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736314356416,
+        "name": "139. Word Break",
+        "proficiency": 1,
+        "submissionTime": 1736314356416,
+        "url": "https://leetcode.com/problems/word-break/"
+    },
+    "141": {
+        "index": "141",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737836611944,
+        "name": "141. Linked List Cycle",
+        "proficiency": 4,
+        "submissionTime": 1737836611944,
+        "url": "https://leetcode.com/problems/linked-list-cycle/"
+    },
+    "142": {
+        "index": "142",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736658216595,
+        "name": "142. Linked List Cycle II",
+        "proficiency": 1,
+        "submissionTime": 1736658216594,
+        "url": "https://leetcode.com/problems/linked-list-cycle-ii/"
+    },
+    "143": {
+        "index": "143",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736656961165,
+        "name": "143. Reorder List",
+        "proficiency": 2,
+        "submissionTime": 1736656961164,
+        "url": "https://leetcode.com/problems/reorder-list/"
+    },
+    "146": {
+        "index": "146",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738208298006,
+        "name": "146. LRU Cache",
+        "proficiency": 1,
+        "submissionTime": 1738208298006,
+        "url": "https://leetcode.com/problems/lru-cache/"
+    },
+    "152": {
+        "index": "152",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737881290179,
+        "name": "152. Maximum Product Subarray",
+        "proficiency": 2,
+        "submissionTime": 1737881290179,
+        "url": "https://leetcode.com/problems/maximum-product-subarray/"
+    },
+    "153": {
+        "index": "153",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736482880876,
+        "name": "153. Find Minimum in Rotated Sorted Array",
+        "proficiency": 3,
+        "submissionTime": 1736482880876,
+        "url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/"
+    },
+    "159": {
+        "index": "159",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737407673885,
+        "name": "159. Longest Substring with At Most Two Distinct Characters",
+        "proficiency": 1,
+        "submissionTime": 1737407673885,
+        "url": "https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/"
+    },
+    "162": {
+        "index": "162",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736741258511,
+        "name": "162. Find Peak Element",
+        "proficiency": 2,
+        "submissionTime": 1736741258511,
+        "url": "https://leetcode.com/problems/find-peak-element/"
+    },
+    "163": {
+        "index": "163",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1736932878106,
+        "name": "163. Missing Ranges",
+        "proficiency": 2,
+        "submissionTime": 1736932878106,
+        "url": "https://leetcode.com/problems/missing-ranges/"
+    },
+    "167": {
+        "index": "167",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737190839141,
+        "name": "167. Two Sum II - Input Array Is Sorted",
+        "proficiency": 1,
+        "submissionTime": 1737190839141,
+        "url": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/"
+    },
+    "173": {
+        "index": "173",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737176049600,
+        "name": "173. Binary Search Tree Iterator",
+        "proficiency": 2,
+        "submissionTime": 1737176049600,
+        "url": "https://leetcode.com/problems/binary-search-tree-iterator/"
+    },
+    "199": {
+        "index": "199",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736923976913,
+        "name": "199. Binary Tree Right Side View",
+        "proficiency": 2,
+        "submissionTime": 1736923976913,
+        "url": "https://leetcode.com/problems/binary-tree-right-side-view/"
+    },
+    "200": {
+        "index": "200",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737005550975,
+        "name": "200. Number of Islands",
+        "proficiency": 1,
+        "submissionTime": 1737005550975,
+        "url": "https://leetcode.com/problems/number-of-islands/"
+    },
+    "203": {
+        "index": "203",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737837805177,
+        "name": "203. Remove Linked List Elements",
+        "proficiency": 4,
+        "submissionTime": 1737837805177,
+        "url": "https://leetcode.com/problems/remove-linked-list-elements/"
+    },
+    "206": {
+        "index": "206",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737939812621,
+        "name": "206. Reverse Linked List",
+        "proficiency": 4,
+        "submissionTime": 1737939812621,
+        "url": "https://leetcode.com/problems/reverse-linked-list/"
+    },
+    "207": {
+        "index": "207",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737929239417,
+        "name": "207. Course Schedule",
+        "proficiency": 4,
+        "submissionTime": 1737929239417,
+        "url": "https://leetcode.com/problems/course-schedule/"
+    },
+    "210": {
+        "index": "210",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737937586384,
+        "name": "210. Course Schedule II",
+        "proficiency": 4,
+        "submissionTime": 1737937586384,
+        "url": "https://leetcode.com/problems/course-schedule-ii/"
+    },
+    "215": {
+        "index": "215",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738225509027,
+        "name": "215. Kth Largest Element in an Array",
+        "proficiency": 3,
+        "submissionTime": 1738225509027,
+        "url": "https://leetcode.com/problems/kth-largest-element-in-an-array/"
+    },
+    "216": {
+        "index": "216",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736924376201,
+        "name": "216. Combination Sum III",
+        "proficiency": 2,
+        "submissionTime": 1736924376200,
+        "url": "https://leetcode.com/problems/combination-sum-iii/"
+    },
+    "227": {
+        "index": "227",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737751425003,
+        "name": "227. Basic Calculator II",
+        "proficiency": 3,
+        "submissionTime": 1737751425003,
+        "url": "https://leetcode.com/problems/basic-calculator-ii/"
+    },
+    "228": {
+        "index": "228",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1736933574675,
+        "name": "228. Summary Ranges",
+        "proficiency": 1,
+        "submissionTime": 1736933574675,
+        "url": "https://leetcode.com/problems/summary-ranges/"
+    },
+    "230": {
+        "index": "230",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736224815630,
+        "name": "230. Kth Smallest Element in a BST",
+        "proficiency": 1,
+        "submissionTime": 1736224815630,
+        "url": "https://leetcode.com/problems/kth-smallest-element-in-a-bst/"
+    },
+    "234": {
+        "index": "234",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1736655899739,
+        "name": "234. Palindrome Linked List",
+        "proficiency": 2,
+        "submissionTime": 1736655899739,
+        "url": "https://leetcode.com/problems/palindrome-linked-list/"
+    },
+    "235": {
+        "index": "235",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737515742492,
+        "name": "235. Lowest Common Ancestor of a Binary Search Tree",
+        "proficiency": 3,
+        "submissionTime": 1737515742491,
+        "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/"
+    },
+    "236": {
+        "index": "236",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737868628898,
+        "name": "236. Lowest Common Ancestor of a Binary Tree",
+        "proficiency": 5,
+        "submissionTime": 1737868628898,
+        "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/"
+    },
+    "237": {
+        "index": "237",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737837125859,
+        "name": "237. Delete Node in a Linked List",
+        "proficiency": 4,
+        "submissionTime": 1737837125859,
+        "url": "https://leetcode.com/problems/delete-node-in-a-linked-list/"
+    },
+    "238": {
+        "index": "238",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1735961179139,
+        "name": "238. Product of Array Except Self",
+        "proficiency": 2,
+        "submissionTime": 1735961179139,
+        "url": "https://leetcode.com/problems/product-of-array-except-self/"
+    },
+    "240": {
+        "index": "240",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737606610988,
+        "name": "240. Search a 2D Matrix II",
+        "proficiency": 1,
+        "submissionTime": 1737606610988,
+        "url": "https://leetcode.com/problems/search-a-2d-matrix-ii/"
+    },
+    "252": {
+        "index": "252",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737886598163,
+        "name": "252. Meeting Rooms",
+        "proficiency": 3,
+        "submissionTime": 1737886598163,
+        "url": "https://leetcode.com/problems/meeting-rooms/"
+    },
+    "253": {
+        "index": "253",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737176666499,
+        "name": "253. Meeting Rooms II",
+        "proficiency": 4,
+        "submissionTime": 1737176666498,
+        "url": "https://leetcode.com/problems/meeting-rooms-ii/"
+    },
+    "261": {
+        "index": "261",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738293280970,
+        "name": "261. Graph Valid Tree",
+        "proficiency": 3,
+        "submissionTime": 1738293280970,
+        "url": "https://leetcode.com/problems/graph-valid-tree/"
+    },
+    "268": {
+        "index": "268",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737193209430,
+        "name": "268. Missing Number",
+        "proficiency": 1,
+        "submissionTime": 1737193209430,
+        "url": "https://leetcode.com/problems/missing-number/"
+    },
+    "270": {
+        "index": "270",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737003686468,
+        "name": "270. Closest Binary Search Tree Value",
+        "proficiency": 2,
+        "submissionTime": 1737003686468,
+        "url": "https://leetcode.com/problems/closest-binary-search-tree-value/"
+    },
+    "271": {
+        "index": "271",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1734603756129,
+        "name": "271. Encode and Decode Strings",
+        "proficiency": 1,
+        "submissionTime": 1734603756129,
+        "url": "https://leetcode.com/problems/encode-and-decode-strings/"
+    },
+    "281": {
+        "index": "281",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737516387299,
+        "name": "281. Zigzag Iterator",
+        "proficiency": 1,
+        "submissionTime": 1737516387299,
+        "url": "https://leetcode.com/problems/zigzag-iterator/"
+    },
+    "283": {
+        "index": "283",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1736930820296,
+        "name": "283. Move Zeroes",
+        "proficiency": 3,
+        "submissionTime": 1736930820296,
+        "url": "https://leetcode.com/problems/move-zeroes/"
+    },
+    "286": {
+        "index": "286",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737428886650,
+        "name": "286. Walls and Gates",
+        "proficiency": 1,
+        "submissionTime": 1737428886650,
+        "url": "https://leetcode.com/problems/walls-and-gates/"
+    },
+    "287": {
+        "index": "287",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736407451676,
+        "name": "287. Find the Duplicate Number",
+        "proficiency": 1,
+        "submissionTime": 1736407451676,
+        "url": "https://leetcode.com/problems/find-the-duplicate-number/"
+    },
+    "295": {
+        "index": "295",
+        "isDeleted": false,
+        "level": "Hard",
+        "modificationTime": 1737868224821,
+        "name": "295. Find Median from Data Stream",
+        "proficiency": 2,
+        "submissionTime": 1737868224821,
+        "url": "https://leetcode.com/problems/find-median-from-data-stream/"
+    },
+    "300": {
+        "index": "300",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736931614706,
+        "name": "300. Longest Increasing Subsequence",
+        "proficiency": 3,
+        "submissionTime": 1736931614706,
+        "url": "https://leetcode.com/problems/longest-increasing-subsequence/"
+    },
+    "303": {
+        "index": "303",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1738221408601,
+        "name": "303. Range Sum Query - Immutable",
+        "proficiency": 1,
+        "submissionTime": 1738221408601,
+        "url": "https://leetcode.com/problems/range-sum-query-immutable/"
+    },
+    "314": {
+        "index": "314",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736660325282,
+        "name": "314. Binary Tree Vertical Order Traversal",
+        "proficiency": 2,
+        "submissionTime": 1736660325282,
+        "url": "https://leetcode.com/problems/binary-tree-vertical-order-traversal/"
+    },
+    "322": {
+        "index": "322",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1735692102272,
+        "name": "322. Coin Change",
+        "proficiency": 2,
+        "submissionTime": 1735692102272,
+        "url": "https://leetcode.com/problems/coin-change/"
+    },
+    "323": {
+        "index": "323",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737961501450,
+        "name": "323. Number of Connected Components in an Undirected Graph",
+        "proficiency": 3,
+        "submissionTime": 1737961501450,
+        "url": "https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/"
+    },
+    "325": {
+        "index": "325",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736046304625,
+        "name": "325. Maximum Size Subarray Sum Equals k",
+        "proficiency": 1,
+        "submissionTime": 1736046304625,
+        "url": "https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/"
+    },
+    "337": {
+        "index": "337",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736241959927,
+        "name": "337. House Robber III",
+        "proficiency": 1,
+        "submissionTime": 1736241959927,
+        "url": "https://leetcode.com/problems/house-robber-iii/"
+    },
+    "339": {
+        "index": "339",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736992772897,
+        "name": "339. Nested List Weight Sum",
+        "proficiency": 3,
+        "submissionTime": 1736992772897,
+        "url": "https://leetcode.com/problems/nested-list-weight-sum/"
+    },
+    "340": {
+        "index": "340",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737427822730,
+        "name": "340. Longest Substring with At Most K Distinct Characters",
+        "proficiency": 1,
+        "submissionTime": 1737427822730,
+        "url": "https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/"
+    },
+    "346": {
+        "index": "346",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737869232443,
+        "name": "346. Moving Average from Data Stream",
+        "proficiency": 2,
+        "submissionTime": 1737869232443,
+        "url": "https://leetcode.com/problems/moving-average-from-data-stream/"
+    },
+    "347": {
+        "index": "347",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738309647017,
+        "name": "347. Top K Frequent Elements",
+        "proficiency": 4,
+        "submissionTime": 1738309647017,
+        "url": "https://leetcode.com/problems/top-k-frequent-elements/"
+    },
+    "348": {
+        "index": "348",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738230506461,
+        "name": "348. Design Tic-Tac-Toe",
+        "proficiency": 1,
+        "submissionTime": 1738230506461,
+        "url": "https://leetcode.com/problems/design-tic-tac-toe/"
+    },
+    "370": {
+        "index": "370",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1735768936918,
+        "name": "370. Range Addition",
+        "proficiency": 3,
+        "submissionTime": 1735768936918,
+        "url": "https://leetcode.com/problems/range-addition/"
+    },
+    "398": {
+        "index": "398",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737671237918,
+        "name": "398. Random Pick Index",
+        "proficiency": 2,
+        "submissionTime": 1737671237918,
+        "url": "https://leetcode.com/problems/random-pick-index/"
+    },
+    "408": {
+        "index": "408",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1738124120965,
+        "name": "408. Valid Word Abbreviation",
+        "proficiency": 4,
+        "submissionTime": 1738124120965,
+        "url": "https://leetcode.com/problems/valid-word-abbreviation/"
+    },
+    "415": {
+        "index": "415",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737798297902,
+        "name": "415. Add Strings",
+        "proficiency": 1,
+        "submissionTime": 1737798297902,
+        "url": "https://leetcode.com/problems/add-strings/"
+    },
+    "417": {
+        "index": "417",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737350570901,
+        "name": "417. Pacific Atlantic Water Flow",
+        "proficiency": 1,
+        "submissionTime": 1737350570901,
+        "url": "https://leetcode.com/problems/pacific-atlantic-water-flow/"
+    },
+    "424": {
+        "index": "424",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737363917257,
+        "name": "424. Longest Repeating Character Replacement",
+        "proficiency": 3,
+        "submissionTime": 1737363917257,
+        "url": "https://leetcode.com/problems/longest-repeating-character-replacement/"
+    },
+    "426": {
+        "index": "426",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738210626809,
+        "name": "426. Convert Binary Search Tree to Sorted Doubly Linked List",
+        "proficiency": 1,
+        "submissionTime": 1738210626809,
+        "url": "https://leetcode.com/problems/convert-binary-search-tree-to-sorted-doubly-linked-list/"
+    },
+    "435": {
+        "index": "435",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737405464434,
+        "name": "435. Non-overlapping Intervals",
+        "proficiency": 4,
+        "submissionTime": 1737405464434,
+        "url": "https://leetcode.com/problems/non-overlapping-intervals/"
+    },
+    "450": {
+        "index": "450",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736227669559,
+        "name": "450. Delete Node in a BST",
+        "proficiency": 1,
+        "submissionTime": 1736227669559,
+        "url": "https://leetcode.com/problems/delete-node-in-a-bst/"
+    },
+    "452": {
+        "index": "452",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738127629274,
+        "name": "452. Minimum Number of Arrows to Burst Balloons",
+        "proficiency": 3,
+        "submissionTime": 1738127629274,
+        "url": "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/"
+    },
+    "485": {
+        "index": "485",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737258478857,
+        "name": "485. Max Consecutive Ones",
+        "proficiency": 1,
+        "submissionTime": 1737258478857,
+        "url": "https://leetcode.com/problems/max-consecutive-ones/"
+    },
+    "487": {
+        "index": "487",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737258920146,
+        "name": "487. Max Consecutive Ones II",
+        "proficiency": 1,
+        "submissionTime": 1737258920146,
+        "url": "https://leetcode.com/problems/max-consecutive-ones-ii/"
+    },
+    "494": {
+        "index": "494",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736659193330,
+        "name": "494. Target Sum",
+        "proficiency": 4,
+        "submissionTime": 1736659193330,
+        "url": "https://leetcode.com/problems/target-sum/"
+    },
+    "498": {
+        "index": "498",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738124689702,
+        "name": "498. Diagonal Traverse",
+        "proficiency": 2,
+        "submissionTime": 1738124689702,
+        "url": "https://leetcode.com/problems/diagonal-traverse/"
+    },
+    "523": {
+        "index": "523",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737405263065,
+        "name": "523. Continuous Subarray Sum",
+        "proficiency": 3,
+        "submissionTime": 1737405263065,
+        "url": "https://leetcode.com/problems/continuous-subarray-sum/"
+    },
+    "528": {
+        "index": "528",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737836885152,
+        "name": "528. Random Pick with Weight",
+        "proficiency": 3,
+        "submissionTime": 1737836885152,
+        "url": "https://leetcode.com/problems/random-pick-with-weight/"
+    },
+    "536": {
+        "index": "536",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737230535469,
+        "name": "536. Construct Binary Tree from String",
+        "proficiency": 1,
+        "submissionTime": 1737230535469,
+        "url": "https://leetcode.com/problems/construct-binary-tree-from-string/"
+    },
+    "543": {
+        "index": "543",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1738221878800,
+        "name": "543. Diameter of Binary Tree",
+        "proficiency": 4,
+        "submissionTime": 1738221878800,
+        "url": "https://leetcode.com/problems/diameter-of-binary-tree/"
+    },
+    "547": {
+        "index": "547",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737962195465,
+        "name": "547. Number of Provinces",
+        "proficiency": 3,
+        "submissionTime": 1737962195465,
+        "url": "https://leetcode.com/problems/number-of-provinces/"
+    },
+    "556": {
+        "index": "556",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737795024049,
+        "name": "556. Next Greater Element III",
+        "proficiency": 2,
+        "submissionTime": 1737795024049,
+        "url": "https://leetcode.com/problems/next-greater-element-iii/"
+    },
+    "559": {
+        "index": "559",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737005058418,
+        "name": "559. Maximum Depth of N-ary Tree",
+        "proficiency": 1,
+        "submissionTime": 1737005058418,
+        "url": "https://leetcode.com/problems/maximum-depth-of-n-ary-tree/"
+    },
+    "560": {
+        "index": "560",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737019122237,
+        "name": "560. Subarray Sum Equals K",
+        "proficiency": 2,
+        "submissionTime": 1737019122237,
+        "url": "https://leetcode.com/problems/subarray-sum-equals-k/"
+    },
+    "565": {
+        "index": "565",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736994712041,
+        "name": "565. Array Nesting",
+        "proficiency": 1,
+        "submissionTime": 1736994712041,
+        "url": "https://leetcode.com/problems/array-nesting/"
+    },
+    "572": {
+        "index": "572",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737936622299,
+        "name": "572. Subtree of Another Tree",
+        "proficiency": 4,
+        "submissionTime": 1737936622299,
+        "url": "https://leetcode.com/problems/subtree-of-another-tree/"
+    },
+    "598": {
+        "index": "598",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1736041939426,
+        "name": "598. Range Addition II",
+        "proficiency": 2,
+        "submissionTime": 1736041939426,
+        "url": "https://leetcode.com/problems/range-addition-ii/"
+    },
+    "605": {
+        "index": "605",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737406820641,
+        "name": "605. Can Place Flowers",
+        "proficiency": 1,
+        "submissionTime": 1737406820641,
+        "url": "https://leetcode.com/problems/can-place-flowers/"
+    },
+    "621": {
+        "index": "621",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738291922785,
+        "name": "621. Task Scheduler",
+        "proficiency": 1,
+        "submissionTime": 1738291922785,
+        "url": "https://leetcode.com/problems/task-scheduler/"
+    },
+    "643": {
+        "index": "643",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1738213217710,
+        "name": "643. Maximum Average Subarray I",
+        "proficiency": 1,
+        "submissionTime": 1738213217710,
+        "url": "https://leetcode.com/problems/maximum-average-subarray-i/"
+    },
+    "647": {
+        "index": "647",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1735513271281,
+        "name": "647. Palindromic Substrings",
+        "proficiency": 1,
+        "submissionTime": 1735513271281,
+        "url": "https://leetcode.com/problems/palindromic-substrings/"
+    },
+    "654": {
+        "index": "654",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737098370521,
+        "name": "654. Maximum Binary Tree",
+        "proficiency": 2,
+        "submissionTime": 1737098370521,
+        "url": "https://leetcode.com/problems/maximum-binary-tree/"
+    },
+    "658": {
+        "index": "658",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737514765897,
+        "name": "658. Find K Closest Elements",
+        "proficiency": 1,
+        "submissionTime": 1737514765897,
+        "url": "https://leetcode.com/problems/find-k-closest-elements/"
+    },
+    "670": {
+        "index": "670",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737691711461,
+        "name": "670. Maximum Swap",
+        "proficiency": 2,
+        "submissionTime": 1737691711461,
+        "url": "https://leetcode.com/problems/maximum-swap/"
+    },
+    "671": {
+        "index": "671",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1736545434310,
+        "name": "671. Second Minimum Node In a Binary Tree",
+        "proficiency": 2,
+        "submissionTime": 1736545434310,
+        "url": "https://leetcode.com/problems/second-minimum-node-in-a-binary-tree/"
+    },
+    "680": {
+        "index": "680",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737869935942,
+        "name": "680. Valid Palindrome II",
+        "proficiency": 4,
+        "submissionTime": 1737869935942,
+        "url": "https://leetcode.com/problems/valid-palindrome-ii/"
+    },
+    "684": {
+        "index": "684",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737960894600,
+        "name": "684. Redundant Connection",
+        "proficiency": 2,
+        "submissionTime": 1737960894600,
+        "url": "https://leetcode.com/problems/redundant-connection/"
+    },
+    "692": {
+        "index": "692",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738310865219,
+        "name": "692. Top K Frequent Words",
+        "proficiency": 1,
+        "submissionTime": 1738310865219,
+        "url": "https://leetcode.com/problems/top-k-frequent-words/"
+    },
+    "695": {
+        "index": "695",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737102146506,
+        "name": "695. Max Area of Island",
+        "proficiency": 1,
+        "submissionTime": 1737102146506,
+        "url": "https://leetcode.com/problems/max-area-of-island/"
+    },
+    "698": {
+        "index": "698",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737168600144,
+        "name": "698. Partition to K Equal Sum Subsets",
+        "proficiency": 2,
+        "submissionTime": 1737168600144,
+        "url": "https://leetcode.com/problems/partition-to-k-equal-sum-subsets/"
+    },
+    "701": {
+        "index": "701",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736925998940,
+        "name": "701. Insert into a Binary Search Tree",
+        "proficiency": 3,
+        "submissionTime": 1736925998940,
+        "url": "https://leetcode.com/problems/insert-into-a-binary-search-tree/"
+    },
+    "703": {
+        "index": "703",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1738311947400,
+        "name": "703. Kth Largest Element in a Stream",
+        "proficiency": 1,
+        "submissionTime": 1738311947400,
+        "url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/"
+    },
+    "721": {
+        "index": "721",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737530474611,
+        "name": "721. Accounts Merge",
+        "proficiency": 3,
+        "submissionTime": 1737530474611,
+        "url": "https://leetcode.com/problems/accounts-merge/"
+    },
+    "725": {
+        "index": "725",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737100815716,
+        "name": "725. Split Linked List in Parts",
+        "proficiency": 1,
+        "submissionTime": 1737100815716,
+        "url": "https://leetcode.com/problems/split-linked-list-in-parts/"
+    },
+    "731": {
+        "index": "731",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737885615545,
+        "name": "731. My Calendar II",
+        "proficiency": 2,
+        "submissionTime": 1737885615545,
+        "url": "https://leetcode.com/problems/my-calendar-ii/"
+    },
+    "735": {
+        "index": "735",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737426849395,
+        "name": "735. Asteroid Collision",
+        "proficiency": 1,
+        "submissionTime": 1737426849395,
+        "url": "https://leetcode.com/problems/asteroid-collision/"
+    },
+    "742": {
+        "index": "742",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737964150976,
+        "name": "742. Closest Leaf in a Binary Tree",
+        "proficiency": 1,
+        "submissionTime": 1737964150976,
+        "url": "https://leetcode.com/problems/closest-leaf-in-a-binary-tree/"
+    },
+    "743": {
+        "index": "743",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737276720701,
+        "name": "743. Network Delay Time",
+        "proficiency": 1,
+        "submissionTime": 1737276720701,
+        "url": "https://leetcode.com/problems/network-delay-time/"
+    },
+    "766": {
+        "index": "766",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1736991129372,
+        "name": "766. Toeplitz Matrix",
+        "proficiency": 2,
+        "submissionTime": 1736991129371,
+        "url": "https://leetcode.com/problems/toeplitz-matrix/"
+    },
+    "767": {
+        "index": "767",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738313001051,
+        "name": "767. Reorganize String",
+        "proficiency": 1,
+        "submissionTime": 1738313001051,
+        "url": "https://leetcode.com/problems/reorganize-string/"
+    },
+    "771": {
+        "index": "771",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1738214305573,
+        "name": "771. Jewels and Stones",
+        "proficiency": 1,
+        "submissionTime": 1738214305573,
+        "url": "https://leetcode.com/problems/jewels-and-stones/"
+    },
+    "787": {
+        "index": "787",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737278013342,
+        "name": "787. Cheapest Flights Within K Stops",
+        "proficiency": 2,
+        "submissionTime": 1737278013342,
+        "url": "https://leetcode.com/problems/cheapest-flights-within-k-stops/?envType=company&envId=facebook&favoriteSlug=facebook-three-months"
+    },
+    "791": {
+        "index": "791",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736319452639,
+        "name": "791. Custom Sort String",
+        "proficiency": 1,
+        "submissionTime": 1736319452639,
+        "url": "https://leetcode.com/problems/custom-sort-string/"
+    },
+    "802": {
+        "index": "802",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737749441570,
+        "name": "802. Find Eventual Safe States",
+        "proficiency": 3,
+        "submissionTime": 1737749441570,
+        "url": "https://leetcode.com/problems/find-eventual-safe-states/"
+    },
+    "824": {
+        "index": "824",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737946178452,
+        "name": "824. Goat Latin",
+        "proficiency": 1,
+        "submissionTime": 1737946178452,
+        "url": "https://leetcode.com/problems/goat-latin/"
+    },
+    "825": {
+        "index": "825",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737190276894,
+        "name": "825. Friends Of Appropriate Ages",
+        "proficiency": 1,
+        "submissionTime": 1737190276894,
+        "url": "https://leetcode.com/problems/friends-of-appropriate-ages/"
+    },
+    "832": {
+        "index": "832",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737868756197,
+        "name": "832. Flipping an Image",
+        "proficiency": 2,
+        "submissionTime": 1737868756197,
+        "url": "https://leetcode.com/problems/flipping-an-image/"
+    },
+    "848": {
+        "index": "848",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736112684022,
+        "name": "848. Shifting Letters",
+        "proficiency": 1,
+        "submissionTime": 1736112684021,
+        "url": "https://leetcode.com/problems/shifting-letters/"
+    },
+    "852": {
+        "index": "852",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736840804470,
+        "name": "852. Peak Index in a Mountain Array",
+        "proficiency": 1,
+        "submissionTime": 1736840804470,
+        "url": "https://leetcode.com/problems/peak-index-in-a-mountain-array/"
+    },
+    "853": {
+        "index": "853",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1735682312079,
+        "name": "853. Car Fleet",
+        "proficiency": 1,
+        "submissionTime": 1735682312079,
+        "url": "https://leetcode.com/problems/car-fleet/"
+    },
+    "863": {
+        "index": "863",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737929032359,
+        "name": "863. All Nodes Distance K in Binary Tree",
+        "proficiency": 2,
+        "submissionTime": 1737929032359,
+        "url": "https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/"
+    },
+    "867": {
+        "index": "867",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737837471764,
+        "name": "867. Transpose Matrix",
+        "proficiency": 2,
+        "submissionTime": 1737837471764,
+        "url": "https://leetcode.com/problems/transpose-matrix/"
+    },
+    "876": {
+        "index": "876",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1736651948905,
+        "name": "876. Middle of the Linked List",
+        "proficiency": 2,
+        "submissionTime": 1736651948905,
+        "url": "https://leetcode.com/problems/middle-of-the-linked-list/"
+    },
+    "904": {
+        "index": "904",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1735726434986,
+        "name": "904. Fruit Into Baskets",
+        "proficiency": 2,
+        "submissionTime": 1735726434986,
+        "url": "https://leetcode.com/problems/fruit-into-baskets/"
+    },
+    "916": {
+        "index": "916",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737231106569,
+        "name": "916. Word Subsets",
+        "proficiency": 2,
+        "submissionTime": 1737231106568,
+        "url": "https://leetcode.com/problems/word-subsets/"
+    },
+    "921": {
+        "index": "921",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736996415704,
+        "name": "921. Minimum Add to Make Parentheses Valid",
+        "proficiency": 1,
+        "submissionTime": 1736996415704,
+        "url": "https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/"
+    },
+    "934": {
+        "index": "934",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738228017610,
+        "name": "934. Shortest Bridge",
+        "proficiency": 1,
+        "submissionTime": 1738228017610,
+        "url": "https://leetcode.com/problems/shortest-bridge/"
+    },
+    "938": {
+        "index": "938",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737098691584,
+        "name": "938. Range Sum of BST",
+        "proficiency": 2,
+        "submissionTime": 1737098691584,
+        "url": "https://leetcode.com/problems/range-sum-of-bst/"
+    },
+    "947": {
+        "index": "947",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737966344510,
+        "name": "947. Most Stones Removed with Same Row or Column",
+        "proficiency": 1,
+        "submissionTime": 1737966344510,
+        "url": "https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/"
+    },
+    "958": {
+        "index": "958",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737228606527,
+        "name": "958. Check Completeness of a Binary Tree",
+        "proficiency": 2,
+        "submissionTime": 1737228606527,
+        "url": "https://leetcode.com/problems/check-completeness-of-a-binary-tree/"
+    },
+    "973": {
+        "index": "973",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737102758695,
+        "name": "973. K Closest Points to Origin",
+        "proficiency": 1,
+        "submissionTime": 1737102758695,
+        "url": "https://leetcode.com/problems/k-closest-points-to-origin/"
+    },
+    "983": {
+        "index": "983",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1735679266551,
+        "name": "983. Minimum Cost For Tickets",
+        "proficiency": 1,
+        "submissionTime": 1735679266551,
+        "url": "https://leetcode.com/problems/minimum-cost-for-tickets/"
+    },
+    "986": {
+        "index": "986",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737528832829,
+        "name": "986. Interval List Intersections",
+        "proficiency": 2,
+        "submissionTime": 1737528832829,
+        "url": "https://leetcode.com/problems/interval-list-intersections/"
+    },
+    "987": {
+        "index": "987",
+        "isDeleted": false,
+        "level": "Hard",
+        "modificationTime": 1738141424983,
+        "name": "987. Vertical Order Traversal of a Binary Tree",
+        "proficiency": 1,
+        "submissionTime": 1738141424983,
+        "url": "https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/"
+    },
+    "993": {
+        "index": "993",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737937058126,
+        "name": "993. Cousins in Binary Tree",
+        "proficiency": 2,
+        "submissionTime": 1737937058126,
+        "url": "https://leetcode.com/problems/cousins-in-binary-tree/"
+    },
+    "998": {
+        "index": "998",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737103428329,
+        "name": "998. Maximum Binary Tree II",
+        "proficiency": 1,
+        "submissionTime": 1737103428328,
+        "url": "https://leetcode.com/problems/maximum-binary-tree-ii/"
+    },
+    "1004": {
+        "index": "1004",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737426216039,
+        "name": "1004. Max Consecutive Ones III",
+        "proficiency": 3,
+        "submissionTime": 1737426216039,
+        "url": "https://leetcode.com/problems/max-consecutive-ones-iii/"
+    },
+    "1014": {
+        "index": "1014",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736035721231,
+        "name": "1014. Best Sightseeing Pair",
+        "proficiency": 2,
+        "submissionTime": 1736035721231,
+        "url": "https://leetcode.com/problems/best-sightseeing-pair/"
+    },
+    "1047": {
+        "index": "1047",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1738215024939,
+        "name": "1047. Remove All Adjacent Duplicates In String",
+        "proficiency": 1,
+        "submissionTime": 1738215024939,
+        "url": "https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/"
+    },
+    "1091": {
+        "index": "1091",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737101765777,
+        "name": "1091. Shortest Path in Binary Matrix",
+        "proficiency": 1,
+        "submissionTime": 1737101765777,
+        "url": "https://leetcode.com/problems/shortest-path-in-binary-matrix/"
+    },
+    "1094": {
+        "index": "1094",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737945491056,
+        "name": "1094. Car Pooling",
+        "proficiency": 3,
+        "submissionTime": 1737945491056,
+        "url": "https://leetcode.com/problems/car-pooling/"
+    },
+    "1101": {
+        "index": "1101",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1735683709985,
+        "name": "1101. The Earliest Moment When Everyone Become Friends",
+        "proficiency": 2,
+        "submissionTime": 1735683709984,
+        "url": "https://leetcode.com/problems/the-earliest-moment-when-everyone-become-friends/"
+    },
+    "1123": {
+        "index": "1123",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737793812978,
+        "name": "1123. Lowest Common Ancestor of Deepest Leaves",
+        "proficiency": 3,
+        "submissionTime": 1737793812978,
+        "url": "https://leetcode.com/problems/lowest-common-ancestor-of-deepest-leaves/"
+    },
+    "1143": {
+        "index": "1143",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1735357431364,
+        "name": "1143. Longest Common Subsequence",
+        "proficiency": 1,
+        "submissionTime": 1735357431364,
+        "url": "https://leetcode.com/problems/longest-common-subsequence/"
+    },
+    "1161": {
+        "index": "1161",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737968398792,
+        "name": "1161. Maximum Level Sum of a Binary Tree",
+        "proficiency": 1,
+        "submissionTime": 1737968398792,
+        "url": "https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/"
+    },
+    "1214": {
+        "index": "1214",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738297151450,
+        "name": "1214. Two Sum BSTs",
+        "proficiency": 1,
+        "submissionTime": 1738297151450,
+        "url": "https://leetcode.com/problems/two-sum-bsts/"
+    },
+    "1249": {
+        "index": "1249",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737083590699,
+        "name": "1249. Minimum Remove to Make Valid Parentheses",
+        "proficiency": 1,
+        "submissionTime": 1737083590699,
+        "url": "https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/"
+    },
+    "1267": {
+        "index": "1267",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737938666714,
+        "name": "1267. Count Servers that Communicate",
+        "proficiency": 2,
+        "submissionTime": 1737938666714,
+        "url": "https://leetcode.com/problems/count-servers-that-communicate/"
+    },
+    "1319": {
+        "index": "1319",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738293894101,
+        "name": "1319. Number of Operations to Make Network Connected",
+        "proficiency": 1,
+        "submissionTime": 1738293894101,
+        "url": "https://leetcode.com/problems/number-of-operations-to-make-network-connected/"
+    },
+    "1325": {
+        "index": "1325",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736237615091,
+        "name": "1325. Delete Leaves With a Given Value",
+        "proficiency": 1,
+        "submissionTime": 1736237615091,
+        "url": "https://leetcode.com/problems/delete-leaves-with-a-given-value/"
+    },
+    "1353": {
+        "index": "1353",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738290310375,
+        "name": "1353. Maximum Number of Events That Can Be Attended",
+        "proficiency": 2,
+        "submissionTime": 1738290310374,
+        "url": "https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/"
+    },
+    "1376": {
+        "index": "1376",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738299625419,
+        "name": "1376. Time Needed to Inform All Employees",
+        "proficiency": 1,
+        "submissionTime": 1738299625418,
+        "url": "https://leetcode.com/problems/time-needed-to-inform-all-employees/"
+    },
+    "1381": {
+        "index": "1381",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737884124534,
+        "name": "1381. Design a Stack With Increment Operation",
+        "proficiency": 2,
+        "submissionTime": 1737884124534,
+        "url": "https://leetcode.com/problems/design-a-stack-with-increment-operation/"
+    },
+    "1422": {
+        "index": "1422",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1735694763150,
+        "name": "1422. Maximum Score After Splitting a String",
+        "proficiency": 1,
+        "submissionTime": 1735694763150,
+        "url": "https://leetcode.com/problems/maximum-score-after-splitting-a-string/"
+    },
+    "1424": {
+        "index": "1424",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738211958045,
+        "name": "1424. Diagonal Traverse II",
+        "proficiency": 1,
+        "submissionTime": 1738211958045,
+        "url": "https://leetcode.com/problems/diagonal-traverse-ii/"
+    },
+    "1443": {
+        "index": "1443",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738126654316,
+        "name": "1443. Minimum Time to Collect All Apples in a Tree",
+        "proficiency": 2,
+        "submissionTime": 1738126654316,
+        "url": "https://leetcode.com/problems/minimum-time-to-collect-all-apples-in-a-tree/"
+    },
+    "1448": {
+        "index": "1448",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736410471098,
+        "name": "1448. Count Good Nodes in Binary Tree",
+        "proficiency": 2,
+        "submissionTime": 1736410471098,
+        "url": "https://leetcode.com/problems/count-good-nodes-in-binary-tree/"
+    },
+    "1472": {
+        "index": "1472",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738053410201,
+        "name": "1472. Design Browser History",
+        "proficiency": 1,
+        "submissionTime": 1738053410201,
+        "url": "https://leetcode.com/problems/design-browser-history/"
+    },
+    "1475": {
+        "index": "1475",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1735963537941,
+        "name": "1475. Final Prices With a Special Discount in a Shop",
+        "proficiency": 2,
+        "submissionTime": 1735963537941,
+        "url": "https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/"
+    },
+    "1522": {
+        "index": "1522",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738222882113,
+        "name": "1522. Diameter of N-Ary Tree",
+        "proficiency": 2,
+        "submissionTime": 1738222882113,
+        "url": "https://leetcode.com/problems/diameter-of-n-ary-tree/"
+    },
+    "1539": {
+        "index": "1539",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737939201782,
+        "name": "1539. Kth Missing Positive Number",
+        "proficiency": 4,
+        "submissionTime": 1737939201782,
+        "url": "https://leetcode.com/problems/kth-missing-positive-number/"
+    },
+    "1570": {
+        "index": "1570",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737427550909,
+        "name": "1570. Dot Product of Two Sparse Vectors",
+        "proficiency": 2,
+        "submissionTime": 1737427550909,
+        "url": "https://leetcode.com/problems/dot-product-of-two-sparse-vectors/"
+    },
+    "1572": {
+        "index": "1572",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737868486749,
+        "name": "1572. Matrix Diagonal Sum",
+        "proficiency": 2,
+        "submissionTime": 1737868486749,
+        "url": "https://leetcode.com/problems/matrix-diagonal-sum/"
+    },
+    "1644": {
+        "index": "1644",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736930283547,
+        "name": "1644. Lowest Common Ancestor of a Binary Tree II",
+        "proficiency": 3,
+        "submissionTime": 1736930283547,
+        "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-ii/"
+    },
+    "1650": {
+        "index": "1650",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737794343582,
+        "name": "1650. Lowest Common Ancestor of a Binary Tree III",
+        "proficiency": 3,
+        "submissionTime": 1737794343582,
+        "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/"
+    },
+    "1676": {
+        "index": "1676",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737794155827,
+        "name": "1676. Lowest Common Ancestor of a Binary Tree IV",
+        "proficiency": 2,
+        "submissionTime": 1737794155827,
+        "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/"
+    },
+    "1721": {
+        "index": "1721",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736908538952,
+        "name": "1721. Swapping Nodes in a Linked List",
+        "proficiency": 1,
+        "submissionTime": 1736908538952,
+        "url": "https://leetcode.com/problems/swapping-nodes-in-a-linked-list/"
+    },
+    "1740": {
+        "index": "1740",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737782683944,
+        "name": "1740. Find Distance in a Binary Tree",
+        "proficiency": 1,
+        "submissionTime": 1737782683944,
+        "url": "https://leetcode.com/problems/find-distance-in-a-binary-tree/"
+    },
+    "1748": {
+        "index": "1748",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1738214470325,
+        "name": "1748. Sum of Unique Elements",
+        "proficiency": 1,
+        "submissionTime": 1738214470325,
+        "url": "https://leetcode.com/problems/sum-of-unique-elements/"
+    },
+    "1762": {
+        "index": "1762",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736841650507,
+        "name": "1762. Buildings With an Ocean View",
+        "proficiency": 1,
+        "submissionTime": 1736841650507,
+        "url": "https://leetcode.com/problems/buildings-with-an-ocean-view/"
+    },
+    "1769": {
+        "index": "1769",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736409584007,
+        "name": "1769. Minimum Number of Operations to Move All Balls to Each Box",
+        "proficiency": 2,
+        "submissionTime": 1736409584007,
+        "url": "https://leetcode.com/problems/minimum-number-of-operations-to-move-all-balls-to-each-box/"
+    },
+    "1772": {
+        "index": "1772",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738311571347,
+        "name": "1772. Sort Features by Popularity",
+        "proficiency": 1,
+        "submissionTime": 1738311571347,
+        "url": "https://leetcode.com/problems/sort-features-by-popularity/"
+    },
+    "1854": {
+        "index": "1854",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737886351061,
+        "name": "1854. Maximum Population Year",
+        "proficiency": 3,
+        "submissionTime": 1737886351061,
+        "url": "https://leetcode.com/problems/maximum-population-year/"
+    },
+    "1893": {
+        "index": "1893",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737941350864,
+        "name": "1893. Check if All the Integers in a Range Are Covered",
+        "proficiency": 3,
+        "submissionTime": 1737941350864,
+        "url": "https://leetcode.com/problems/check-if-all-the-integers-in-a-range-are-covered/"
+    },
+    "1930": {
+        "index": "1930",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1735988257440,
+        "name": "1930. Unique Length-3 Palindromic Subsequences",
+        "proficiency": 1,
+        "submissionTime": 1735988257440,
+        "url": "https://leetcode.com/problems/unique-length-3-palindromic-subsequences/"
+    },
+    "1963": {
+        "index": "1963",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736241213336,
+        "name": "1963. Minimum Number of Swaps to Make the String Balanced",
+        "proficiency": 1,
+        "submissionTime": 1736241213336,
+        "url": "https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/"
+    },
+    "2012": {
+        "index": "2012",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737880716777,
+        "name": "2012. Sum of Beauty in the Array",
+        "proficiency": 1,
+        "submissionTime": 1737880716777,
+        "url": "https://leetcode.com/problems/sum-of-beauty-in-the-array/"
+    },
+    "2024": {
+        "index": "2024",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737436318201,
+        "name": "2024. Maximize the Confusion of an Exam",
+        "proficiency": 1,
+        "submissionTime": 1737436318201,
+        "url": "https://leetcode.com/problems/maximize-the-confusion-of-an-exam/"
+    },
+    "2093": {
+        "index": "2093",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737285618622,
+        "name": "2093. Minimum Cost to Reach City With Discounts",
+        "proficiency": 1,
+        "submissionTime": 1737285618622,
+        "url": "https://leetcode.com/problems/minimum-cost-to-reach-city-with-discounts/"
+    },
+    "2095": {
+        "index": "2095",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736652357936,
+        "name": "2095. Delete the Middle Node of a Linked List",
+        "proficiency": 2,
+        "submissionTime": 1736652357936,
+        "url": "https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/"
+    },
+    "2116": {
+        "index": "2116",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736642330493,
+        "name": "2116. Check if a Parentheses String Can Be Valid",
+        "proficiency": 1,
+        "submissionTime": 1736642330493,
+        "url": "https://leetcode.com/problems/check-if-a-parentheses-string-can-be-valid/"
+    },
+    "2185": {
+        "index": "2185",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1736389414563,
+        "name": "2185. Counting Words With a Given Prefix",
+        "proficiency": 1,
+        "submissionTime": 1736389414563,
+        "url": "https://leetcode.com/problems/counting-words-with-a-given-prefix/"
+    },
+    "2237": {
+        "index": "2237",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737962471522,
+        "name": "2237. Count Positions on Street With Required Brightness",
+        "proficiency": 3,
+        "submissionTime": 1737962471522,
+        "url": "https://leetcode.com/problems/count-positions-on-street-with-required-brightness/"
+    },
+    "2270": {
+        "index": "2270",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1735878728084,
+        "name": "2270. Number of Ways to Split Array",
+        "proficiency": 1,
+        "submissionTime": 1735878728084,
+        "url": "https://leetcode.com/problems/number-of-ways-to-split-array/"
+    },
+    "2305": {
+        "index": "2305",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1735525451791,
+        "name": "2305. Fair Distribution of Cookies",
+        "proficiency": 1,
+        "submissionTime": 1735525451791,
+        "url": "https://leetcode.com/problems/fair-distribution-of-cookies/"
+    },
+    "2323": {
+        "index": "2323",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738292621559,
+        "name": "2323. Find Minimum Time to Finish All Jobs II",
+        "proficiency": 1,
+        "submissionTime": 1738292621558,
+        "url": "https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs-ii/"
+    },
+    "2381": {
+        "index": "2381",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736111228502,
+        "name": "2381. Shifting Letters II",
+        "proficiency": 1,
+        "submissionTime": 1736111228502,
+        "url": "https://leetcode.com/problems/shifting-letters-ii/"
+    },
+    "2385": {
+        "index": "2385",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737937958442,
+        "name": "2385. Amount of Time for Binary Tree to Be Infected",
+        "proficiency": 2,
+        "submissionTime": 1737937958442,
+        "url": "https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/"
+    },
+    "2400": {
+        "index": "2400",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1735729450648,
+        "name": "2400. Number of Ways to Reach a Position After Exactly k Steps",
+        "proficiency": 1,
+        "submissionTime": 1735729450648,
+        "url": "https://leetcode.com/problems/number-of-ways-to-reach-a-position-after-exactly-k-steps/"
+    },
+    "2446": {
+        "index": "2446",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737405990810,
+        "name": "2446. Determine if Two Events Have Conflict",
+        "proficiency": 1,
+        "submissionTime": 1737405990809,
+        "url": "https://leetcode.com/problems/determine-if-two-events-have-conflict/"
+    },
+    "2466": {
+        "index": "2466",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1735589304002,
+        "name": "2466. Count Ways To Build Good Strings",
+        "proficiency": 1,
+        "submissionTime": 1735589304001,
+        "url": "https://leetcode.com/problems/count-ways-to-build-good-strings/"
+    },
+    "2516": {
+        "index": "2516",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737088608297,
+        "name": "2516. Take K of Each Character From Left and Right",
+        "proficiency": 1,
+        "submissionTime": 1737088608297,
+        "url": "https://leetcode.com/problems/take-k-of-each-character-from-left-and-right/"
+    },
+    "2517": {
+        "index": "2517",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738234635396,
+        "name": "2517. Maximum Tastiness of Candy Basket",
+        "proficiency": 1,
+        "submissionTime": 1738234635395,
+        "url": "https://leetcode.com/problems/maximum-tastiness-of-candy-basket/"
+    },
+    "2545": {
+        "index": "2545",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736320271060,
+        "name": "2545. Sort the Students by Their Kth Score",
+        "proficiency": 1,
+        "submissionTime": 1736320271060,
+        "url": "https://leetcode.com/problems/sort-the-students-by-their-kth-score/"
+    },
+    "2559": {
+        "index": "2559",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1735780102846,
+        "name": "2559. Count Vowel Strings in Ranges",
+        "proficiency": 1,
+        "submissionTime": 1735780102846,
+        "url": "https://leetcode.com/problems/count-vowel-strings-in-ranges/"
+    },
+    "2615": {
+        "index": "2615",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738295911974,
+        "name": "2615. Sum of Distances",
+        "proficiency": 1,
+        "submissionTime": 1738295911973,
+        "url": "https://leetcode.com/problems/sum-of-distances/"
+    },
+    "2641": {
+        "index": "2641",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737968059917,
+        "name": "2641. Cousins in Binary Tree II",
+        "proficiency": 1,
+        "submissionTime": 1737968059917,
+        "url": "https://leetcode.com/problems/cousins-in-binary-tree-ii/"
+    },
+    "2655": {
+        "index": "2655",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736932963203,
+        "name": "2655. Find Maximal Uncovered Ranges",
+        "proficiency": 3,
+        "submissionTime": 1736932963203,
+        "url": "https://leetcode.com/problems/find-maximal-uncovered-ranges/"
+    },
+    "2657": {
+        "index": "2657",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736824492150,
+        "name": "2657. Find the Prefix Common Array of Two Arrays",
+        "proficiency": 1,
+        "submissionTime": 1736824492150,
+        "url": "https://leetcode.com/problems/find-the-prefix-common-array-of-two-arrays/"
+    },
+    "2658": {
+        "index": "2658",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1738043648386,
+        "name": "2658. Maximum Number of Fish in a Grid",
+        "proficiency": 1,
+        "submissionTime": 1738043648386,
+        "url": "https://leetcode.com/problems/maximum-number-of-fish-in-a-grid/"
+    },
+    "2661": {
+        "index": "2661",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737438030021,
+        "name": "2661. First Completely Painted Row or Column",
+        "proficiency": 1,
+        "submissionTime": 1737438030021,
+        "url": "https://leetcode.com/problems/first-completely-painted-row-or-column/"
+    },
+    "2779": {
+        "index": "2779",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736045472743,
+        "name": "2779. Maximum Beauty of an Array After Applying Operation",
+        "proficiency": 2,
+        "submissionTime": 1736045472743,
+        "url": "https://leetcode.com/problems/maximum-beauty-of-an-array-after-applying-operation/"
+    },
+    "2848": {
+        "index": "2848",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737232397626,
+        "name": "2848. Points That Intersect With Cars",
+        "proficiency": 2,
+        "submissionTime": 1737232397626,
+        "url": "https://leetcode.com/problems/points-that-intersect-with-cars/"
+    },
+    "2951": {
+        "index": "2951",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1736739574781,
+        "name": "2951. Find the Peaks",
+        "proficiency": 2,
+        "submissionTime": 1736739574781,
+        "url": "https://leetcode.com/problems/find-the-peaks/"
+    },
+    "3042": {
+        "index": "3042",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1736318868327,
+        "name": "3042. Count Prefix and Suffix Pairs I",
+        "proficiency": 1,
+        "submissionTime": 1736318868327,
+        "url": "https://leetcode.com/problems/count-prefix-and-suffix-pairs-i/"
+    },
+    "3151": {
+        "index": "3151",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1738370986380,
+        "name": "3151. Special Array I",
+        "proficiency": 1,
+        "submissionTime": 1738370986380,
+        "url": "https://leetcode.com/problems/special-array-i/"
+    },
+    "3223": {
+        "index": "3223",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1736740174593,
+        "name": "3223. Minimum Length of String After Operations",
+        "proficiency": 1,
+        "submissionTime": 1736740174592,
+        "url": "https://leetcode.com/problems/minimum-length-of-string-after-operations/"
+    },
+    "3263": {
+        "index": "3263",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737838160124,
+        "name": "3263. Convert Doubly Linked List to Array I",
+        "proficiency": 1,
+        "submissionTime": 1737838160124,
+        "url": "https://leetcode.com/problems/convert-doubly-linked-list-to-array-i/"
+    },
+    "3264": {
+        "index": "3264",
+        "isDeleted": false,
+        "level": "Easy",
+        "modificationTime": 1737961146219,
+        "name": "3264. Final Array State After K Multiplication Operations I",
+        "proficiency": 3,
+        "submissionTime": 1737961146219,
+        "url": "https://leetcode.com/problems/final-array-state-after-k-multiplication-operations-i/"
+    },
+    "3433": {
+        "index": "3433",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737864566873,
+        "name": "3433. Count Mentions Per User",
+        "proficiency": 1,
+        "submissionTime": 1737864566873,
+        "url": "https://leetcode.com/problems/count-mentions-per-user/"
+    },
+    "3434": {
+        "index": "3434",
+        "isDeleted": false,
+        "level": "Medium",
+        "modificationTime": 1737865826390,
+        "name": "3434. Maximum Frequency After Subarray Operation",
+        "proficiency": 1,
+        "submissionTime": 1737865826390,
+        "url": "https://leetcode.com/problems/maximum-frequency-after-subarray-operation/"
+    }
+}
