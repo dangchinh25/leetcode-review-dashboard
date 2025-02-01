@@ -19,6 +19,7 @@
     "@trpc/next": "11.0.0-rc.730",
     "@trpc/react-query": "11.0.0-rc.730",
     "@trpc/server": "11.0.0-rc.730",
+    "leetcode-query": "^1.2.3",
     "next": "15.1.6",
     "prisma": "^6.3.0",
     "react": "^19.0.0",
