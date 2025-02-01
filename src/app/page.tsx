@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import type { Column, ColumnFiltersState } from "@tanstack/react-table";
 import {
@@ -139,81 +139,18 @@ const Home: React.FC = () => {
     );
 };
 
-const Filter: React.FC<{ column: Column<unknown, unknown> }> = ({ column }) => {
+const Filter: React.FC<{ column: Column<Person, unknown> }> = ({ column }) => {
     const columnFilterValue = column.getFilterValue();
-    const { filterVariant } = column.columnDef.meta ?? {};
 
-    return filterVariant === "range" ? (
-        <div>
-            <div className="flex space-x-2">
-                {/* See faceted column filters example for min max values functionality */}
-                <DebouncedInput
-                    type="number"
-                    value={(columnFilterValue as [number, number])?.[0] ?? ""}
-                    onChange={(value) =>
-                        column.setFilterValue((old: [number, number]) => [value, old?.[1]])
-                    }
-                    placeholder={`Min`}
-                    className="w-24 border shadow rounded"
-                />
-                <DebouncedInput
-                    type="number"
-                    value={(columnFilterValue as [number, number])?.[1] ?? ""}
-                    onChange={(value) =>
-                        column.setFilterValue((old: [number, number]) => [old?.[0], value])
-                    }
-                    placeholder={`Max`}
-                    className="w-24 border shadow rounded"
-                />
-            </div>
-            <div className="h-1" />
-        </div>
-    ) : filterVariant === "select" ? (
-        <select
-            onChange={(e) => column.setFilterValue(e.target.value)}
-            value={columnFilterValue?.toString()}
-        >
-            {/* See faceted column filters example for dynamic select options */}
-            <option value="">All</option>
-            <option value="complicated">complicated</option>
-            <option value="relationship">relationship</option>
-            <option value="single">single</option>
-        </select>
-    ) : (
-        <DebouncedInput
-            className="w-36 border shadow rounded"
-            onChange={(value) => column.setFilterValue(value)}
-            placeholder={`Search...`}
+    return (
+        <input
             type="text"
             value={(columnFilterValue ?? "") as string}
+            onChange={(e) => column.setFilterValue(e.target.value)}
+            placeholder="Search..."
+            className="w-36 border shadow rounded p-1"
         />
-        // See faceted column filters example for datalist search suggestions
     );
-};
-
-// A typical debounced input react component
-const DebouncedInput: React.FC<
-    {
-        value: string | number;
-        onChange: (value: string | number) => void;
-        debounce?: number;
-    } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange">
-> = ({ value: initialValue, onChange, debounce = 500, ...props }) => {
-    const [value, setValue] = useState(initialValue);
-
-    useEffect(() => {
-        setValue(initialValue);
-    }, [initialValue]);
-
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            onChange(value);
-        }, debounce);
-
-        return () => clearTimeout(timeout);
-    }, [value, debounce, onChange]);
-
-    return <input {...props} value={value} onChange={(e) => setValue(e.target.value)} />;
 };
 
 export default Home;
