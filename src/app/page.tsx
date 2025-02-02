@@ -71,7 +71,7 @@ const Home: React.FC = () => {
                     id: "problemTitle",
                     header: "Problem",
                     cell: (info) => (
-                        <div className="flex items-center">
+                        <div className="flex items-center h-8">
                             <a
                                 href={getLeetcodeProblemUrl(info.row.original.titleSlug)}
                                 target="_blank"
@@ -82,7 +82,10 @@ const Home: React.FC = () => {
                             </a>
                         </div>
                     ),
-                    size: 40,
+                    size: 55,
+                    minSize: undefined,
+                    maxSize: undefined,
+                    enableResizing: false,
                 }),
                 columnHelper.accessor("difficulty", {
                     id: "difficulty",
@@ -125,7 +128,7 @@ const Home: React.FC = () => {
                         );
                     },
                     cell: (info) => (
-                        <div className="flex items-center">
+                        <div className="flex items-center h-8">
                             <span
                                 className={`font-medium ${
                                     info.getValue() === "Easy"
@@ -141,13 +144,16 @@ const Home: React.FC = () => {
                     ),
                     enableSorting: false,
                     filterFn: "equals",
-                    size: 20,
+                    size: 15,
+                    minSize: undefined,
+                    maxSize: undefined,
+                    enableResizing: false,
                 }),
                 columnHelper.accessor("proficiency.proficiency", {
                     id: "proficiency",
                     header: "Proficiency",
                     cell: (info) => (
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 h-8">
                             <div className="w-16 h-2 bg-secondary rounded-full overflow-hidden">
                                 <div
                                     className="h-full bg-primary"
@@ -160,7 +166,10 @@ const Home: React.FC = () => {
                         </div>
                     ),
                     enableColumnFilter: false,
-                    size: 30,
+                    size: 15,
+                    minSize: undefined,
+                    maxSize: undefined,
+                    enableResizing: false,
                 }),
             ],
             [],
@@ -176,12 +185,15 @@ const Home: React.FC = () => {
                         id: "pastDue",
                         header: "Past Due",
                         cell: (info) => (
-                            <div className="flex items-center text-muted-foreground">
-                                {formatTimeAgo(parseInt(info.getValue()))}
+                            <div className="flex items-center text-muted-foreground h-8">
+                                {formatTimeAgo(Number(info.getValue()))}
                             </div>
                         ),
                         enableColumnFilter: false,
-                        size: 30,
+                        size: 15,
+                        minSize: undefined,
+                        maxSize: undefined,
+                        enableResizing: false,
                     }),
                 );
             } else if (activeTab === "reviewScheduled") {
@@ -190,9 +202,9 @@ const Home: React.FC = () => {
                         id: "reviewScheduled",
                         header: "Review Scheduled",
                         cell: (info) => {
-                            const nextReviewTime = parseInt(info.getValue());
+                            const nextReviewTime = Number(info.getValue());
                             return (
-                                <div className="flex flex-col gap-1">
+                                <div className="flex flex-col justify-center h-8">
                                     <div className="text-sm">
                                         {new Date(nextReviewTime).toLocaleString(undefined, {
                                             dateStyle: "medium",
@@ -206,7 +218,10 @@ const Home: React.FC = () => {
                             );
                         },
                         enableColumnFilter: false,
-                        size: 30,
+                        size: 15,
+                        minSize: undefined,
+                        maxSize: undefined,
+                        enableResizing: false,
                     }),
                 );
             }
@@ -267,6 +282,23 @@ const Home: React.FC = () => {
         });
     };
 
+    // First, let's create a helper function to get column width class
+    const getColumnWidthClass = (columnId: string) => {
+        switch (columnId) {
+            case "problemTitle":
+                return "w-[40%]";
+            case "difficulty":
+                return "w-[20%]";
+            case "proficiency":
+                return "w-[20%]";
+            case "pastDue":
+            case "reviewScheduled":
+                return "w-[20%]";
+            default:
+                return "";
+        }
+    };
+
     return (
         <div className="p-8 w-[70%] mx-auto">
             <Toaster
@@ -319,14 +351,14 @@ const Home: React.FC = () => {
             </div>
             <div className="rounded-md border">
                 <div className="relative w-full overflow-auto">
-                    <table className="w-full caption-bottom text-sm">
+                    <table className="w-full table-fixed caption-bottom text-sm">
                         <thead className="[&_tr]:border-b">
                             {table.getHeaderGroups().map((headerGroup) => (
                                 <tr key={headerGroup.id} className="border-b transition-colors">
                                     {headerGroup.headers.map((header) => (
                                         <th
                                             key={header.id}
-                                            className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0"
+                                            className={`h-8 px-4 text-left align-middle font-medium text-muted-foreground border-r border-gray-200 [&:has([role=checkbox])]:pr-0 ${getColumnWidthClass(header.column.id)}`}
                                         >
                                             <div
                                                 {...{
@@ -372,7 +404,7 @@ const Home: React.FC = () => {
                                     {row.getVisibleCells().map((cell) => (
                                         <td
                                             key={cell.id}
-                                            className="p-4 align-middle [&:has([role=checkbox])]:pr-0"
+                                            className={`p-4 align-middle border-r border-gray-200 [&:has([role=checkbox])]:pr-0 ${getColumnWidthClass(cell.column.id)}`}
                                         >
                                             {flexRender(
                                                 cell.column.columnDef.cell,
