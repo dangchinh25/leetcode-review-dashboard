@@ -1,9 +1,9 @@
-import type { Prisma, Problem } from "@prisma/client";
+import type { Prisma, Problem, Proficiency } from "@prisma/client";
 import type { Submission } from "leetcode-query";
 
 import type { AtLeast } from "@/shared/types";
 
-import { getNextReviewTime } from "../../utils/reviews";
+import { getNextReviewTime, isProblemMastered, isProblemReviewDue } from "../../utils/reviews";
 
 export const buildProficiencyData = (
     problem: AtLeast<Problem, "id">,
@@ -21,4 +21,22 @@ export const buildProficiencyData = (
     };
 
     return proficiencyData;
+};
+
+export const shouldUpdateProficiency = (
+    submission: AtLeast<Submission, "timestamp">,
+    proficiency: Proficiency,
+): boolean => {
+    if (isProblemMastered(proficiency)) {
+        return false;
+    }
+
+    if (
+        isProblemReviewDue(proficiency) &&
+        submission.timestamp > parseInt(proficiency.nextReviewTime)
+    ) {
+        return true;
+    }
+
+    return false;
 };
