@@ -14,6 +14,7 @@ import {
     useReactTable,
 } from "@tanstack/react-table";
 import { RefreshCw } from "lucide-react";
+import { toast, Toaster } from "sonner";
 
 import type { RouterOutputs } from "@/backend/routers";
 import { formatTimeAgo, formatTimeLeft } from "@/shared/time";
@@ -33,7 +34,14 @@ const Home: React.FC = () => {
 
     const { data: problems } = trpcClient.getProblems.useQuery();
     const { mutate: syncProblemsMutate, isPending: isSyncing } =
-        trpcClient.syncProblems.useMutation();
+        trpcClient.syncProblems.useMutation({
+            onSuccess: () => {
+                toast.success("Problems synced successfully!");
+            },
+            onError: (error) => {
+                toast.error(`Failed to sync problems: ${error.message}`);
+            },
+        });
 
     const filteredData = useMemo(() => {
         return problems ? problems[activeTab] || [] : [];
@@ -188,6 +196,17 @@ const Home: React.FC = () => {
 
     return (
         <div className="p-8 w-[70%] mx-auto">
+            <Toaster
+                position="bottom-right"
+                theme="light"
+                toastOptions={{
+                    style: {
+                        fontSize: "1rem",
+                        padding: "12px",
+                        minWidth: "280px",
+                    },
+                }}
+            />
             <div className="flex justify-between items-center mb-8">
                 <div className="flex justify-center gap-6">
                     {tabs.map((tab) => (
