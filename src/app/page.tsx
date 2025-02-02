@@ -11,66 +11,15 @@ import {
     useReactTable,
 } from "@tanstack/react-table";
 
+import type { RouterOutputs } from "@/backend/routers";
+import type { ProblemReviewStatus } from "@/shared/types";
+
 import { trpcClient } from "../app/_trpc/client";
 
-type TabType = "review-due" | "review-scheduled" | "mastered";
-
-type Problem = {
-    problemId: string;
-    name: string;
-    progressLevel: string;
-    progressPercent: number;
-    delay: string;
-    status: TabType;
-};
-
-const defaultData: Problem[] = [
-    {
-        problemId: "528",
-        name: "Random Pick with Weight",
-        progressLevel: "Medium",
-        progressPercent: 60,
-        delay: "3 hour(s)",
-        status: "review-due",
-    },
-    {
-        problemId: "2517",
-        name: "Maximum Tastiness of Candy Basket",
-        progressLevel: "Medium",
-        progressPercent: 20,
-        delay: "12 hour(s)",
-        status: "review-scheduled",
-    },
-    {
-        problemId: "348",
-        name: "Design Tic-Tac-Toe",
-        progressLevel: "Medium",
-        progressPercent: 20,
-        delay: "13 hour(s)",
-        status: "mastered",
-    },
-    {
-        problemId: "934",
-        name: "Shortest Bridge",
-        progressLevel: "Medium",
-        progressPercent: 20,
-        delay: "14 hour(s)",
-        status: "review-scheduled",
-    },
-    {
-        problemId: "1650",
-        name: "Lowest Common Ancestor of a Binary Tree III",
-        progressLevel: "Medium",
-        progressPercent: 60,
-        delay: "14 hour(s)",
-        status: "review-due",
-    },
-];
-
-const columnHelper = createColumnHelper<Problem>();
+const columnHelper = createColumnHelper<RouterOutputs["getProblems"]["reviewDue"][number]>();
 
 const columns = [
-    columnHelper.accessor("name", {
+    columnHelper.accessor("title", {
         header: "Problem",
         cell: (info) => (
             <div className="text-orange-500 hover:underline cursor-pointer truncate max-w-[300px]">
@@ -78,14 +27,14 @@ const columns = [
             </div>
         ),
     }),
-    columnHelper.accessor("progressLevel", {
-        header: "Progress Level",
+    columnHelper.accessor("proficiency.proficiency", {
+        header: "Proficiency",
         cell: (info) => (
             <div className="flex items-center gap-2 w-[200px]">
                 <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
                     <div
                         className="h-full bg-green-500"
-                        style={{ width: `${info.row.original.progressPercent}%` }}
+                        style={{ width: `${info.row.original.proficiency.proficiency}%` }}
                     />
                 </div>
                 <span className="text-orange-500">{info.getValue()}</span>
@@ -93,36 +42,17 @@ const columns = [
         ),
         enableColumnFilter: false,
     }),
-    columnHelper.accessor("delay", {
-        header: "Delay",
-        cell: (info) => <div className="w-[100px]">{info.getValue()}</div>,
-        enableColumnFilter: false,
-    }),
-    columnHelper.accessor("problemId", {
-        header: "Operation",
-        cell: () => (
-            <div className="flex gap-2 w-[100px]">
-                <button className="text-gray-500 hover:text-gray-700">✓</button>
-                <button className="text-gray-500 hover:text-gray-700">↻</button>
-                <button className="text-gray-500 hover:text-gray-700">□</button>
-            </div>
-        ),
-        enableColumnFilter: false,
-    }),
 ];
 
 const Home: React.FC = () => {
-    const [data] = useState(() => [...defaultData]);
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-    const [activeTab, setActiveTab] = useState<TabType>("review-due");
+    const [activeTab, setActiveTab] = useState<ProblemReviewStatus>("reviewDue");
 
     const { data: problems } = trpcClient.getProblems.useQuery();
-    console.log(problems);
 
-    const filteredData = useMemo(
-        () => data.filter((item) => item.status === activeTab),
-        [data, activeTab],
-    );
+    const filteredData = useMemo(() => {
+        return problems ? problems[activeTab] || [] : [];
+    }, [problems, activeTab]);
 
     const table = useReactTable({
         data: filteredData,
@@ -135,13 +65,12 @@ const Home: React.FC = () => {
         },
     });
 
-    const tabs = useMemo(
-        () =>
-            [
-                { id: "review-due", label: "Review Due" },
-                { id: "review-scheduled", label: "Review Scheduled" },
-                { id: "mastered", label: "Mastered" },
-            ] as const,
+    const tabs = useMemo<{ id: ProblemReviewStatus; label: string }[]>(
+        () => [
+            { id: "reviewDue", label: "Review Due" },
+            { id: "reviewScheduled", label: "Review Scheduled" },
+            { id: "mastered", label: "Mastered" },
+        ],
         [],
     );
 

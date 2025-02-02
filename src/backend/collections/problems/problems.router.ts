@@ -1,27 +1,15 @@
 import { z } from "zod";
 
 import { isProblemMastered, isProblemReviewDue } from "@/backend/utils/reviews";
+import { ProblemWithProficiencySchema } from "@/shared/types";
 
 import { prisma } from "../../../../prisma/client";
-import { ProblemSchema, ProficiencySchema } from "../../../../prisma/generated/zod";
 import { publicProcedure, router } from "../../routers/router";
 
 const ProblemsWithReviewStatusSchema = z.object({
-    reviewDue: z.array(
-        ProblemSchema.extend({
-            proficiency: ProficiencySchema,
-        }),
-    ),
-    reviewScheduled: z.array(
-        ProblemSchema.extend({
-            proficiency: ProficiencySchema,
-        }),
-    ),
-    mastered: z.array(
-        ProblemSchema.extend({
-            proficiency: ProficiencySchema,
-        }),
-    ),
+    reviewDue: z.array(ProblemWithProficiencySchema),
+    reviewScheduled: z.array(ProblemWithProficiencySchema),
+    mastered: z.array(ProblemWithProficiencySchema),
 });
 
 export const problemsRouter = router({
