@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 import type { Column, ColumnDef, ColumnFiltersState, SortingState } from "@tanstack/react-table";
 import {
@@ -39,95 +39,105 @@ const Home: React.FC = () => {
         return problems ? problems[activeTab] || [] : [];
     }, [problems, activeTab]);
 
-    const baseColumns: ColumnDef<RouterOutputs["getProblems"]["reviewDue"][number], any>[] = [
-        columnHelper.accessor("title", {
-            id: "problemTitle",
-            header: "Problem",
-            cell: (info) => (
-                <div className="truncate h-[40px] flex items-center">
-                    <a
-                        href={getLeetcodeProblemUrl(info.row.original.titleSlug)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-orange-500 hover:underline cursor-pointer"
-                    >
-                        {info.getValue()}
-                    </a>
-                </div>
-            ),
-            size: 40,
-        }),
-        columnHelper.accessor("proficiency.proficiency", {
-            id: "proficiency",
-            header: "Proficiency",
-            cell: (info) => (
-                <div className="flex items-center gap-2 h-[40px]">
-                    <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
-                        <div
-                            className="h-full bg-green-500"
-                            style={{ width: `${info.row.original.proficiency.proficiency * 20}%` }}
-                        />
-                    </div>
-                    <span className="text-orange-500">{info.getValue()}/5</span>
-                </div>
-            ),
-            enableColumnFilter: false,
-            size: 30,
-        }),
-    ];
-
-    const getDynamicColumns = (activeTab: ProblemReviewStatus) => {
-        const dynamicColumns = [...baseColumns];
-
-        if (activeTab === "reviewDue") {
-            dynamicColumns.push(
-                columnHelper.accessor("proficiency.nextReviewTime", {
-                    id: "pastDue",
-                    header: "Past Due",
-                    cell: (info) => {
-                        const nextReviewTime = parseInt(info.getValue() as string);
-                        return (
-                            <div className="h-[40px] flex items-center">
-                                {formatTimeAgo(nextReviewTime)}
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const baseColumns: ColumnDef<RouterOutputs["getProblems"]["reviewDue"][number], any>[] =
+        useMemo(
+            () => [
+                columnHelper.accessor("title", {
+                    id: "problemTitle",
+                    header: "Problem",
+                    cell: (info) => (
+                        <div className="truncate h-[40px] flex items-center">
+                            <a
+                                href={getLeetcodeProblemUrl(info.row.original.titleSlug)}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-orange-500 hover:underline cursor-pointer"
+                            >
+                                {info.getValue()}
+                            </a>
+                        </div>
+                    ),
+                    size: 40,
+                }),
+                columnHelper.accessor("proficiency.proficiency", {
+                    id: "proficiency",
+                    header: "Proficiency",
+                    cell: (info) => (
+                        <div className="flex items-center gap-2 h-[40px]">
+                            <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
+                                <div
+                                    className="h-full bg-green-500"
+                                    style={{
+                                        width: `${info.row.original.proficiency.proficiency * 20}%`,
+                                    }}
+                                />
                             </div>
-                        );
-                    },
+                            <span className="text-orange-500">{info.getValue()}/5</span>
+                        </div>
+                    ),
                     enableColumnFilter: false,
                     size: 30,
                 }),
-            );
-        } else if (activeTab === "reviewScheduled") {
-            dynamicColumns.push(
-                columnHelper.accessor("proficiency.nextReviewTime", {
-                    id: "reviewScheduled",
-                    header: "Review Scheduled",
-                    cell: (info) => {
-                        const nextReviewTime = parseInt(info.getValue() as string);
+            ],
+            [],
+        );
 
-                        return (
-                            <div className="h-[40px] flex flex-col justify-center">
-                                <div>
-                                    {new Date(nextReviewTime).toLocaleString(undefined, {
-                                        dateStyle: "medium",
-                                        timeStyle: "short",
-                                    })}
+    const getDynamicColumns = useCallback(
+        (activeTab: ProblemReviewStatus) => {
+            const dynamicColumns = [...baseColumns];
+
+            if (activeTab === "reviewDue") {
+                dynamicColumns.push(
+                    columnHelper.accessor("proficiency.nextReviewTime", {
+                        id: "pastDue",
+                        header: "Past Due",
+                        cell: (info) => {
+                            const nextReviewTime = parseInt(info.getValue() as string);
+                            return (
+                                <div className="h-[40px] flex items-center">
+                                    {formatTimeAgo(nextReviewTime)}
                                 </div>
-                                <div className="text-sm text-gray-500">
-                                    {formatTimeLeft(nextReviewTime)}
+                            );
+                        },
+                        enableColumnFilter: false,
+                        size: 30,
+                    }),
+                );
+            } else if (activeTab === "reviewScheduled") {
+                dynamicColumns.push(
+                    columnHelper.accessor("proficiency.nextReviewTime", {
+                        id: "reviewScheduled",
+                        header: "Review Scheduled",
+                        cell: (info) => {
+                            const nextReviewTime = parseInt(info.getValue() as string);
+
+                            return (
+                                <div className="h-[40px] flex flex-col justify-center">
+                                    <div>
+                                        {new Date(nextReviewTime).toLocaleString(undefined, {
+                                            dateStyle: "medium",
+                                            timeStyle: "short",
+                                        })}
+                                    </div>
+                                    <div className="text-sm text-gray-500">
+                                        {formatTimeLeft(nextReviewTime)}
+                                    </div>
                                 </div>
-                            </div>
-                        );
-                    },
-                    enableColumnFilter: false,
-                    size: 30,
-                }),
-            );
-        }
+                            );
+                        },
+                        enableColumnFilter: false,
+                        size: 30,
+                    }),
+                );
+            }
 
-        return dynamicColumns;
-    };
+            return dynamicColumns;
+        },
+        [baseColumns],
+    );
 
-    const columns = useMemo(() => getDynamicColumns(activeTab), [activeTab]);
+    const columns = useMemo(() => getDynamicColumns(activeTab), [activeTab, getDynamicColumns]);
 
     const table = useReactTable({
         data: filteredData,
@@ -136,12 +146,13 @@ const Home: React.FC = () => {
         getFilteredRowModel: getFilteredRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
         getSortedRowModel: getSortedRowModel(),
+        onSortingChange: setSortingState,
         onColumnFiltersChange: setColumnFilters,
         state: {
             columnFilters,
+            sorting: sortingState,
         },
         initialState: {
-            sorting: sortingState,
             pagination: {
                 pageSize: 10,
             },
@@ -158,15 +169,21 @@ const Home: React.FC = () => {
     );
 
     const onChangeActiveTab = (tabId: ProblemReviewStatus) => {
-        setActiveTab(tabId);
+        setSortingState(() => {
+            let newState: SortingState = [];
 
-        if (tabId === "reviewDue") {
-            setSortingState([{ id: "pastDue", desc: false }]);
-        } else if (tabId === "reviewScheduled") {
-            setSortingState([{ id: "reviewScheduled", desc: false }]);
-        } else if (tabId === "mastered") {
-            setSortingState([]);
-        }
+            if (tabId === "reviewDue") {
+                newState = [{ id: "pastDue", desc: false }];
+            } else if (tabId === "reviewScheduled") {
+                console.log("reviewScheduled");
+                newState = [{ id: "reviewScheduled", desc: false }];
+            } else if (tabId === "mastered") {
+                newState = [];
+            }
+
+            setActiveTab(tabId);
+            return newState;
+        });
     };
 
     return (
