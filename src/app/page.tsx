@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-import type { Column, ColumnFiltersState } from "@tanstack/react-table";
+import type { Column, ColumnDef, ColumnFiltersState } from "@tanstack/react-table";
 import {
     createColumnHelper,
     flexRender,
@@ -18,32 +18,6 @@ import { trpcClient } from "../app/_trpc/client";
 
 const columnHelper = createColumnHelper<RouterOutputs["getProblems"]["reviewDue"][number]>();
 
-const columns = [
-    columnHelper.accessor("title", {
-        header: "Problem",
-        cell: (info) => (
-            <div className="text-orange-500 hover:underline cursor-pointer truncate max-w-[300px]">
-                {info.getValue()}
-            </div>
-        ),
-    }),
-    columnHelper.accessor("proficiency.proficiency", {
-        header: "Proficiency",
-        cell: (info) => (
-            <div className="flex items-center gap-2 w-[200px]">
-                <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
-                    <div
-                        className="h-full bg-green-500"
-                        style={{ width: `${info.row.original.proficiency.proficiency}%` }}
-                    />
-                </div>
-                <span className="text-orange-500">{info.getValue()}</span>
-            </div>
-        ),
-        enableColumnFilter: false,
-    }),
-];
-
 const Home: React.FC = () => {
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const [activeTab, setActiveTab] = useState<ProblemReviewStatus>("reviewDue");
@@ -53,6 +27,68 @@ const Home: React.FC = () => {
     const filteredData = useMemo(() => {
         return problems ? problems[activeTab] || [] : [];
     }, [problems, activeTab]);
+
+    const baseColumns: ColumnDef<RouterOutputs["getProblems"]["reviewDue"][number], any>[] = [
+        columnHelper.accessor("title", {
+            header: "Problem",
+            cell: (info) => (
+                <div className="text-orange-500 hover:underline cursor-pointer truncate max-w-[300px]">
+                    {info.getValue()}
+                </div>
+            ),
+        }),
+        columnHelper.accessor("proficiency.proficiency", {
+            header: "Proficiency",
+            cell: (info) => (
+                <div className="flex items-center gap-2 w-[200px]">
+                    <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
+                        <div
+                            className="h-full bg-green-500"
+                            style={{ width: `${info.row.original.proficiency.proficiency}%` }}
+                        />
+                    </div>
+                    <span className="text-orange-500">{info.getValue()}</span>
+                </div>
+            ),
+            enableColumnFilter: false,
+        }),
+    ];
+
+    const getDynamicColumns = (activeTab: ProblemReviewStatus) => {
+        const dynamicColumns = [...baseColumns];
+
+        if (activeTab === "reviewDue") {
+            dynamicColumns.push(
+                columnHelper.accessor("proficiency.nextReviewTime", {
+                    header: "Past Due",
+                    cell: (info) => {
+                        const nextReviewTime = parseInt(info.getValue());
+                        const timeAgo = Math.floor(
+                            (Date.now() - nextReviewTime) / (1000 * 60 * 60),
+                        ); // hours
+                        return <div>{timeAgo} hours ago</div>;
+                    },
+                    enableColumnFilter: false,
+                }),
+            );
+        } else if (activeTab === "reviewScheduled") {
+            dynamicColumns.push(
+                columnHelper.accessor("proficiency.nextReviewTime", {
+                    header: "Review Scheduled",
+                    cell: (info) => {
+                        const nextReviewTime = parseInt(info.getValue());
+                        const date = new Date(nextReviewTime);
+                        return <div>{date.toLocaleDateString()}</div>;
+                    },
+                    enableColumnFilter: false,
+                }),
+            );
+        }
+
+        return dynamicColumns;
+    };
+
+    const columns = useMemo(() => getDynamicColumns(activeTab), [activeTab]);
 
     const table = useReactTable({
         data: filteredData,
@@ -131,7 +167,7 @@ const Home: React.FC = () => {
 };
 
 const Filter: React.FC<{
-    column: Column<Problem, unknown> & {
+    column: Column<RouterOutputs["getProblems"]["reviewDue"][number], unknown> & {
         getFilterValue: () => string;
         setFilterValue: (value: string) => void;
     };
