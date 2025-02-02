@@ -33,6 +33,16 @@ export class LeetCodeClient {
             return null;
         }
     }
+
+    async getUserProblemSubmissions(titleSlug: string): Promise<Submission[] | null> {
+        try {
+            const submissions = await this.client.submissions({ slug: titleSlug });
+            return submissions;
+        } catch (error) {
+            console.error(`Error fetching recent submissions`, error);
+            return null;
+        }
+    }
 }
 
 export const getLeetcodeClient = async () => {
