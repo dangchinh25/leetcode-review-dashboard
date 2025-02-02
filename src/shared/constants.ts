@@ -7,3 +7,4 @@ export const FORGETTING_CURVE = [
 ] as const;
 
 export const LEETCODE_PROBLEM_PREFIX = "https://leetcode.com/problems";
+export const LEETCODE_SUBMISSION_FETCH_LIMIT = 50;

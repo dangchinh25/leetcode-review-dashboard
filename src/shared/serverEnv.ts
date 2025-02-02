@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { jsonfmt } from "./utils";
+import { jsonfmt } from "./json";
 
 const envSchema = z.object({
     POSTGRES_USER: z.string(),

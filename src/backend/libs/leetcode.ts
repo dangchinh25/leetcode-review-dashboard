@@ -1,6 +1,7 @@
 import type { Problem, Submission } from "leetcode-query";
 import { Credential, LeetCode } from "leetcode-query";
 
+import { LEETCODE_SUBMISSION_FETCH_LIMIT } from "@/shared/constants";
 import { serverEnv } from "@/shared/serverEnv";
 
 export class LeetCodeClient {
@@ -20,14 +21,18 @@ export class LeetCodeClient {
         }
     }
 
-    async getUserRecentSubmissions(limit = 10): Promise<Submission[] | null> {
+    async getUserRecentSubmissions(
+        limit = LEETCODE_SUBMISSION_FETCH_LIMIT,
+    ): Promise<Submission[] | null> {
         try {
+            console.log("Fetching recent submissions with limit", limit);
+
             const submissions = await this.client.submissions({
                 limit,
                 offset: 0,
             });
 
-            return submissions.slice(0, limit);
+            return submissions;
         } catch (error) {
             console.error(`Error fetching recent submissions`, error);
             return null;
