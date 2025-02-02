@@ -8,6 +8,7 @@ import {
     flexRender,
     getCoreRowModel,
     getFilteredRowModel,
+    getSortedRowModel,
     useReactTable,
 } from "@tanstack/react-table";
 
@@ -17,6 +18,46 @@ import type { ProblemReviewStatus } from "@/shared/types";
 import { trpcClient } from "../app/_trpc/client";
 
 const columnHelper = createColumnHelper<RouterOutputs["getProblems"]["reviewDue"][number]>();
+
+const formatTimeAgo = (timestamp: number): string => {
+    const minutesAgo = -getMinutesDifference(timestamp);
+    if (minutesAgo < 60) {
+        return `${minutesAgo} minutes ago`;
+    }
+    if (minutesAgo < 24 * 60) {
+        const hours = Math.floor(minutesAgo / 60);
+        return `${hours} hours ago`;
+    }
+    if (minutesAgo < 7 * 24 * 60) {
+        const days = Math.floor(minutesAgo / (24 * 60));
+        return `${days} days ago`;
+    }
+
+    const totalDays = Math.floor(minutesAgo / (24 * 60));
+    const weeks = Math.floor(totalDays / 7);
+    const remainingDays = totalDays % 7;
+    return remainingDays ? `${weeks} weeks ${remainingDays} days ago` : `${weeks} weeks ago`;
+};
+
+const formatTimeLeft = (timestamp: number): string => {
+    const minutesLeft = getMinutesDifference(timestamp);
+    if (minutesLeft <= 0) {
+        return "Due now";
+    }
+    if (minutesLeft < 60) {
+        return `${minutesLeft} minutes left`;
+    }
+    if (minutesLeft < 24 * 60) {
+        const hours = Math.floor(minutesLeft / 60);
+        return `${hours} hours left`;
+    }
+    const days = Math.floor(minutesLeft / (24 * 60));
+    return `${days} days left`;
+};
+
+const getMinutesDifference = (timestamp: number): number => {
+    return Math.floor((timestamp - Date.now()) / (1000 * 60));
+};
 
 const Home: React.FC = () => {
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -30,6 +71,7 @@ const Home: React.FC = () => {
 
     const baseColumns: ColumnDef<RouterOutputs["getProblems"]["reviewDue"][number], any>[] = [
         columnHelper.accessor("title", {
+            id: "problemTitle",
             header: "Problem",
             cell: (info) => (
                 <div className="text-orange-500 hover:underline cursor-pointer truncate max-w-[300px]">
@@ -38,6 +80,7 @@ const Home: React.FC = () => {
             ),
         }),
         columnHelper.accessor("proficiency.proficiency", {
+            id: "proficiency",
             header: "Proficiency",
             cell: (info) => (
                 <div className="flex items-center gap-2 w-[200px]">
@@ -60,13 +103,11 @@ const Home: React.FC = () => {
         if (activeTab === "reviewDue") {
             dynamicColumns.push(
                 columnHelper.accessor("proficiency.nextReviewTime", {
+                    id: "pastDue",
                     header: "Past Due",
                     cell: (info) => {
-                        const nextReviewTime = parseInt(info.getValue());
-                        const timeAgo = Math.floor(
-                            (Date.now() - nextReviewTime) / (1000 * 60 * 60),
-                        ); // hours
-                        return <div>{timeAgo} hours ago</div>;
+                        const nextReviewTime = parseInt(info.getValue() as string);
+                        return <div>{formatTimeAgo(nextReviewTime)}</div>;
                     },
                     enableColumnFilter: false,
                 }),
@@ -74,11 +115,22 @@ const Home: React.FC = () => {
         } else if (activeTab === "reviewScheduled") {
             dynamicColumns.push(
                 columnHelper.accessor("proficiency.nextReviewTime", {
+                    id: "reviewScheduled",
                     header: "Review Scheduled",
                     cell: (info) => {
-                        const nextReviewTime = parseInt(info.getValue());
-                        const date = new Date(nextReviewTime);
-                        return <div>{date.toLocaleDateString()}</div>;
+                        const nextReviewTime = parseInt(info.getValue() as string);
+
+                        return (
+                            <div>
+                                {new Date(nextReviewTime).toLocaleString(undefined, {
+                                    dateStyle: "medium",
+                                    timeStyle: "short",
+                                })}
+                                <div className="text-sm text-gray-500">
+                                    {formatTimeLeft(nextReviewTime)}
+                                </div>
+                            </div>
+                        );
                     },
                     enableColumnFilter: false,
                 }),
@@ -89,15 +141,28 @@ const Home: React.FC = () => {
     };
 
     const columns = useMemo(() => getDynamicColumns(activeTab), [activeTab]);
+    const tableSortingState = useMemo(() => {
+        if (activeTab === "reviewDue") {
+            return [{ id: "pastDue", desc: false }];
+        }
+
+        if (activeTab === "reviewScheduled") {
+            return [{ id: "reviewScheduled", desc: false }];
+        }
+
+        return [];
+    }, [activeTab]);
 
     const table = useReactTable({
         data: filteredData,
         columns,
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
+        getSortedRowModel: getSortedRowModel(),
         onColumnFiltersChange: setColumnFilters,
         state: {
             columnFilters,
+            sorting: tableSortingState,
         },
     });
 
@@ -133,12 +198,23 @@ const Home: React.FC = () => {
                         <tr key={headerGroup.id}>
                             {headerGroup.headers.map((header) => (
                                 <th key={header.id} className="border border-slate-300 p-2">
-                                    {header.isPlaceholder
-                                        ? null
-                                        : flexRender(
-                                              header.column.columnDef.header,
-                                              header.getContext(),
-                                          )}
+                                    <div
+                                        {...{
+                                            className: header.column.getCanSort()
+                                                ? "cursor-pointer select-none"
+                                                : "",
+                                            onClick: header.column.getToggleSortingHandler(),
+                                        }}
+                                    >
+                                        {flexRender(
+                                            header.column.columnDef.header,
+                                            header.getContext(),
+                                        )}
+                                        {{
+                                            asc: " 🔼",
+                                            desc: " 🔽",
+                                        }[header.column.getIsSorted() as string] ?? null}
+                                    </div>
                                     {header.column.getCanFilter() ? (
                                         <div>
                                             <Filter column={header.column} />
