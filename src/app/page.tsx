@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 "use client";
 
 import { useMemo, useState } from "react";
@@ -39,16 +40,17 @@ const Home: React.FC = () => {
             id: "problemTitle",
             header: "Problem",
             cell: (info) => (
-                <div className="text-orange-500 hover:underline cursor-pointer truncate max-w-[300px]">
+                <div className="text-orange-500 hover:underline cursor-pointer truncate h-[40px] flex items-center">
                     {info.getValue()}
                 </div>
             ),
+            size: 40,
         }),
         columnHelper.accessor("proficiency.proficiency", {
             id: "proficiency",
             header: "Proficiency",
             cell: (info) => (
-                <div className="flex items-center gap-2 w-[200px]">
+                <div className="flex items-center gap-2 h-[40px]">
                     <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
                         <div
                             className="h-full bg-green-500"
@@ -59,6 +61,7 @@ const Home: React.FC = () => {
                 </div>
             ),
             enableColumnFilter: false,
+            size: 30,
         }),
     ];
 
@@ -72,9 +75,14 @@ const Home: React.FC = () => {
                     header: "Past Due",
                     cell: (info) => {
                         const nextReviewTime = parseInt(info.getValue() as string);
-                        return <div>{formatTimeAgo(nextReviewTime)}</div>;
+                        return (
+                            <div className="h-[40px] flex items-center">
+                                {formatTimeAgo(nextReviewTime)}
+                            </div>
+                        );
                     },
                     enableColumnFilter: false,
+                    size: 30,
                 }),
             );
         } else if (activeTab === "reviewScheduled") {
@@ -86,11 +94,13 @@ const Home: React.FC = () => {
                         const nextReviewTime = parseInt(info.getValue() as string);
 
                         return (
-                            <div>
-                                {new Date(nextReviewTime).toLocaleString(undefined, {
-                                    dateStyle: "medium",
-                                    timeStyle: "short",
-                                })}
+                            <div className="h-[40px] flex flex-col justify-center">
+                                <div>
+                                    {new Date(nextReviewTime).toLocaleString(undefined, {
+                                        dateStyle: "medium",
+                                        timeStyle: "short",
+                                    })}
+                                </div>
                                 <div className="text-sm text-gray-500">
                                     {formatTimeLeft(nextReviewTime)}
                                 </div>
@@ -98,6 +108,7 @@ const Home: React.FC = () => {
                         );
                     },
                     enableColumnFilter: false,
+                    size: 30,
                 }),
             );
         }
@@ -164,51 +175,66 @@ const Home: React.FC = () => {
                     </button>
                 ))}
             </div>
-            <table className="border-collapse table-fixed w-[700px]">
-                <thead>
-                    {table.getHeaderGroups().map((headerGroup) => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map((header) => (
-                                <th key={header.id} className="border border-slate-300 p-2">
-                                    <div
-                                        {...{
-                                            className: header.column.getCanSort()
-                                                ? "cursor-pointer select-none"
-                                                : "",
-                                            onClick: header.column.getToggleSortingHandler(),
-                                        }}
+            <div className="overflow-x-auto">
+                <table className="w-full table-fixed border-collapse">
+                    <colgroup>
+                        <col className="w-[40%]" />
+                        <col className="w-[30%]" />
+                        <col className="w-[30%]" />
+                    </colgroup>
+                    <thead>
+                        {table.getHeaderGroups().map((headerGroup) => (
+                            <tr key={headerGroup.id}>
+                                {headerGroup.headers.map((header) => (
+                                    <th
+                                        key={header.id}
+                                        className="border border-slate-300 p-2 text-left"
                                     >
-                                        {flexRender(
-                                            header.column.columnDef.header,
-                                            header.getContext(),
-                                        )}
-                                        {{
-                                            asc: " 🔼",
-                                            desc: " 🔽",
-                                        }[header.column.getIsSorted() as string] ?? null}
-                                    </div>
-                                    {header.column.getCanFilter() ? (
-                                        <div>
-                                            <Filter column={header.column} />
+                                        <div
+                                            {...{
+                                                className: `${
+                                                    header.column.getCanSort()
+                                                        ? "cursor-pointer select-none"
+                                                        : ""
+                                                }`,
+                                                onClick: header.column.getToggleSortingHandler(),
+                                            }}
+                                        >
+                                            {flexRender(
+                                                header.column.columnDef.header,
+                                                header.getContext(),
+                                            )}
+                                            {{
+                                                asc: " 🔼",
+                                                desc: " 🔽",
+                                            }[header.column.getIsSorted() as string] ?? null}
                                         </div>
-                                    ) : null}
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody>
-                    {table.getRowModel().rows.map((row) => (
-                        <tr key={row.id}>
-                            {row.getVisibleCells().map((cell) => (
-                                <td key={cell.id} className="border border-slate-300 p-2">
-                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+                                        {header.column.getCanFilter() ? (
+                                            <div>
+                                                <Filter column={header.column} />
+                                            </div>
+                                        ) : null}
+                                    </th>
+                                ))}
+                            </tr>
+                        ))}
+                    </thead>
+                    <tbody>
+                        {table.getRowModel().rows.map((row) => (
+                            <tr key={row.id}>
+                                {row.getVisibleCells().map((cell) => (
+                                    <td
+                                        key={cell.id}
+                                        className="border border-slate-300 p-2 align-middle"
+                                    >
+                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                    </td>
+                                ))}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
             <div className="flex items-center gap-2">
                 <button
                     className="border rounded p-1"
