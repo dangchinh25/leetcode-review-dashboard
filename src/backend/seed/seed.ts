@@ -1,3 +1,5 @@
+import type { TopicTag } from "leetcode-query";
+
 import { prisma } from "../../../prisma/client";
 import { leetcodeClient } from "../libs/leetcode";
 import seedData from "./seedData.json";
@@ -8,7 +10,7 @@ const getProblemSlugFromUrl = (url: string) => {
     return slug.replace("/", "");
 };
 
-async function main() {
+const main = async () => {
     console.log("Starting seed...");
 
     try {
@@ -70,7 +72,7 @@ async function main() {
                 );
 
                 // Create all unique tags first
-                const uniqueTags = new Map();
+                const uniqueTags = new Map<string, TopicTag>();
                 problemDetails.forEach(({ problemDetail }) => {
                     problemDetail.topicTags.forEach((tag) => {
                         uniqueTags.set(tag.slug, tag);
@@ -142,13 +144,15 @@ async function main() {
         console.error("Error during seed:", error);
         throw error; // Re-throw to trigger process.exit(1)
     }
-}
+};
 
 main()
     .catch((e) => {
         console.error(e);
-        process.exit(1);
+        process.exitCode = 1;
     })
-    .finally(async () => {
-        await prisma.$disconnect();
+    .finally(() => {
+        prisma.$disconnect().catch((e) => {
+            console.error("Error during disconnection:", e);
+        });
     });
