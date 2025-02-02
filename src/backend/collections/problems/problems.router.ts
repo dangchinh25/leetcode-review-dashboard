@@ -89,6 +89,12 @@ export const problemsRouter = router({
             await prisma.$transaction(async (tx) => {
                 console.log("Starting syncing problems...");
 
+                /**
+                 * This could be optimized/refactor for better performance
+                 * and cleaner code by querying for both problem and proficiency
+                 * in a single query. Don't have time to do it right now and also
+                 * Prisma types are a bit whack for nested types.
+                 */
                 const submissionPromises = Array.from(problemSlugSubmissionsMap.entries()).map(
                     async ([problemSlug, submission]) => {
                         let problem: Problem;
