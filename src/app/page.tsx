@@ -11,6 +11,8 @@ import {
     useReactTable,
 } from "@tanstack/react-table";
 
+import { trpcClient } from "../app/_trpc/client";
+
 type TabType = "review-due" | "review-scheduled" | "mastered";
 
 type Problem = {
@@ -113,6 +115,9 @@ const Home: React.FC = () => {
     const [data] = useState(() => [...defaultData]);
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const [activeTab, setActiveTab] = useState<TabType>("review-due");
+
+    const { data: problems } = trpcClient.getProblems.useQuery();
+    console.log(problems);
 
     const filteredData = useMemo(
         () => data.filter((item) => item.status === activeTab),

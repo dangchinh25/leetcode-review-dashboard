@@ -8,7 +8,7 @@ import { httpBatchLink } from "@trpc/client";
 import { trpcClient as trpc } from "./client";
 import { getBaseUrl } from "./utils";
 
-export function Provider({ children }: { children: React.ReactNode }) {
+export const Provider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [queryClient] = useState(() => new QueryClient());
     const [trpcClient] = useState(() =>
         trpc.createClient({
@@ -21,4 +21,4 @@ export function Provider({ children }: { children: React.ReactNode }) {
             <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
         </trpc.Provider>
     );
-}
+};
