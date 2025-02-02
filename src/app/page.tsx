@@ -17,6 +17,7 @@ import {
 import type { RouterOutputs } from "@/backend/routers";
 import { formatTimeAgo, formatTimeLeft } from "@/shared/time";
 import type { ProblemReviewStatus } from "@/shared/types";
+import { getLeetcodeProblemUrl } from "@/shared/utils";
 
 import { trpcClient } from "../app/_trpc/client";
 
@@ -40,8 +41,15 @@ const Home: React.FC = () => {
             id: "problemTitle",
             header: "Problem",
             cell: (info) => (
-                <div className="text-orange-500 hover:underline cursor-pointer truncate h-[40px] flex items-center">
-                    {info.getValue()}
+                <div className="truncate h-[40px] flex items-center">
+                    <a
+                        href={getLeetcodeProblemUrl(info.row.original.titleSlug)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-orange-500 hover:underline cursor-pointer"
+                    >
+                        {info.getValue()}
+                    </a>
                 </div>
             ),
             size: 40,
@@ -304,14 +312,14 @@ const Home: React.FC = () => {
     );
 };
 
-type FilterProps = {
+interface FilterProps {
     column: Column<RouterOutputs["getProblems"]["reviewDue"][number], unknown> & {
         getFilterValue: () => string | number;
         setFilterValue: (value: string) => void;
     };
-};
+}
 
-const Filter: React.FC<FilterProps> = ({ column }) => {
+const Filter = ({ column }: FilterProps) => {
     const columnFilterValue = column.getFilterValue();
 
     return (
