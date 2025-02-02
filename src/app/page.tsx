@@ -33,6 +33,7 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { formatTimeAgo, formatTimeLeft } from "@/shared/time";
 import type { ProblemReviewStatus } from "@/shared/types";
 import { getLeetcodeProblemUrl } from "@/shared/utils";
@@ -283,21 +284,23 @@ const Home: React.FC = () => {
                 }}
             />
             <div className="flex justify-between items-center mb-8">
-                <div className="flex justify-center gap-6">
-                    {tabs.map((tab) => (
-                        <button
-                            key={tab.id}
-                            onClick={() => onChangeActiveTab(tab.id)}
-                            className={`px-6 py-3 rounded-lg text-lg font-medium transition-all duration-200 ${
-                                activeTab === tab.id
-                                    ? "bg-white shadow-lg scale-105 text-orange-500 border-b-2 border-orange-500"
-                                    : "text-gray-600 hover:bg-gray-100 hover:scale-102"
-                            }`}
-                        >
-                            {tab.label}
-                        </button>
-                    ))}
-                </div>
+                <Tabs
+                    value={activeTab}
+                    onValueChange={(value) => onChangeActiveTab(value as ProblemReviewStatus)}
+                    className="w-fit"
+                >
+                    <TabsList className="h-9">
+                        {tabs.map((tab) => (
+                            <TabsTrigger
+                                key={tab.id}
+                                value={tab.id}
+                                className="px-4 h-8 text-sm font-medium"
+                            >
+                                {tab.label}
+                            </TabsTrigger>
+                        ))}
+                    </TabsList>
+                </Tabs>
                 <div className="flex items-center gap-4">
                     <Input
                         placeholder="Search problems..."
