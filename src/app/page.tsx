@@ -90,9 +90,25 @@ const Home: React.FC = () => {
                 columnHelper.accessor("difficulty", {
                     id: "difficulty",
                     header: ({ column }) => {
+                        const currentFilterValue = column.getFilterValue() as string;
                         return (
-                            <div className="flex items-center gap-1">
-                                <span>Difficulty</span>
+                            <div className="flex items-center gap-2">
+                                <span className="text-sm font-medium text-muted-foreground">
+                                    Difficulty
+                                </span>
+                                {currentFilterValue && (
+                                    <span
+                                        className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                                            currentFilterValue === "Easy"
+                                                ? "bg-green-100 text-green-700"
+                                                : currentFilterValue === "Medium"
+                                                  ? "bg-yellow-100 text-yellow-700"
+                                                  : "bg-red-100 text-red-700"
+                                        }`}
+                                    >
+                                        {currentFilterValue}
+                                    </span>
+                                )}
                                 <DropdownMenu>
                                     <DropdownMenuTrigger className="hover:bg-gray-100 p-1 rounded-sm focus:outline-none">
                                         <Filter className="h-4 w-4 fill-current" />
