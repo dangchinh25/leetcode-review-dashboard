@@ -160,15 +160,15 @@ const Home: React.FC = () => {
 
     return (
         <div className="p-8 w-[70%] mx-auto">
-            <div className="flex gap-4 mb-8">
+            <div className="flex justify-center gap-6 mb-8">
                 {tabs.map((tab) => (
                     <button
                         key={tab.id}
                         onClick={() => onChangeActiveTab(tab.id)}
-                        className={`px-4 py-2 rounded-lg ${
+                        className={`px-6 py-3 rounded-lg text-lg font-medium transition-all duration-200 ${
                             activeTab === tab.id
-                                ? "bg-white shadow-md"
-                                : "text-gray-600 hover:bg-gray-100"
+                                ? "bg-white shadow-lg scale-105 text-orange-500 border-b-2 border-orange-500"
+                                : "text-gray-600 hover:bg-gray-100 hover:scale-102"
                         }`}
                     >
                         {tab.label}
@@ -235,7 +235,7 @@ const Home: React.FC = () => {
                     </tbody>
                 </table>
             </div>
-            <div className="flex items-center gap-2 mt-4">
+            <div className="flex items-center justify-center gap-2 mt-4">
                 <button
                     className="border rounded p-1"
                     onClick={() => table.setPageIndex(0)}
@@ -297,17 +297,21 @@ const Home: React.FC = () => {
                     ))}
                 </select>
             </div>
-            <div className="mt-2">{table.getPrePaginationRowModel().rows.length} Rows</div>
+            <div className="mt-2 text-center">
+                {table.getPrePaginationRowModel().rows.length} Rows
+            </div>
         </div>
     );
 };
 
-const Filter: React.FC<{
+type FilterProps = {
     column: Column<RouterOutputs["getProblems"]["reviewDue"][number], unknown> & {
-        getFilterValue: () => string;
+        getFilterValue: () => string | number;
         setFilterValue: (value: string) => void;
     };
-}> = ({ column }) => {
+};
+
+const Filter: React.FC<FilterProps> = ({ column }) => {
     const columnFilterValue = column.getFilterValue();
 
     return (
