@@ -13,10 +13,16 @@ import {
     getSortedRowModel,
     useReactTable,
 } from "@tanstack/react-table";
-import { RefreshCw } from "lucide-react";
+import { Filter, RefreshCw } from "lucide-react";
 import { toast, Toaster } from "sonner";
 
 import type { RouterOutputs } from "@/backend/routers";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { formatTimeAgo, formatTimeLeft } from "@/shared/time";
 import type { ProblemReviewStatus } from "@/shared/types";
@@ -71,7 +77,44 @@ const Home: React.FC = () => {
                 }),
                 columnHelper.accessor("difficulty", {
                     id: "difficulty",
-                    header: "Difficulty",
+                    header: ({ column }) => {
+                        return (
+                            <div className="flex items-center gap-1">
+                                <span>Difficulty</span>
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger className="hover:bg-gray-100 p-1 rounded-sm focus:outline-none">
+                                        <Filter className="h-4 w-4 fill-current" />
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent>
+                                        <DropdownMenuItem
+                                            onClick={() => column.setFilterValue(null)}
+                                            className="text-sm"
+                                        >
+                                            All
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem
+                                            onClick={() => column.setFilterValue("Easy")}
+                                            className="text-green-500 text-sm"
+                                        >
+                                            Easy
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem
+                                            onClick={() => column.setFilterValue("Medium")}
+                                            className="text-yellow-500 text-sm"
+                                        >
+                                            Medium
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem
+                                            onClick={() => column.setFilterValue("Hard")}
+                                            className="text-red-500 text-sm"
+                                        >
+                                            Hard
+                                        </DropdownMenuItem>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                            </div>
+                        );
+                    },
                     cell: (info) => (
                         <div className="h-[40px] flex items-center">
                             <span
@@ -85,7 +128,8 @@ const Home: React.FC = () => {
                             </span>
                         </div>
                     ),
-                    enableColumnFilter: false,
+                    enableSorting: false,
+                    filterFn: "equals",
                     size: 20,
                 }),
                 columnHelper.accessor("proficiency.proficiency", {
@@ -283,21 +327,27 @@ const Home: React.FC = () => {
                                         <div
                                             {...{
                                                 className: `${
-                                                    header.column.getCanSort()
+                                                    header.column.getCanSort() &&
+                                                    header.column.id !== "difficulty"
                                                         ? "cursor-pointer select-none"
                                                         : ""
                                                 }`,
-                                                onClick: header.column.getToggleSortingHandler(),
+                                                onClick:
+                                                    header.column.id !== "difficulty"
+                                                        ? header.column.getToggleSortingHandler()
+                                                        : undefined,
                                             }}
                                         >
                                             {flexRender(
                                                 header.column.columnDef.header,
                                                 header.getContext(),
                                             )}
-                                            {{
-                                                asc: " 🔼",
-                                                desc: " 🔽",
-                                            }[header.column.getIsSorted() as string] ?? null}
+                                            {(header.column.id !== "difficulty" &&
+                                                {
+                                                    asc: " 🔼",
+                                                    desc: " 🔽",
+                                                }[header.column.getIsSorted() as string]) ??
+                                                null}
                                         </div>
                                     </th>
                                 ))}
