@@ -24,6 +24,15 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
+import {
+    Pagination,
+    PaginationContent,
+    PaginationEllipsis,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+} from "@/components/ui/pagination";
 import { formatTimeAgo, formatTimeLeft } from "@/shared/time";
 import type { ProblemReviewStatus } from "@/shared/types";
 import { getLeetcodeProblemUrl } from "@/shared/utils";
@@ -370,70 +379,96 @@ const Home: React.FC = () => {
                     </tbody>
                 </table>
             </div>
-            <div className="flex items-center justify-center gap-2 mt-4">
-                <button
-                    className="border rounded p-1"
-                    onClick={() => table.setPageIndex(0)}
-                    disabled={!table.getCanPreviousPage()}
-                >
-                    {"<<"}
-                </button>
-                <button
-                    className="border rounded p-1"
-                    onClick={() => table.previousPage()}
-                    disabled={!table.getCanPreviousPage()}
-                >
-                    {"<"}
-                </button>
-                <button
-                    className="border rounded p-1"
-                    onClick={() => table.nextPage()}
-                    disabled={!table.getCanNextPage()}
-                >
-                    {">"}
-                </button>
-                <button
-                    className="border rounded p-1"
-                    onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-                    disabled={!table.getCanNextPage()}
-                >
-                    {">>"}
-                </button>
-                <span className="flex items-center gap-1">
-                    <div>Page</div>
-                    <strong>
-                        {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
-                    </strong>
-                </span>
-                <span className="flex items-center gap-1">
-                    | Go to page:
-                    <input
-                        type="number"
-                        min="1"
-                        max={table.getPageCount()}
-                        defaultValue={table.getState().pagination.pageIndex + 1}
-                        onChange={(e) => {
-                            const page = e.target.value ? Number(e.target.value) - 1 : 0;
-                            table.setPageIndex(page);
-                        }}
-                        className="border p-1 rounded w-16"
-                    />
-                </span>
-                <select
-                    value={table.getState().pagination.pageSize}
-                    onChange={(e) => {
-                        table.setPageSize(Number(e.target.value));
-                    }}
-                >
-                    {[10, 20, 30, 40, 50].map((pageSize) => (
-                        <option key={pageSize} value={pageSize}>
-                            Show {pageSize}
-                        </option>
-                    ))}
-                </select>
-            </div>
-            <div className="mt-2 text-center">
-                {table.getPrePaginationRowModel().rows.length} Rows
+            <div className="flex flex-col items-center gap-4 px-2 mt-4">
+                <div className="flex items-center space-x-6 lg:space-x-8">
+                    <div className="flex items-center space-x-2">
+                        <p className="text-sm font-medium">Rows per page</p>
+                        <select
+                            value={table.getState().pagination.pageSize}
+                            onChange={(e) => {
+                                table.setPageSize(Number(e.target.value));
+                            }}
+                            className="h-8 w-[70px] rounded-md border border-input bg-background"
+                        >
+                            {[10, 20, 30, 40, 50].map((pageSize) => (
+                                <option key={pageSize} value={pageSize}>
+                                    {pageSize}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <Pagination>
+                        <PaginationContent>
+                            <PaginationItem>
+                                <PaginationPrevious
+                                    onClick={() => table.previousPage()}
+                                    disabled={!table.getCanPreviousPage()}
+                                />
+                            </PaginationItem>
+                            {/* Show first page */}
+                            <PaginationItem>
+                                <PaginationLink
+                                    onClick={() => table.setPageIndex(0)}
+                                    isActive={table.getState().pagination.pageIndex === 0}
+                                >
+                                    1
+                                </PaginationLink>
+                            </PaginationItem>
+                            {/* Show ellipsis if needed */}
+                            {table.getState().pagination.pageIndex > 2 && (
+                                <PaginationItem>
+                                    <PaginationEllipsis />
+                                </PaginationItem>
+                            )}
+                            {/* Show current page and surrounding pages */}
+                            {table.getState().pagination.pageIndex > 0 &&
+                                table.getState().pagination.pageIndex <
+                                    table.getPageCount() - 1 && (
+                                    <PaginationItem>
+                                        <PaginationLink
+                                            onClick={() =>
+                                                table.setPageIndex(
+                                                    table.getState().pagination.pageIndex,
+                                                )
+                                            }
+                                            isActive={true}
+                                        >
+                                            {table.getState().pagination.pageIndex + 1}
+                                        </PaginationLink>
+                                    </PaginationItem>
+                                )}
+                            {/* Show ellipsis if needed */}
+                            {table.getState().pagination.pageIndex < table.getPageCount() - 3 && (
+                                <PaginationItem>
+                                    <PaginationEllipsis />
+                                </PaginationItem>
+                            )}
+                            {/* Show last page */}
+                            {table.getPageCount() > 1 && (
+                                <PaginationItem>
+                                    <PaginationLink
+                                        onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                                        isActive={
+                                            table.getState().pagination.pageIndex ===
+                                            table.getPageCount() - 1
+                                        }
+                                    >
+                                        {table.getPageCount()}
+                                    </PaginationLink>
+                                </PaginationItem>
+                            )}
+                            <PaginationItem>
+                                <PaginationNext
+                                    onClick={() => table.nextPage()}
+                                    disabled={!table.getCanNextPage()}
+                                />
+                            </PaginationItem>
+                        </PaginationContent>
+                    </Pagination>
+                </div>
+                <div className="text-sm text-muted-foreground">
+                    {table.getPrePaginationRowModel().rows.length} total problems
+                </div>
             </div>
         </div>
     );
