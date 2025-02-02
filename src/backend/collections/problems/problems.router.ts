@@ -51,4 +51,7 @@ export const problemsRouter = router({
 
         return response;
     }),
+    syncProblems: publicProcedure.mutation(async () => {
+        return { success: true };
+    }),
 });

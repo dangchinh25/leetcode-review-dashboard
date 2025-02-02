@@ -32,6 +32,7 @@ const Home: React.FC = () => {
     ]);
 
     const { data: problems } = trpcClient.getProblems.useQuery();
+    const { mutate: syncProblemsMutate } = trpcClient.problems.syncProblems.useMutation();
 
     const filteredData = useMemo(() => {
         return problems ? problems[activeTab] || [] : [];
