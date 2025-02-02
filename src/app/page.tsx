@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 "use client";
 
@@ -51,9 +52,17 @@ const Home: React.FC = () => {
     const { data: problems, refetch: refetchProblems } = trpcClient.getProblems.useQuery();
     const { mutate: syncProblemsMutate, isPending: isSyncing } =
         trpcClient.syncProblems.useMutation({
-            onSuccess: () => {
-                toast.success("Problems synced successfully!");
-                void refetchProblems();
+            onSuccess: (data) => {
+                if (data.success && "updatedProblemProficiencies" in data) {
+                    const updatedProblems = data.updatedProblemProficiencies;
+
+                    toast.success("Problems synced successfully!", {
+                        description: `${updatedProblems.length} problems updated`,
+                    });
+                    void refetchProblems();
+                } else if (!data.success && "error" in data) {
+                    toast.error(`Failed to sync problems: ${data.error}`);
+                }
             },
             onError: (error) => {
                 toast.error(`Failed to sync problems: ${error.message}`);

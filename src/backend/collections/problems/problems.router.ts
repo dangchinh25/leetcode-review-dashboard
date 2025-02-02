@@ -1,9 +1,10 @@
-import type { Problem } from "@prisma/client";
+import type { Problem, Proficiency } from "@prisma/client";
 import type { Submission } from "leetcode-query";
 import { z } from "zod";
 
 import { getLeetcodeClient } from "@/backend/libs/leetcode";
 import { isProblemMastered, isProblemReviewDue } from "@/backend/utils/reviews";
+import type { ProblemWithProficiency } from "@/shared/types";
 import { ProblemWithProficiencySchema } from "@/shared/types";
 
 import { prisma } from "../../../../prisma/client";
@@ -60,7 +61,7 @@ export const problemsRouter = router({
         const submissions = await leetcodeClient.getUserRecentSubmissions();
 
         if (!submissions) {
-            return { success: true };
+            return { success: true, updatedProblemProficiencies: [] };
         }
 
         // Map of problem slug to the earliest accepted submission
@@ -83,6 +84,8 @@ export const problemsRouter = router({
                 problemSlugSubmissionsMap.set(problemSlug, submission);
             }
         }
+
+        const updatedProblemProficiencies: ProblemWithProficiency[] = [];
 
         try {
             // Wrap all database operations in a transaction
@@ -134,11 +137,17 @@ export const problemsRouter = router({
                             });
                             await Promise.all(upsertTagPromises);
 
-                            await tx.proficiency.create({
+                            const proficiency = await tx.proficiency.create({
                                 data: buildProficiencyData(problem, submission),
+                            });
+
+                            updatedProblemProficiencies.push({
+                                ...problem,
+                                proficiency,
                             });
                         } else {
                             problem = existingProblem;
+                            let updatedProficiency: Proficiency;
 
                             const proficiency = await tx.proficiency.findUnique({
                                 where: {
@@ -147,8 +156,13 @@ export const problemsRouter = router({
                             });
 
                             if (!proficiency) {
-                                await tx.proficiency.create({
+                                updatedProficiency = await tx.proficiency.create({
                                     data: buildProficiencyData(problem, submission),
+                                });
+
+                                updatedProblemProficiencies.push({
+                                    ...problem,
+                                    proficiency: updatedProficiency,
                                 });
                             } else {
                                 if (shouldUpdateProficiency(submission, proficiency)) {
@@ -168,11 +182,16 @@ export const problemsRouter = router({
                                         proficiencyData.proficiency,
                                     );
 
-                                    await tx.proficiency.update({
+                                    updatedProficiency = await tx.proficiency.update({
                                         where: {
                                             id: proficiency.id,
                                         },
                                         data: proficiencyData,
+                                    });
+
+                                    updatedProblemProficiencies.push({
+                                        ...problem,
+                                        proficiency: updatedProficiency,
                                     });
                                 }
                             }
@@ -183,7 +202,7 @@ export const problemsRouter = router({
                 await Promise.all(submissionPromises);
             });
 
-            return { success: true };
+            return { success: true, updatedProblemProficiencies };
         } catch (error) {
             console.error("Failed to sync problems:", error);
 

@@ -1,3 +1,4 @@
+import type { Prisma } from "@prisma/client";
 import { z } from "zod";
 
 import { ProblemSchema, ProficiencySchema } from "../../prisma/generated/zod";
@@ -14,4 +15,8 @@ export const ProblemWithProficiencySchema = ProblemSchema.extend({
     proficiency: ProficiencySchema,
 });
 
-export type ProblemWithProficiency = z.infer<typeof ProblemWithProficiencySchema>;
+export type ProblemWithProficiency = Prisma.ProblemGetPayload<{
+    include: {
+        proficiency: true;
+    };
+}>;
