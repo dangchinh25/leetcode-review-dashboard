@@ -1,7 +1,7 @@
 import type { TopicTag } from "leetcode-query";
 
 import { prisma } from "../../../prisma/client";
-import { leetcodeClient } from "../libs/leetcode";
+import { getLeetcodeClient } from "../libs/leetcode";
 import { getNextReviewTime } from "../utils/reviews";
 import seedData from "./seedData.json";
 
@@ -28,6 +28,7 @@ const main = async () => {
                 const problemDetailsPromises = Object.entries(seedData).map(
                     async ([questionId, data]) => {
                         const problemSlug = getProblemSlugFromUrl(data.url);
+                        const leetcodeClient = await getLeetcodeClient();
                         const problemDetail = await leetcodeClient.getProblemDetail(problemSlug);
                         if (!problemDetail) {
                             throw new Error(`Could not fetch details for problem ${problemSlug}`);

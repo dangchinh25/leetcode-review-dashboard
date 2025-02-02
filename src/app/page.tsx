@@ -32,7 +32,7 @@ const Home: React.FC = () => {
     ]);
 
     const { data: problems } = trpcClient.getProblems.useQuery();
-    const { mutate: syncProblemsMutate } = trpcClient.problems.syncProblems.useMutation();
+    const { mutate: syncProblemsMutate } = trpcClient.syncProblems.useMutation();
 
     const filteredData = useMemo(() => {
         return problems ? problems[activeTab] || [] : [];
@@ -191,6 +191,7 @@ const Home: React.FC = () => {
                     onClick={() => {
                         // Placeholder for sync functionality
                         console.log("Sync problems clicked");
+                        syncProblemsMutate();
                     }}
                 >
                     <RefreshCw className="w-6 h-6" />

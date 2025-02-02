@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+import { getLeetcodeClient } from "@/backend/libs/leetcode";
 import { isProblemMastered, isProblemReviewDue } from "@/backend/utils/reviews";
 import { ProblemWithProficiencySchema } from "@/shared/types";
 
@@ -52,6 +53,11 @@ export const problemsRouter = router({
         return response;
     }),
     syncProblems: publicProcedure.mutation(async () => {
+        const leetcodeClient = await getLeetcodeClient();
+        const submissions = await leetcodeClient.getUserRecentSubmissions();
+
+        console.log(submissions);
+
         return { success: true };
     }),
 });
