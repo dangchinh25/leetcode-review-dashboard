@@ -19,6 +19,14 @@ import { toast, Toaster } from "sonner";
 
 import type { RouterOutputs } from "@/backend/routers";
 import {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog";
+import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
@@ -49,6 +57,17 @@ const Home: React.FC = () => {
     const [sortingState, setSortingState] = useState<SortingState>([{ id: "pastDue", desc: true }]);
     const [globalFilter, setGlobalFilter] = useState("");
 
+    // Add state for the dialog to show detailed information on toast click
+    const [dialogOpen, setDialogOpen] = useState(false);
+    const [dialogTitle, setDialogTitle] = useState("");
+    const [dialogContent, setDialogContent] = useState("");
+
+    const openDialog = (title: string, content: string) => {
+        setDialogTitle(title);
+        setDialogContent(content);
+        setDialogOpen(true);
+    };
+
     const { data: problems, refetch: refetchProblems } = trpcClient.getProblems.useQuery();
     const { mutate: syncProblemsMutate, isPending: isSyncing } =
         trpcClient.syncProblems.useMutation({
@@ -56,16 +75,51 @@ const Home: React.FC = () => {
                 if (data.success && "updatedProblemProficiencies" in data) {
                     const updatedProblems = data.updatedProblemProficiencies;
 
-                    toast.success("Problems synced successfully!", {
-                        description: `${updatedProblems.length} problems updated`,
-                    });
+                    toast.success(
+                        <div
+                            onClick={() => {
+                                openDialog(
+                                    "Problems synced successfully!",
+                                    `Details:\n${updatedProblems.map((p) => p.title).join("\n")}`,
+                                );
+                            }}
+                            style={{ cursor: "pointer" }}
+                        >
+                            Problems synced successfully!
+                            <div className="text-sm">{`${updatedProblems.length} problems updated`}</div>
+                        </div>,
+                    );
                     void refetchProblems();
                 } else if (!data.success && "error" in data) {
-                    toast.error(`Failed to sync problems: ${data.error}`);
+                    toast.error(
+                        <div
+                            onClick={() => {
+                                openDialog(
+                                    "Failed to sync problems",
+                                    `Failed to sync problems: ${data.error}`,
+                                );
+                            }}
+                            style={{ cursor: "pointer" }}
+                        >
+                            Failed to sync problems
+                        </div>,
+                    );
                 }
             },
             onError: (error) => {
-                toast.error(`Failed to sync problems: ${error.message}`);
+                toast.error(
+                    <div
+                        onClick={() => {
+                            openDialog(
+                                "Failed to sync problems",
+                                `Failed to sync problems: ${error.message}`,
+                            );
+                        }}
+                        style={{ cursor: "pointer" }}
+                    >
+                        Failed to sync problems: {error.message}
+                    </div>,
+                );
             },
         });
 
@@ -534,6 +588,19 @@ const Home: React.FC = () => {
                     {table.getPrePaginationRowModel().rows.length} total problems
                 </div>
             </div>
+            {dialogOpen && (
+                <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+                    <DialogContent>
+                        <DialogHeader>
+                            <DialogTitle>{dialogTitle}</DialogTitle>
+                            <DialogDescription>
+                                <pre className="whitespace-pre-wrap text-sm">{dialogContent}</pre>
+                            </DialogDescription>
+                        </DialogHeader>
+                        <DialogClose />
+                    </DialogContent>
+                </Dialog>
+            )}
         </div>
     );
 };
