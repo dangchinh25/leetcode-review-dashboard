@@ -309,12 +309,12 @@ const Home: React.FC = () => {
                         className="h-9 w-[200px]"
                     />
                     <button
-                        className="p-2 text-orange-500 hover:bg-orange-50 rounded-full transition-colors group relative disabled:opacity-50"
+                        className="p-2 text-muted-foreground hover:bg-muted rounded-full transition-colors group relative disabled:opacity-50"
                         onClick={() => syncProblemsMutate()}
                         disabled={isSyncing}
                     >
                         <RefreshCw className={`w-6 h-6 ${isSyncing ? "animate-spin" : ""}`} />
-                        <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                        <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                             {isSyncing ? "Syncing..." : "Sync Problems"}
                         </span>
                     </button>
