@@ -28,15 +28,14 @@ const columnHelper = createColumnHelper<RouterOutputs["getProblems"]["reviewDue"
 const Home: React.FC = () => {
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const [activeTab, setActiveTab] = useState<ProblemReviewStatus>("reviewDue");
-    const [sortingState, setSortingState] = useState<SortingState>([
-        { id: "pastDue", desc: false },
-    ]);
+    const [sortingState, setSortingState] = useState<SortingState>([{ id: "pastDue", desc: true }]);
 
-    const { data: problems } = trpcClient.getProblems.useQuery();
+    const { data: problems, refetch: refetchProblems } = trpcClient.getProblems.useQuery();
     const { mutate: syncProblemsMutate, isPending: isSyncing } =
         trpcClient.syncProblems.useMutation({
             onSuccess: () => {
                 toast.success("Problems synced successfully!");
+                void refetchProblems();
             },
             onError: (error) => {
                 toast.error(`Failed to sync problems: ${error.message}`);

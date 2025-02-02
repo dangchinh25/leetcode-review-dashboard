@@ -10,14 +10,16 @@ export const buildProficiencyData = (
     submission: AtLeast<Submission, "timestamp">,
     proficiency?: number,
 ) => {
+    const currentProficiency = proficiency ?? 0;
+
     const proficiencyData: Prisma.ProficiencyUncheckedCreateInput = {
         problemId: problem.id,
         lastSubmissionTime: submission.timestamp.toString(),
         nextReviewTime: getNextReviewTime({
             lastSubmissionTime: submission.timestamp.toString(),
-            proficiency: proficiency ?? 0,
+            proficiency: currentProficiency,
         }),
-        proficiency: proficiency ?? 1,
+        proficiency: currentProficiency + 1,
     };
 
     return proficiencyData;

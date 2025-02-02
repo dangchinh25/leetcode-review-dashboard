@@ -146,17 +146,27 @@ export const problemsRouter = router({
                                 });
                             } else {
                                 if (shouldUpdateProficiency(submission, proficiency)) {
+                                    const proficiencyData = buildProficiencyData(
+                                        problem,
+                                        submission,
+                                        proficiency.proficiency,
+                                    );
+
                                     console.log(
                                         "Updating proficiency for problem",
                                         problem.id,
                                         problem.title,
+                                        "old proficiency",
+                                        proficiency.proficiency,
+                                        "new proficiency",
+                                        proficiencyData.proficiency,
                                     );
 
                                     await tx.proficiency.update({
                                         where: {
                                             id: proficiency.id,
                                         },
-                                        data: buildProficiencyData(problem, submission),
+                                        data: proficiencyData,
                                     });
                                 }
                             }

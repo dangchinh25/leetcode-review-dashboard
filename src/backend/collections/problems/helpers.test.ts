@@ -25,7 +25,7 @@ describe("buildProficiencyData", () => {
             problemId: mockProblem.id,
             lastSubmissionTime: mockSubmission.timestamp.toString(),
             nextReviewTime: "1711497600000",
-            proficiency: 3,
+            proficiency: 4,
         });
     });
 
