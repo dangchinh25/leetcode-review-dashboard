@@ -48,10 +48,10 @@ const Home: React.FC = () => {
                     <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
                         <div
                             className="h-full bg-green-500"
-                            style={{ width: `${info.row.original.proficiency.proficiency}%` }}
+                            style={{ width: `${info.row.original.proficiency.proficiency * 20}%` }}
                         />
                     </div>
-                    <span className="text-orange-500">{info.getValue()}</span>
+                    <span className="text-orange-500">{info.getValue()}/5</span>
                 </div>
             ),
             enableColumnFilter: false,
