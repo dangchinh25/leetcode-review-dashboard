@@ -13,6 +13,7 @@ import {
     getSortedRowModel,
     useReactTable,
 } from "@tanstack/react-table";
+import { RefreshCw } from "lucide-react";
 
 import type { RouterOutputs } from "@/backend/routers";
 import { formatTimeAgo, formatTimeLeft } from "@/shared/time";
@@ -168,20 +169,34 @@ const Home: React.FC = () => {
 
     return (
         <div className="p-8 w-[70%] mx-auto">
-            <div className="flex justify-center gap-6 mb-8">
-                {tabs.map((tab) => (
-                    <button
-                        key={tab.id}
-                        onClick={() => onChangeActiveTab(tab.id)}
-                        className={`px-6 py-3 rounded-lg text-lg font-medium transition-all duration-200 ${
-                            activeTab === tab.id
-                                ? "bg-white shadow-lg scale-105 text-orange-500 border-b-2 border-orange-500"
-                                : "text-gray-600 hover:bg-gray-100 hover:scale-102"
-                        }`}
-                    >
-                        {tab.label}
-                    </button>
-                ))}
+            <div className="flex justify-between items-center mb-8">
+                <div className="flex justify-center gap-6">
+                    {tabs.map((tab) => (
+                        <button
+                            key={tab.id}
+                            onClick={() => onChangeActiveTab(tab.id)}
+                            className={`px-6 py-3 rounded-lg text-lg font-medium transition-all duration-200 ${
+                                activeTab === tab.id
+                                    ? "bg-white shadow-lg scale-105 text-orange-500 border-b-2 border-orange-500"
+                                    : "text-gray-600 hover:bg-gray-100 hover:scale-102"
+                            }`}
+                        >
+                            {tab.label}
+                        </button>
+                    ))}
+                </div>
+                <button
+                    className="p-2 text-orange-500 hover:bg-orange-50 rounded-full transition-colors group relative"
+                    onClick={() => {
+                        // Placeholder for sync functionality
+                        console.log("Sync problems clicked");
+                    }}
+                >
+                    <RefreshCw className="w-6 h-6" />
+                    <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                        Sync Problems
+                    </span>
+                </button>
             </div>
             <div className="overflow-x-auto bg-white rounded-lg shadow-sm">
                 <table className="w-full table-fixed border-collapse">
