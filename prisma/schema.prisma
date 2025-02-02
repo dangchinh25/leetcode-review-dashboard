@@ -24,7 +24,7 @@ model Problem {
   updatedAt DateTime @updatedAt
 
   tags        ProblemTag[]
-  proficiency Proficiency[]
+  proficiency Proficiency?
 
   @@index([titleSlug])
   @@index([title])
@@ -61,7 +61,7 @@ model ProblemTag {
 
 model Proficiency {
   id                 Int      @id @default(autoincrement())
-  problemId          Int      @map("problem_id")
+  problemId          Int      @unique @map("problem_id")
   proficiency        Int      @map("proficiency")
   lastSubmissionTime String   @map("last_submission_time")
   nextReviewTime     String   @map("next_review_time")
