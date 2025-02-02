@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-import type { Column, ColumnDef, ColumnFiltersState } from "@tanstack/react-table";
+import type { Column, ColumnDef, ColumnFiltersState, SortingState } from "@tanstack/react-table";
 import {
     createColumnHelper,
     flexRender,
@@ -24,6 +24,7 @@ const columnHelper = createColumnHelper<RouterOutputs["getProblems"]["reviewDue"
 const Home: React.FC = () => {
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const [activeTab, setActiveTab] = useState<ProblemReviewStatus>("reviewDue");
+    const [sortingState, setSortingState] = useState<SortingState>([]);
 
     const { data: problems } = trpcClient.getProblems.useQuery();
 
@@ -103,17 +104,6 @@ const Home: React.FC = () => {
     };
 
     const columns = useMemo(() => getDynamicColumns(activeTab), [activeTab]);
-    const tableSortingState = useMemo(() => {
-        if (activeTab === "reviewDue") {
-            return [{ id: "pastDue", desc: false }];
-        }
-
-        if (activeTab === "reviewScheduled") {
-            return [{ id: "reviewScheduled", desc: false }];
-        }
-
-        return [];
-    }, [activeTab]);
 
     const table = useReactTable({
         data: filteredData,
@@ -125,7 +115,9 @@ const Home: React.FC = () => {
         onColumnFiltersChange: setColumnFilters,
         state: {
             columnFilters,
-            sorting: tableSortingState,
+        },
+        initialState: {
+            sorting: sortingState,
         },
     });
 
@@ -138,13 +130,25 @@ const Home: React.FC = () => {
         [],
     );
 
+    const onChangeActiveTab = (tabId: ProblemReviewStatus) => {
+        setActiveTab(tabId);
+
+        if (tabId === "reviewDue") {
+            setSortingState([{ id: "pastDue", desc: false }]);
+        } else if (tabId === "reviewScheduled") {
+            setSortingState([{ id: "reviewScheduled", desc: false }]);
+        } else if (tabId === "mastered") {
+            setSortingState([]);
+        }
+    };
+
     return (
         <div className="p-2">
             <div className="flex gap-4 mb-4">
                 {tabs.map((tab) => (
                     <button
                         key={tab.id}
-                        onClick={() => setActiveTab(tab.id)}
+                        onClick={() => onChangeActiveTab(tab.id)}
                         className={`px-4 py-2 rounded-lg ${
                             activeTab === tab.id
                                 ? "bg-white shadow-md"
