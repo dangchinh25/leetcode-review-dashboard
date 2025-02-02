@@ -24,7 +24,9 @@ const columnHelper = createColumnHelper<RouterOutputs["getProblems"]["reviewDue"
 const Home: React.FC = () => {
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const [activeTab, setActiveTab] = useState<ProblemReviewStatus>("reviewDue");
-    const [sortingState, setSortingState] = useState<SortingState>([]);
+    const [sortingState, setSortingState] = useState<SortingState>([
+        { id: "pastDue", desc: false },
+    ]);
 
     const { data: problems } = trpcClient.getProblems.useQuery();
 
@@ -118,6 +120,9 @@ const Home: React.FC = () => {
         },
         initialState: {
             sorting: sortingState,
+            pagination: {
+                pageSize: 20,
+            },
         },
     });
 
