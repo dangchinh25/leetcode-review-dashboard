@@ -132,7 +132,7 @@ const Home: React.FC = () => {
         initialState: {
             sorting: sortingState,
             pagination: {
-                pageSize: 20,
+                pageSize: 10,
             },
         },
     });
@@ -159,8 +159,8 @@ const Home: React.FC = () => {
     };
 
     return (
-        <div className="p-2">
-            <div className="flex gap-4 mb-4">
+        <div className="p-8 w-[70%] mx-auto">
+            <div className="flex gap-4 mb-8">
                 {tabs.map((tab) => (
                     <button
                         key={tab.id}
@@ -175,7 +175,7 @@ const Home: React.FC = () => {
                     </button>
                 ))}
             </div>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto bg-white rounded-lg shadow-sm">
                 <table className="w-full table-fixed border-collapse">
                     <colgroup>
                         <col className="w-[40%]" />
@@ -235,7 +235,7 @@ const Home: React.FC = () => {
                     </tbody>
                 </table>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 mt-4">
                 <button
                     className="border rounded p-1"
                     onClick={() => table.setPageIndex(0)}
@@ -297,7 +297,7 @@ const Home: React.FC = () => {
                     ))}
                 </select>
             </div>
-            <div>{table.getPrePaginationRowModel().rows.length} Rows</div>
+            <div className="mt-2">{table.getPrePaginationRowModel().rows.length} Rows</div>
         </div>
     );
 };
