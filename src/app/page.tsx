@@ -3,7 +3,7 @@
 
 import { useCallback, useMemo, useState } from "react";
 
-import type { Column, ColumnDef, ColumnFiltersState, SortingState } from "@tanstack/react-table";
+import type { ColumnDef, ColumnFiltersState, SortingState } from "@tanstack/react-table";
 import {
     createColumnHelper,
     flexRender,
@@ -17,6 +17,7 @@ import { RefreshCw } from "lucide-react";
 import { toast, Toaster } from "sonner";
 
 import type { RouterOutputs } from "@/backend/routers";
+import { Input } from "@/components/ui/input";
 import { formatTimeAgo, formatTimeLeft } from "@/shared/time";
 import type { ProblemReviewStatus } from "@/shared/types";
 import { getLeetcodeProblemUrl } from "@/shared/utils";
@@ -29,6 +30,7 @@ const Home: React.FC = () => {
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const [activeTab, setActiveTab] = useState<ProblemReviewStatus>("reviewDue");
     const [sortingState, setSortingState] = useState<SortingState>([{ id: "pastDue", desc: true }]);
+    const [globalFilter, setGlobalFilter] = useState("");
 
     const { data: problems, refetch: refetchProblems } = trpcClient.getProblems.useQuery();
     const { mutate: syncProblemsMutate, isPending: isSyncing } =
@@ -177,7 +179,9 @@ const Home: React.FC = () => {
         state: {
             columnFilters,
             sorting: sortingState,
+            globalFilter,
         },
+        onGlobalFilterChange: setGlobalFilter,
         initialState: {
             pagination: {
                 pageSize: 10,
@@ -241,16 +245,24 @@ const Home: React.FC = () => {
                         </button>
                     ))}
                 </div>
-                <button
-                    className="p-2 text-orange-500 hover:bg-orange-50 rounded-full transition-colors group relative disabled:opacity-50"
-                    onClick={() => syncProblemsMutate()}
-                    disabled={isSyncing}
-                >
-                    <RefreshCw className={`w-6 h-6 ${isSyncing ? "animate-spin" : ""}`} />
-                    <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                        {isSyncing ? "Syncing..." : "Sync Problems"}
-                    </span>
-                </button>
+                <div className="flex items-center gap-4">
+                    <Input
+                        placeholder="Search problems..."
+                        value={globalFilter ?? ""}
+                        onChange={(e) => setGlobalFilter(e.target.value)}
+                        className="h-9 w-[200px]"
+                    />
+                    <button
+                        className="p-2 text-orange-500 hover:bg-orange-50 rounded-full transition-colors group relative disabled:opacity-50"
+                        onClick={() => syncProblemsMutate()}
+                        disabled={isSyncing}
+                    >
+                        <RefreshCw className={`w-6 h-6 ${isSyncing ? "animate-spin" : ""}`} />
+                        <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                            {isSyncing ? "Syncing..." : "Sync Problems"}
+                        </span>
+                    </button>
+                </div>
             </div>
             <div className="overflow-x-auto bg-white rounded-lg shadow-sm">
                 <table className="w-full table-fixed border-collapse">
@@ -287,11 +299,6 @@ const Home: React.FC = () => {
                                                 desc: " 🔽",
                                             }[header.column.getIsSorted() as string] ?? null}
                                         </div>
-                                        {header.column.getCanFilter() ? (
-                                            <div>
-                                                <Filter column={header.column} />
-                                            </div>
-                                        ) : null}
                                     </th>
                                 ))}
                             </tr>
@@ -379,27 +386,6 @@ const Home: React.FC = () => {
                 {table.getPrePaginationRowModel().rows.length} Rows
             </div>
         </div>
-    );
-};
-
-interface FilterProps {
-    column: Column<RouterOutputs["getProblems"]["reviewDue"][number], unknown> & {
-        getFilterValue: () => string | number;
-        setFilterValue: (value: string) => void;
-    };
-}
-
-const Filter = ({ column }: FilterProps) => {
-    const columnFilterValue = column.getFilterValue();
-
-    return (
-        <input
-            type="text"
-            value={(columnFilterValue ?? "") as string}
-            onChange={(e) => column.setFilterValue(e.target.value)}
-            placeholder="Search..."
-            className="w-36 border shadow rounded p-1"
-        />
     );
 };
 
