@@ -67,6 +67,25 @@ const Home: React.FC = () => {
                     ),
                     size: 40,
                 }),
+                columnHelper.accessor("difficulty", {
+                    id: "difficulty",
+                    header: "Difficulty",
+                    cell: (info) => (
+                        <div className="h-[40px] flex items-center">
+                            <span
+                                className={`
+                                ${info.getValue() === "Easy" ? "text-green-500" : ""}
+                                ${info.getValue() === "Medium" ? "text-yellow-500" : ""}
+                                ${info.getValue() === "Hard" ? "text-red-500" : ""}
+                            `}
+                            >
+                                {info.getValue()}
+                            </span>
+                        </div>
+                    ),
+                    enableColumnFilter: false,
+                    size: 20,
+                }),
                 columnHelper.accessor("proficiency.proficiency", {
                     id: "proficiency",
                     header: "Proficiency",
@@ -236,9 +255,10 @@ const Home: React.FC = () => {
             <div className="overflow-x-auto bg-white rounded-lg shadow-sm">
                 <table className="w-full table-fixed border-collapse">
                     <colgroup>
-                        <col className="w-[40%]" />
-                        <col className="w-[30%]" />
-                        <col className="w-[30%]" />
+                        <col className="w-[35%]" />
+                        <col className="w-[15%]" />
+                        <col className="w-[25%]" />
+                        <col className="w-[25%]" />
                     </colgroup>
                     <thead>
                         {table.getHeaderGroups().map((headerGroup) => (
