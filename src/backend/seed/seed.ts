@@ -2,6 +2,7 @@ import type { TopicTag } from "leetcode-query";
 
 import { prisma } from "../../../prisma/client";
 import { leetcodeClient } from "../libs/leetcode";
+import { getNextReviewTime } from "../utils/reviews";
 import seedData from "./seedData.json";
 
 const getProblemSlugFromUrl = (url: string) => {
@@ -128,7 +129,10 @@ const main = async () => {
                                 problemId: problem.id,
                                 proficiency: data.proficiency,
                                 lastSubmissionTime: data.submissionTime.toString(),
-                                nextReviewTime: data.modificationTime.toString(),
+                                nextReviewTime: getNextReviewTime({
+                                    proficiency: data.proficiency,
+                                    lastSubmissionTime: data.submissionTime.toString(),
+                                }),
                             },
                         });
 
