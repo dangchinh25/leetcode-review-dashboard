@@ -65,10 +65,11 @@ const Home: React.FC = () => {
     const [globalFilter, setGlobalFilter] = useState("");
     const [showTags, setShowTags] = useState(true);
 
-    // Add state for the dialog to show detailed information on toast click
     const [dialogOpen, setDialogOpen] = useState(false);
     const [dialogTitle, setDialogTitle] = useState("");
     const [dialogContent, setDialogContent] = useState("");
+
+    const [currentSyncingProblem, setCurrentSyncingProblem] = useState<string | null>(null);
 
     const openDialog = (title: string, content: string) => {
         setDialogTitle(title);
@@ -97,6 +98,65 @@ const Home: React.FC = () => {
                         >
                             Problems synced successfully!
                             <div className="text-sm">{`${updatedProblems.length} problems updated. ${updatedProblems.length > 0 ? "Click to view details" : ""}`}</div>
+                        </div>,
+                    );
+                    void refetchProblems();
+                } else if (!data.success && "error" in data) {
+                    toast.error(
+                        <div
+                            onClick={() => {
+                                openDialog(
+                                    "Failed to sync problems",
+                                    `Failed to sync problems: ${data.error}`,
+                                );
+                            }}
+                            style={{ cursor: "pointer" }}
+                        >
+                            Failed to sync problems
+                        </div>,
+                    );
+                }
+            },
+            onError: (error) => {
+                toast.error(
+                    <div
+                        onClick={() => {
+                            openDialog(
+                                "Failed to sync problems",
+                                `Failed to sync problems: ${error.message}`,
+                            );
+                        }}
+                        style={{ cursor: "pointer" }}
+                    >
+                        Failed to sync problems: {error.message}
+                    </div>,
+                );
+            },
+        });
+    const { mutate: syncProblemMutate, isPending: isSyncingProblem } =
+        trpcClient.syncProblem.useMutation({
+            onMutate: (variables) => {
+                setCurrentSyncingProblem(variables.titleSlug);
+            },
+            onSettled: () => {
+                setCurrentSyncingProblem(null);
+            },
+            onSuccess: (data) => {
+                if (data.success && "problem" in data) {
+                    const updatedProblem = data.problem;
+
+                    toast.success(
+                        <div
+                            onClick={() => {
+                                openDialog(
+                                    "Problem synced successfully!",
+                                    `Details:\n${JSON.stringify(updatedProblem, null, 2)}`, // TODO: Display in a better way
+                                );
+                            }}
+                            style={{ cursor: "pointer" }}
+                        >
+                            Problems synced successfully!
+                            <div className="text-sm">{`${updatedProblem.title} updated.`}</div>
                         </div>,
                     );
                     void refetchProblems();
@@ -277,7 +337,7 @@ const Home: React.FC = () => {
                     enableResizing: false,
                 }),
             ],
-            [showTags, refetchProblems],
+            [showTags],
         );
 
     const getDynamicColumns = useCallback(
@@ -335,17 +395,32 @@ const Home: React.FC = () => {
                 columnHelper.accessor("titleSlug", {
                     id: "operations",
                     header: "Operations",
-                    cell: () => (
+                    cell: (info) => (
                         <div className="flex items-center h-8">
-                            <button className="p-1 text-muted-foreground hover:bg-muted rounded-full transition-colors group relative">
-                                <RotateCw className="w-4 h-4" />
+                            <button
+                                className="p-1 text-muted-foreground hover:bg-muted rounded-full transition-colors group relative disabled:opacity-50"
+                                onClick={() =>
+                                    syncProblemMutate({ titleSlug: info.row.original.titleSlug })
+                                }
+                                disabled={
+                                    isSyncingProblem &&
+                                    currentSyncingProblem === info.row.original.titleSlug
+                                }
+                            >
+                                <RotateCw
+                                    className={`w-4 h-4 ${isSyncingProblem && currentSyncingProblem === info.row.original.titleSlug ? "animate-spin" : ""}`}
+                                />
                                 <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                                    Sync Problem
+                                    {isSyncingProblem &&
+                                    currentSyncingProblem === info.row.original.titleSlug
+                                        ? "Syncing..."
+                                        : "Sync Problem"}
                                 </span>
                             </button>
                         </div>
                     ),
                     enableColumnFilter: false,
+                    enableSorting: false,
                     size: 10,
                     minSize: undefined,
                     maxSize: undefined,
@@ -355,7 +430,7 @@ const Home: React.FC = () => {
 
             return dynamicColumns;
         },
-        [baseColumns],
+        [baseColumns, currentSyncingProblem, isSyncingProblem, syncProblemMutate],
     );
 
     const columns = useMemo(() => getDynamicColumns(activeTab), [activeTab, getDynamicColumns]);

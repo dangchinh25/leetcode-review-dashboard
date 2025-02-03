@@ -228,4 +228,86 @@ export const problemsRouter = router({
             };
         }
     }),
+    syncProblem: publicProcedure
+        .input(z.object({ titleSlug: z.string() }))
+        .mutation(async ({ input }) => {
+            const leetcodeClient = await getLeetcodeClient();
+            const [problemDetail, problemSubmissions] = await Promise.all([
+                leetcodeClient.getProblemDetail(input.titleSlug),
+                leetcodeClient.getUserProblemSubmissions(input.titleSlug),
+            ]);
+
+            if (!problemDetail) {
+                return { success: false, error: "Problem not found" };
+            }
+
+            try {
+                // Sync problem details and tags
+                const problem = await prisma.problem.upsert({
+                    where: {
+                        titleSlug: input.titleSlug,
+                    },
+                    update: {
+                        title: problemDetail.title,
+                        titleSlug: problemDetail.titleSlug,
+                        difficulty: problemDetail.difficulty,
+                        questionId: problemDetail.questionId,
+                    },
+                    create: {
+                        title: problemDetail.title,
+                        titleSlug: problemDetail.titleSlug,
+                        difficulty: problemDetail.difficulty,
+                        questionId: problemDetail.questionId,
+                    },
+                });
+
+                const tags = await Promise.all(
+                    problemDetail.topicTags.map((tag) =>
+                        prisma.tag.upsert({
+                            where: { slug: tag.slug },
+                            update: {},
+                            create: {
+                                name: tag.name,
+                                slug: tag.slug,
+                            },
+                        }),
+                    ),
+                );
+
+                await Promise.all(
+                    tags.map((tag) =>
+                        prisma.problemTag.upsert({
+                            where: {
+                                problemId_tagId: {
+                                    problemId: problem.id,
+                                    tagId: tag.id,
+                                },
+                            },
+                            update: {},
+                            create: {
+                                problemId: problem.id,
+                                tagId: tag.id,
+                            },
+                        }),
+                    ),
+                );
+
+                // TODO: Sync proficiency
+
+                return {
+                    success: true,
+                    problem: {
+                        ...problem,
+                        tags,
+                    },
+                };
+            } catch (error) {
+                console.error("Failed to sync problem:", error);
+
+                return {
+                    success: false,
+                    error: "Failed to sync problem",
+                };
+            }
+        }),
 });
