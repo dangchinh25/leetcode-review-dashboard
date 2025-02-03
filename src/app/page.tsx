@@ -14,7 +14,7 @@ import {
     getSortedRowModel,
     useReactTable,
 } from "@tanstack/react-table";
-import { Filter, RefreshCw, RotateCw, Tags } from "lucide-react";
+import { Filter, RefreshCw, RotateCw, Tags, X } from "lucide-react";
 import { toast, Toaster } from "sonner";
 
 import type { RouterOutputs } from "@/backend/routers";
@@ -534,12 +534,22 @@ const Home: React.FC = () => {
                     </TabsList>
                 </Tabs>
                 <div className="flex items-center gap-4">
-                    <Input
-                        placeholder="Search problems..."
-                        value={globalFilter ?? ""}
-                        onChange={(e) => setGlobalFilter(e.target.value)}
-                        className="h-9 w-[200px]"
-                    />
+                    <div className="relative">
+                        <Input
+                            placeholder="Search problems..."
+                            value={globalFilter ?? ""}
+                            onChange={(e) => setGlobalFilter(e.target.value)}
+                            className="h-9 w-[200px] pr-8"
+                        />
+                        {globalFilter && (
+                            <button
+                                onClick={() => setGlobalFilter("")}
+                                className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-muted-foreground hover:text-foreground rounded-full"
+                            >
+                                <X className="h-4 w-4" />
+                            </button>
+                        )}
+                    </div>
                     <button
                         className="p-2 text-muted-foreground hover:bg-muted rounded-full transition-colors group relative"
                         onClick={() => {}}
