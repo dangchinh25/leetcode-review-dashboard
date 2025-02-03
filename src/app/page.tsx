@@ -42,6 +42,13 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { formatTimeAgo, formatTimeLeft } from "@/shared/time";
 import type { ProblemReviewStatus } from "@/shared/types";
@@ -499,93 +506,92 @@ const Home: React.FC = () => {
                     </table>
                 </div>
             </div>
-            <div className="flex flex-col items-center gap-4 px-2 mt-4">
-                <div className="flex items-center space-x-6 lg:space-x-8">
-                    <div className="flex items-center space-x-2">
-                        <p className="text-sm font-medium">Rows per page</p>
-                        <select
-                            value={table.getState().pagination.pageSize}
-                            onChange={(e) => {
-                                table.setPageSize(Number(e.target.value));
-                            }}
-                            className="h-8 w-[70px] rounded-md border border-input bg-background"
-                        >
-                            {[10, 20, 30, 40, 50].map((pageSize) => (
-                                <option key={pageSize} value={pageSize}>
+            <div className="flex items-center justify-center gap-6 px-2 mt-4">
+                <div className="flex items-center space-x-2">
+                    <p className="text-sm font-medium">Rows:</p>
+                    <Select
+                        value={table.getState().pagination.pageSize.toString()}
+                        onValueChange={(value) => table.setPageSize(Number(value))}
+                    >
+                        <SelectTrigger className="h-8 w-[70px] rounded-md border border-input bg-background">
+                            <SelectValue placeholder="Select" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {["10", "20", "30", "40", "50"].map((pageSize) => (
+                                <SelectItem key={pageSize} value={pageSize}>
                                     {pageSize}
-                                </option>
+                                </SelectItem>
                             ))}
-                        </select>
-                    </div>
-                    <Pagination>
-                        <PaginationContent>
+                        </SelectContent>
+                    </Select>
+                </div>
+                <Pagination>
+                    <PaginationContent>
+                        <PaginationItem>
+                            <PaginationPrevious
+                                onClick={() => table.previousPage()}
+                                disabled={!table.getCanPreviousPage()}
+                            />
+                        </PaginationItem>
+                        {/* Show first page */}
+                        <PaginationItem>
+                            <PaginationLink
+                                onClick={() => table.setPageIndex(0)}
+                                isActive={table.getState().pagination.pageIndex === 0}
+                            >
+                                1
+                            </PaginationLink>
+                        </PaginationItem>
+                        {/* Show ellipsis if needed */}
+                        {table.getState().pagination.pageIndex > 2 && (
                             <PaginationItem>
-                                <PaginationPrevious
-                                    onClick={() => table.previousPage()}
-                                    disabled={!table.getCanPreviousPage()}
-                                />
+                                <PaginationEllipsis />
                             </PaginationItem>
-                            {/* Show first page */}
-                            <PaginationItem>
-                                <PaginationLink
-                                    onClick={() => table.setPageIndex(0)}
-                                    isActive={table.getState().pagination.pageIndex === 0}
-                                >
-                                    1
-                                </PaginationLink>
-                            </PaginationItem>
-                            {/* Show ellipsis if needed */}
-                            {table.getState().pagination.pageIndex > 2 && (
-                                <PaginationItem>
-                                    <PaginationEllipsis />
-                                </PaginationItem>
-                            )}
-                            {/* Show current page and surrounding pages */}
-                            {table.getState().pagination.pageIndex > 0 &&
-                                table.getState().pagination.pageIndex <
-                                    table.getPageCount() - 1 && (
-                                    <PaginationItem>
-                                        <PaginationLink
-                                            onClick={() =>
-                                                table.setPageIndex(
-                                                    table.getState().pagination.pageIndex,
-                                                )
-                                            }
-                                            isActive={true}
-                                        >
-                                            {table.getState().pagination.pageIndex + 1}
-                                        </PaginationLink>
-                                    </PaginationItem>
-                                )}
-                            {/* Show ellipsis if needed */}
-                            {table.getState().pagination.pageIndex < table.getPageCount() - 3 && (
-                                <PaginationItem>
-                                    <PaginationEllipsis />
-                                </PaginationItem>
-                            )}
-                            {/* Show last page */}
-                            {table.getPageCount() > 1 && (
+                        )}
+                        {/* Show current page and surrounding pages */}
+                        {table.getState().pagination.pageIndex > 0 &&
+                            table.getState().pagination.pageIndex < table.getPageCount() - 1 && (
                                 <PaginationItem>
                                     <PaginationLink
-                                        onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-                                        isActive={
-                                            table.getState().pagination.pageIndex ===
-                                            table.getPageCount() - 1
+                                        onClick={() =>
+                                            table.setPageIndex(
+                                                table.getState().pagination.pageIndex,
+                                            )
                                         }
+                                        isActive={true}
                                     >
-                                        {table.getPageCount()}
+                                        {table.getState().pagination.pageIndex + 1}
                                     </PaginationLink>
                                 </PaginationItem>
                             )}
+                        {/* Show ellipsis if needed */}
+                        {table.getState().pagination.pageIndex < table.getPageCount() - 3 && (
                             <PaginationItem>
-                                <PaginationNext
-                                    onClick={() => table.nextPage()}
-                                    disabled={!table.getCanNextPage()}
-                                />
+                                <PaginationEllipsis />
                             </PaginationItem>
-                        </PaginationContent>
-                    </Pagination>
-                </div>
+                        )}
+                        {/* Show last page */}
+                        {table.getPageCount() > 1 && (
+                            <PaginationItem>
+                                <PaginationLink
+                                    onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                                    isActive={
+                                        table.getState().pagination.pageIndex ===
+                                        table.getPageCount() - 1
+                                    }
+                                >
+                                    {table.getPageCount()}
+                                </PaginationLink>
+                            </PaginationItem>
+                        )}
+                        <PaginationItem>
+                            <PaginationNext
+                                onClick={() => table.nextPage()}
+                                disabled={!table.getCanNextPage()}
+                            />
+                        </PaginationItem>
+                    </PaginationContent>
+                </Pagination>
                 <div className="text-sm text-muted-foreground">
                     {table.getPrePaginationRowModel().rows.length} total problems
                 </div>
