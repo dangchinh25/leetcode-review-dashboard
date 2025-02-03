@@ -2,6 +2,7 @@
 
 A simple dashboard to track your LeetCode proficiency over each problems. This is a rewrite of this project [PMCA](https://github.com/HaolinZhong/PMCA) by fetching data directly from LeetCode intead of relying on tracking submission button on the browser, which is not reliable. It also adds better QAL features like better filtering, sorting, and searching.
 
+<img src="/public/screenshot.png"/>
 
 ## Prerequisites
 
