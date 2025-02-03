@@ -471,7 +471,7 @@ const Home: React.FC = () => {
             let newState: SortingState = [];
 
             if (tabId === "reviewDue") {
-                newState = [{ id: "pastDue", desc: false }];
+                newState = [{ id: "pastDue", desc: true }];
             } else if (tabId === "reviewScheduled") {
                 newState = [{ id: "reviewScheduled", desc: false }];
             } else if (tabId === "mastered") {
