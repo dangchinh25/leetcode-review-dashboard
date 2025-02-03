@@ -63,7 +63,7 @@ const Home: React.FC = () => {
     const [activeTab, setActiveTab] = useState<ProblemReviewStatus>("reviewDue");
     const [sortingState, setSortingState] = useState<SortingState>([{ id: "pastDue", desc: true }]);
     const [globalFilter, setGlobalFilter] = useState("");
-    const [showTags, setShowTags] = useState(true);
+    const [showTags, setShowTags] = useState(false);
 
     const [dialogOpen, setDialogOpen] = useState(false);
     const [dialogTitle, setDialogTitle] = useState("");
