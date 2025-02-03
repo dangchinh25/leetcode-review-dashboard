@@ -14,7 +14,7 @@ import {
     getSortedRowModel,
     useReactTable,
 } from "@tanstack/react-table";
-import { Filter, RefreshCw } from "lucide-react";
+import { Filter, RefreshCw, Tags } from "lucide-react";
 import { toast, Toaster } from "sonner";
 
 import type { RouterOutputs } from "@/backend/routers";
@@ -63,6 +63,7 @@ const Home: React.FC = () => {
     const [activeTab, setActiveTab] = useState<ProblemReviewStatus>("reviewDue");
     const [sortingState, setSortingState] = useState<SortingState>([{ id: "pastDue", desc: true }]);
     const [globalFilter, setGlobalFilter] = useState("");
+    const [showTags, setShowTags] = useState(true);
 
     // Add state for the dialog to show detailed information on toast click
     const [dialogOpen, setDialogOpen] = useState(false);
@@ -142,18 +143,34 @@ const Home: React.FC = () => {
                 columnHelper.accessor("title", {
                     id: "problemTitle",
                     header: "Problem",
-                    cell: (info) => (
-                        <div className="flex items-center h-8">
-                            <a
-                                href={getLeetcodeProblemUrl(info.row.original.titleSlug)}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-primary hover:underline"
+                    cell: (info) => {
+                        return (
+                            <div
+                                className={`flex flex-col justify-center ${showTags ? "py-2" : "h-8"}`}
                             >
-                                {info.getValue()}
-                            </a>
-                        </div>
-                    ),
+                                <a
+                                    href={getLeetcodeProblemUrl(info.row.original.titleSlug)}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-primary hover:underline"
+                                >
+                                    {info.getValue()}
+                                </a>
+                                {showTags && info.row.original.tags && (
+                                    <div className="flex flex-wrap gap-1 mt-1">
+                                        {info.row.original.tags.map((tag) => (
+                                            <span
+                                                key={tag.slug}
+                                                className="px-2 py-0.5 bg-primary/10 text-primary hover:bg-primary/20 transition-colors rounded-full text-xs font-medium"
+                                            >
+                                                {tag.name}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    },
                     size: 55,
                     minSize: undefined,
                     maxSize: undefined,
@@ -260,7 +277,7 @@ const Home: React.FC = () => {
                     enableResizing: false,
                 }),
             ],
-            [],
+            [showTags],
         );
 
     const getDynamicColumns = useCallback(
@@ -359,7 +376,6 @@ const Home: React.FC = () => {
             if (tabId === "reviewDue") {
                 newState = [{ id: "pastDue", desc: false }];
             } else if (tabId === "reviewScheduled") {
-                console.log("reviewScheduled");
                 newState = [{ id: "reviewScheduled", desc: false }];
             } else if (tabId === "mastered") {
                 newState = [];
@@ -425,6 +441,15 @@ const Home: React.FC = () => {
                         onChange={(e) => setGlobalFilter(e.target.value)}
                         className="h-9 w-[200px]"
                     />
+                    <button
+                        className="p-2 text-muted-foreground hover:bg-muted rounded-full transition-colors group relative"
+                        onClick={() => setShowTags(!showTags)}
+                    >
+                        <Tags className="w-6 h-6" />
+                        <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                            {showTags ? "Hide Tags" : "Show Tags"}
+                        </span>
+                    </button>
                     <button
                         className="p-2 text-muted-foreground hover:bg-muted rounded-full transition-colors group relative disabled:opacity-50"
                         onClick={() => syncProblemsMutate()}
@@ -492,7 +517,9 @@ const Home: React.FC = () => {
                                     {row.getVisibleCells().map((cell) => (
                                         <td
                                             key={cell.id}
-                                            className={`p-4 align-middle border-r border-gray-200 [&:has([role=checkbox])]:pr-0 ${getColumnWidthClass(cell.column.id)}`}
+                                            className={`px-4 ${
+                                                showTags ? "py-2" : "py-4"
+                                            } align-middle border-r border-gray-200 [&:has([role=checkbox])]:pr-0 ${getColumnWidthClass(cell.column.id)}`}
                                         >
                                             {flexRender(
                                                 cell.column.columnDef.cell,

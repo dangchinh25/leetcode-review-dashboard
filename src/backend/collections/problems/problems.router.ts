@@ -5,16 +5,16 @@ import { z } from "zod";
 import { getLeetcodeClient } from "@/backend/libs/leetcode";
 import { isProblemMastered, isProblemReviewDue } from "@/backend/utils/reviews";
 import type { ProblemWithProficiency } from "@/shared/types";
-import { ProblemWithProficiencySchema } from "@/shared/types";
+import { ProblemWithProficiencyTagsSchema } from "@/shared/types";
 
 import { prisma } from "../../../../prisma/client";
 import { publicProcedure, router } from "../../routers/router";
 import { buildProficiencyData, shouldUpdateProficiency } from "./helpers";
 
 const ProblemsWithReviewStatusSchema = z.object({
-    reviewDue: z.array(ProblemWithProficiencySchema),
-    reviewScheduled: z.array(ProblemWithProficiencySchema),
-    mastered: z.array(ProblemWithProficiencySchema),
+    reviewDue: z.array(ProblemWithProficiencyTagsSchema),
+    reviewScheduled: z.array(ProblemWithProficiencyTagsSchema),
+    mastered: z.array(ProblemWithProficiencyTagsSchema),
 });
 
 export const problemsRouter = router({
@@ -22,6 +22,11 @@ export const problemsRouter = router({
         const problemWithProficiency = await prisma.problem.findMany({
             include: {
                 proficiency: true,
+                tags: {
+                    include: {
+                        tag: true,
+                    },
+                },
             },
         });
 
@@ -40,16 +45,19 @@ export const problemsRouter = router({
                 response.mastered.push({
                     ...problem,
                     proficiency: problem.proficiency,
+                    tags: problem.tags.map((t) => t.tag),
                 });
             } else if (isProblemReviewDue(problem.proficiency)) {
                 response.reviewDue.push({
                     ...problem,
                     proficiency: problem.proficiency,
+                    tags: problem.tags.map((t) => t.tag),
                 });
             } else {
                 response.reviewScheduled.push({
                     ...problem,
                     proficiency: problem.proficiency,
+                    tags: problem.tags.map((t) => t.tag),
                 });
             }
         }
