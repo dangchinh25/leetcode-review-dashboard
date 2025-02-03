@@ -1,6 +1,6 @@
 # LeetCode Proficiency Tracker
 
-A simple dashboard to track your LeetCode proficiency over each problems.
+A simple dashboard to track your LeetCode proficiency over each problems. This is a rewrite of this project [PMCA](https://github.com/HaolinZhong/PMCA) by fetching data directly from LeetCode intead of relying on tracking submission button on the browser, which is not reliable. It also adds better QAL features like better filtering, sorting, and searching.
 
 
 ## Prerequisites
@@ -30,6 +30,12 @@ This will spin up a docker container for postgres database using credentials in 
 pnpm run dev
 ```
 
+### Seed data
+- Define the seed data logic in `src/backend/seed/seed.ts`. Right now this file is filled with my own logic to sync my own LeetCode data, take it as an example to implement your own logic.
+- Run the seed script
+```sh
+pnpm run temp-database-seed
+```
 
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
