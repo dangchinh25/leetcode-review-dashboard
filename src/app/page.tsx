@@ -14,7 +14,7 @@ import {
     getSortedRowModel,
     useReactTable,
 } from "@tanstack/react-table";
-import { Filter, RefreshCw, Tags } from "lucide-react";
+import { Filter, RefreshCw, RotateCw, Tags } from "lucide-react";
 import { toast, Toaster } from "sonner";
 
 import type { RouterOutputs } from "@/backend/routers";
@@ -277,12 +277,12 @@ const Home: React.FC = () => {
                     enableResizing: false,
                 }),
             ],
-            [showTags],
+            [showTags, refetchProblems],
         );
 
     const getDynamicColumns = useCallback(
         (activeTab: ProblemReviewStatus) => {
-            const dynamicColumns = [...baseColumns];
+            const dynamicColumns = [...baseColumns.filter((col) => col.id !== "operations")];
 
             if (activeTab === "reviewDue") {
                 dynamicColumns.push(
@@ -330,6 +330,28 @@ const Home: React.FC = () => {
                     }),
                 );
             }
+
+            dynamicColumns.push(
+                columnHelper.accessor("titleSlug", {
+                    id: "operations",
+                    header: "Operations",
+                    cell: () => (
+                        <div className="flex items-center h-8">
+                            <button className="p-1 text-muted-foreground hover:bg-muted rounded-full transition-colors group relative">
+                                <RotateCw className="w-4 h-4" />
+                                <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                    Sync Problem
+                                </span>
+                            </button>
+                        </div>
+                    ),
+                    enableColumnFilter: false,
+                    size: 10,
+                    minSize: undefined,
+                    maxSize: undefined,
+                    enableResizing: false,
+                }),
+            );
 
             return dynamicColumns;
         },
@@ -392,12 +414,14 @@ const Home: React.FC = () => {
             case "problemTitle":
                 return "w-[40%]";
             case "difficulty":
-                return "w-[20%]";
+                return "w-[10%]";
             case "proficiency":
-                return "w-[20%]";
+                return "w-[10%]";
             case "pastDue":
             case "reviewScheduled":
-                return "w-[20%]";
+                return "w-[15%]";
+            case "operations":
+                return "w-[15%]";
             default:
                 return "";
         }
