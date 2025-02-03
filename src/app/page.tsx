@@ -503,7 +503,7 @@ const Home: React.FC = () => {
     };
 
     return (
-        <div className="p-8 w-[70%] mx-auto">
+        <div className="p-2 sm:p-4 md:p-6 lg:p-8 w-[98%] sm:w-[95%] md:w-[90%] lg:w-[85%] xl:w-[75%] mx-auto">
             <Toaster
                 position="bottom-right"
                 theme="light"
