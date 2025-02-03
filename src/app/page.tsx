@@ -78,15 +78,17 @@ const Home: React.FC = () => {
                     toast.success(
                         <div
                             onClick={() => {
-                                openDialog(
-                                    "Problems synced successfully!",
-                                    `Details:\n${updatedProblems.map((p) => p.title).join("\n")}`,
-                                );
+                                if (updatedProblems.length > 0) {
+                                    openDialog(
+                                        "Problems synced successfully!",
+                                        `Details:\n${updatedProblems.map((p) => p.title).join("\n")}`,
+                                    );
+                                }
                             }}
                             style={{ cursor: "pointer" }}
                         >
                             Problems synced successfully!
-                            <div className="text-sm">{`${updatedProblems.length} problems updated`}</div>
+                            <div className="text-sm">{`${updatedProblems.length} problems updated. ${updatedProblems.length > 0 ? "Click to view details" : ""}`}</div>
                         </div>,
                     );
                     void refetchProblems();

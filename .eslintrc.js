@@ -132,6 +132,8 @@ module.exports = {
         "unused-imports/no-unused-imports": "error",
         "object-shorthand": ["error", "always", { avoidQuotes: true }],
         "react/react-in-jsx-scope": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "jsx-a11y/no-static-element-interactions": "off",
         "max-params": ["error", { max: 3 }],
         "prefer-arrow/prefer-arrow-functions": "error",
         "no-only-tests/no-only-tests": ["error"],
