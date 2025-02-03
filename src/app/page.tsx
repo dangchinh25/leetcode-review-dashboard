@@ -542,6 +542,15 @@ const Home: React.FC = () => {
                     />
                     <button
                         className="p-2 text-muted-foreground hover:bg-muted rounded-full transition-colors group relative"
+                        onClick={() => {}}
+                    >
+                        <Filter className="w-6 h-6" />
+                        <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                            Filter Tags
+                        </span>
+                    </button>
+                    <button
+                        className="p-2 text-muted-foreground hover:bg-muted rounded-full transition-colors group relative"
                         onClick={() => setShowTags(!showTags)}
                     >
                         <Tags className="w-6 h-6" />
