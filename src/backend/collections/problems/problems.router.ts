@@ -123,7 +123,6 @@ export const problemsRouter = router({
                             if (!problemDetails) {
                                 return;
                             }
-
                             const upsertTagPromises = problemDetails.topicTags.map(async (tag) =>
                                 tx.tag.upsert({
                                     where: { slug: tag.slug },
@@ -140,7 +139,7 @@ export const problemsRouter = router({
                                     title: problemDetails.title,
                                     titleSlug: problemDetails.titleSlug,
                                     difficulty: problemDetails.difficulty,
-                                    questionId: problemDetails.questionId,
+                                    questionId: problemDetails.questionFrontendId,
                                 },
                             });
                             await Promise.all(upsertTagPromises);
