@@ -14,7 +14,7 @@ import {
     getSortedRowModel,
     useReactTable,
 } from "@tanstack/react-table";
-import { Filter, RefreshCw, RotateCw, Tags, X } from "lucide-react";
+import { Ban, Filter, RefreshCw, RotateCw, Tags, X } from "lucide-react";
 import { toast, Toaster } from "sonner";
 
 import type { RouterOutputs } from "@/backend/routers";
@@ -70,6 +70,7 @@ const Home: React.FC = () => {
     const [dialogContent, setDialogContent] = useState("");
 
     const [currentSyncingProblem, setCurrentSyncingProblem] = useState<string | null>(null);
+    const [currentCancellingProblem, setCurrentCancellingProblem] = useState<string | null>(null);
 
     const openDialog = (title: string, content: string) => {
         setDialogTitle(title);
@@ -190,6 +191,28 @@ const Home: React.FC = () => {
                         Failed to sync problems: {error.message}
                     </div>,
                 );
+            },
+        });
+    const { mutate: cancelProblemProficiencyTrackingMutate, isPending: isCancelling } =
+        trpcClient.cancelProblemProficiencyTracking.useMutation({
+            onMutate: (variables) => {
+                setCurrentCancellingProblem(variables.titleSlug);
+            },
+            onSuccess: (info) => {
+                if (info.success && "problem" in info) {
+                    const updatedProblem = info.problem;
+
+                    toast.success(
+                        `Problem proficiency tracking cancelled: ${updatedProblem.title}`,
+                    );
+                    void refetchProblems();
+                }
+            },
+            onSettled: () => {
+                setCurrentCancellingProblem(null);
+            },
+            onError: (error) => {
+                toast.error(`Failed to cancel problem proficiency tracking: ${error.message}`);
             },
         });
 
@@ -396,7 +419,7 @@ const Home: React.FC = () => {
                     id: "operations",
                     header: "Operations",
                     cell: (info) => (
-                        <div className="flex items-center h-8">
+                        <div className="flex items-center gap-2 h-8">
                             <button
                                 className="p-1 text-muted-foreground hover:bg-muted rounded-full transition-colors group relative disabled:opacity-50"
                                 onClick={() =>
@@ -417,11 +440,28 @@ const Home: React.FC = () => {
                                         : "Sync Problem"}
                                 </span>
                             </button>
+                            <button
+                                className="p-1 text-muted-foreground hover:bg-muted rounded-full transition-colors group relative"
+                                onClick={() => {
+                                    cancelProblemProficiencyTrackingMutate({
+                                        titleSlug: info.row.original.titleSlug,
+                                    });
+                                }}
+                                disabled={
+                                    isCancelling &&
+                                    currentCancellingProblem === info.row.original.titleSlug
+                                }
+                            >
+                                <Ban className="w-4 h-4" />
+                                <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                    Stop Tracking
+                                </span>
+                            </button>
                         </div>
                     ),
                     enableColumnFilter: false,
                     enableSorting: false,
-                    size: 10,
+                    size: 15,
                     minSize: undefined,
                     maxSize: undefined,
                     enableResizing: false,
@@ -430,7 +470,15 @@ const Home: React.FC = () => {
 
             return dynamicColumns;
         },
-        [baseColumns, currentSyncingProblem, isSyncingProblem, syncProblemMutate],
+        [
+            baseColumns,
+            currentSyncingProblem,
+            isSyncingProblem,
+            syncProblemMutate,
+            currentCancellingProblem,
+            isCancelling,
+            cancelProblemProficiencyTrackingMutate,
+        ],
     );
 
     const columns = useMemo(() => getDynamicColumns(activeTab), [activeTab, getDynamicColumns]);

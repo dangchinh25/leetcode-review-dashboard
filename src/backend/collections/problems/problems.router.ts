@@ -41,6 +41,10 @@ export const problemsRouter = router({
                 continue;
             }
 
+            if (!problem.proficiency.isTracking) {
+                continue;
+            }
+
             if (isProblemMastered(problem.proficiency)) {
                 response.mastered.push({
                     ...problem,
@@ -308,5 +312,46 @@ export const problemsRouter = router({
                     error: "Failed to sync problem",
                 };
             }
+        }),
+    cancelProblemProficiencyTracking: publicProcedure
+        .input(z.object({ titleSlug: z.string() }))
+        .mutation(async ({ input }) => {
+            const problem = await prisma.problem.findUnique({
+                where: { titleSlug: input.titleSlug },
+            });
+
+            if (!problem) {
+                return { success: false, error: "Problem not found" };
+            }
+
+            const existingProficiency = await prisma.proficiency.findUnique({
+                where: { problemId: problem.id },
+            });
+
+            let updatedProficiency: Proficiency;
+            if (!existingProficiency) {
+                updatedProficiency = await prisma.proficiency.create({
+                    data: {
+                        problemId: problem.id,
+                        isTracking: false,
+                        proficiency: 0,
+                        lastSubmissionTime: Date.now().toString(),
+                        nextReviewTime: Date.now().toString(),
+                    },
+                });
+            } else {
+                updatedProficiency = await prisma.proficiency.update({
+                    where: { id: existingProficiency.id },
+                    data: { isTracking: false },
+                });
+            }
+
+            return {
+                success: true,
+                problem: {
+                    ...problem,
+                    proficiency: updatedProficiency,
+                },
+            };
         }),
 });
