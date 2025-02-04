@@ -535,16 +535,16 @@ const Home: React.FC = () => {
     const getColumnWidthClass = (columnId: string) => {
         switch (columnId) {
             case "problemTitle":
-                return "w-[40%]";
+                return "w-[30%] md:w-[35%] lg:w-[40%]";
             case "difficulty":
-                return "w-[10%]";
+                return "w-[15%] md:w-[12%] lg:w-[10%]";
             case "proficiency":
-                return "w-[10%]";
+                return "w-[15%] md:w-[12%] lg:w-[10%]";
             case "pastDue":
             case "reviewScheduled":
-                return "w-[15%]";
+                return "w-[20%] md:w-[17%] lg:w-[15%]";
             case "operations":
-                return "w-[15%]";
+                return "w-[20%] md:w-[17%] lg:w-[15%]";
             default:
                 return "";
         }
