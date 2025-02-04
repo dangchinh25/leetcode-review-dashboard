@@ -69,6 +69,7 @@ model Proficiency {
   proficiency        Int      @map("proficiency")
   lastSubmissionTime String   @map("last_submission_time")
   nextReviewTime     String   @map("next_review_time")
+  isTracking         Boolean  @default(true) @map("is_tracking")
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
 

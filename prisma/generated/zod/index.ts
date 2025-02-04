@@ -18,7 +18,7 @@ export const TagScalarFieldEnumSchema = z.enum(['id','name','slug','createdAt','
 
 export const ProblemTagScalarFieldEnumSchema = z.enum(['id','problemId','tagId','createdAt','updatedAt']);
 
-export const ProficiencyScalarFieldEnumSchema = z.enum(['id','problemId','proficiency','lastSubmissionTime','nextReviewTime','createdAt','updatedAt']);
+export const ProficiencyScalarFieldEnumSchema = z.enum(['id','problemId','proficiency','lastSubmissionTime','nextReviewTime','isTracking','createdAt','updatedAt']);
 
 export const SortOrderSchema = z.enum(['asc','desc']);
 
@@ -81,6 +81,7 @@ export const ProficiencySchema = z.object({
   proficiency: z.number().int(),
   lastSubmissionTime: z.string(),
   nextReviewTime: z.string(),
+  isTracking: z.boolean(),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
 })
@@ -198,6 +199,7 @@ export const ProficiencySelectSchema: z.ZodType<Prisma.ProficiencySelect> = z.ob
   proficiency: z.boolean().optional(),
   lastSubmissionTime: z.boolean().optional(),
   nextReviewTime: z.boolean().optional(),
+  isTracking: z.boolean().optional(),
   createdAt: z.boolean().optional(),
   updatedAt: z.boolean().optional(),
   problem: z.union([z.boolean(),z.lazy(() => ProblemArgsSchema)]).optional(),
@@ -473,6 +475,7 @@ export const ProficiencyWhereInputSchema: z.ZodType<Prisma.ProficiencyWhereInput
   proficiency: z.union([ z.lazy(() => IntFilterSchema),z.number() ]).optional(),
   lastSubmissionTime: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   nextReviewTime: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  isTracking: z.union([ z.lazy(() => BoolFilterSchema),z.boolean() ]).optional(),
   createdAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
   updatedAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
   problem: z.union([ z.lazy(() => ProblemScalarRelationFilterSchema),z.lazy(() => ProblemWhereInputSchema) ]).optional(),
@@ -484,6 +487,7 @@ export const ProficiencyOrderByWithRelationInputSchema: z.ZodType<Prisma.Profici
   proficiency: z.lazy(() => SortOrderSchema).optional(),
   lastSubmissionTime: z.lazy(() => SortOrderSchema).optional(),
   nextReviewTime: z.lazy(() => SortOrderSchema).optional(),
+  isTracking: z.lazy(() => SortOrderSchema).optional(),
   createdAt: z.lazy(() => SortOrderSchema).optional(),
   updatedAt: z.lazy(() => SortOrderSchema).optional(),
   problem: z.lazy(() => ProblemOrderByWithRelationInputSchema).optional()
@@ -510,6 +514,7 @@ export const ProficiencyWhereUniqueInputSchema: z.ZodType<Prisma.ProficiencyWher
   proficiency: z.union([ z.lazy(() => IntFilterSchema),z.number().int() ]).optional(),
   lastSubmissionTime: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   nextReviewTime: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  isTracking: z.union([ z.lazy(() => BoolFilterSchema),z.boolean() ]).optional(),
   createdAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
   updatedAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
   problem: z.union([ z.lazy(() => ProblemScalarRelationFilterSchema),z.lazy(() => ProblemWhereInputSchema) ]).optional(),
@@ -521,6 +526,7 @@ export const ProficiencyOrderByWithAggregationInputSchema: z.ZodType<Prisma.Prof
   proficiency: z.lazy(() => SortOrderSchema).optional(),
   lastSubmissionTime: z.lazy(() => SortOrderSchema).optional(),
   nextReviewTime: z.lazy(() => SortOrderSchema).optional(),
+  isTracking: z.lazy(() => SortOrderSchema).optional(),
   createdAt: z.lazy(() => SortOrderSchema).optional(),
   updatedAt: z.lazy(() => SortOrderSchema).optional(),
   _count: z.lazy(() => ProficiencyCountOrderByAggregateInputSchema).optional(),
@@ -539,6 +545,7 @@ export const ProficiencyScalarWhereWithAggregatesInputSchema: z.ZodType<Prisma.P
   proficiency: z.union([ z.lazy(() => IntWithAggregatesFilterSchema),z.number() ]).optional(),
   lastSubmissionTime: z.union([ z.lazy(() => StringWithAggregatesFilterSchema),z.string() ]).optional(),
   nextReviewTime: z.union([ z.lazy(() => StringWithAggregatesFilterSchema),z.string() ]).optional(),
+  isTracking: z.union([ z.lazy(() => BoolWithAggregatesFilterSchema),z.boolean() ]).optional(),
   createdAt: z.union([ z.lazy(() => DateTimeWithAggregatesFilterSchema),z.coerce.date() ]).optional(),
   updatedAt: z.union([ z.lazy(() => DateTimeWithAggregatesFilterSchema),z.coerce.date() ]).optional(),
 }).strict();
@@ -730,6 +737,7 @@ export const ProficiencyCreateInputSchema: z.ZodType<Prisma.ProficiencyCreateInp
   proficiency: z.number().int(),
   lastSubmissionTime: z.string(),
   nextReviewTime: z.string(),
+  isTracking: z.boolean().optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
   problem: z.lazy(() => ProblemCreateNestedOneWithoutProficiencyInputSchema)
@@ -741,6 +749,7 @@ export const ProficiencyUncheckedCreateInputSchema: z.ZodType<Prisma.Proficiency
   proficiency: z.number().int(),
   lastSubmissionTime: z.string(),
   nextReviewTime: z.string(),
+  isTracking: z.boolean().optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional()
 }).strict();
@@ -749,6 +758,7 @@ export const ProficiencyUpdateInputSchema: z.ZodType<Prisma.ProficiencyUpdateInp
   proficiency: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   lastSubmissionTime: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   nextReviewTime: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  isTracking: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   problem: z.lazy(() => ProblemUpdateOneRequiredWithoutProficiencyNestedInputSchema).optional()
@@ -760,6 +770,7 @@ export const ProficiencyUncheckedUpdateInputSchema: z.ZodType<Prisma.Proficiency
   proficiency: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   lastSubmissionTime: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   nextReviewTime: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  isTracking: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
@@ -770,6 +781,7 @@ export const ProficiencyCreateManyInputSchema: z.ZodType<Prisma.ProficiencyCreat
   proficiency: z.number().int(),
   lastSubmissionTime: z.string(),
   nextReviewTime: z.string(),
+  isTracking: z.boolean().optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional()
 }).strict();
@@ -778,6 +790,7 @@ export const ProficiencyUpdateManyMutationInputSchema: z.ZodType<Prisma.Proficie
   proficiency: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   lastSubmissionTime: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   nextReviewTime: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  isTracking: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
@@ -788,6 +801,7 @@ export const ProficiencyUncheckedUpdateManyInputSchema: z.ZodType<Prisma.Profici
   proficiency: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   lastSubmissionTime: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   nextReviewTime: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  isTracking: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
@@ -1013,12 +1027,18 @@ export const ProblemTagSumOrderByAggregateInputSchema: z.ZodType<Prisma.ProblemT
   tagId: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
+export const BoolFilterSchema: z.ZodType<Prisma.BoolFilter> = z.object({
+  equals: z.boolean().optional(),
+  not: z.union([ z.boolean(),z.lazy(() => NestedBoolFilterSchema) ]).optional(),
+}).strict();
+
 export const ProficiencyCountOrderByAggregateInputSchema: z.ZodType<Prisma.ProficiencyCountOrderByAggregateInput> = z.object({
   id: z.lazy(() => SortOrderSchema).optional(),
   problemId: z.lazy(() => SortOrderSchema).optional(),
   proficiency: z.lazy(() => SortOrderSchema).optional(),
   lastSubmissionTime: z.lazy(() => SortOrderSchema).optional(),
   nextReviewTime: z.lazy(() => SortOrderSchema).optional(),
+  isTracking: z.lazy(() => SortOrderSchema).optional(),
   createdAt: z.lazy(() => SortOrderSchema).optional(),
   updatedAt: z.lazy(() => SortOrderSchema).optional()
 }).strict();
@@ -1035,6 +1055,7 @@ export const ProficiencyMaxOrderByAggregateInputSchema: z.ZodType<Prisma.Profici
   proficiency: z.lazy(() => SortOrderSchema).optional(),
   lastSubmissionTime: z.lazy(() => SortOrderSchema).optional(),
   nextReviewTime: z.lazy(() => SortOrderSchema).optional(),
+  isTracking: z.lazy(() => SortOrderSchema).optional(),
   createdAt: z.lazy(() => SortOrderSchema).optional(),
   updatedAt: z.lazy(() => SortOrderSchema).optional()
 }).strict();
@@ -1045,6 +1066,7 @@ export const ProficiencyMinOrderByAggregateInputSchema: z.ZodType<Prisma.Profici
   proficiency: z.lazy(() => SortOrderSchema).optional(),
   lastSubmissionTime: z.lazy(() => SortOrderSchema).optional(),
   nextReviewTime: z.lazy(() => SortOrderSchema).optional(),
+  isTracking: z.lazy(() => SortOrderSchema).optional(),
   createdAt: z.lazy(() => SortOrderSchema).optional(),
   updatedAt: z.lazy(() => SortOrderSchema).optional()
 }).strict();
@@ -1053,6 +1075,14 @@ export const ProficiencySumOrderByAggregateInputSchema: z.ZodType<Prisma.Profici
   id: z.lazy(() => SortOrderSchema).optional(),
   problemId: z.lazy(() => SortOrderSchema).optional(),
   proficiency: z.lazy(() => SortOrderSchema).optional()
+}).strict();
+
+export const BoolWithAggregatesFilterSchema: z.ZodType<Prisma.BoolWithAggregatesFilter> = z.object({
+  equals: z.boolean().optional(),
+  not: z.union([ z.boolean(),z.lazy(() => NestedBoolWithAggregatesFilterSchema) ]).optional(),
+  _count: z.lazy(() => NestedIntFilterSchema).optional(),
+  _min: z.lazy(() => NestedBoolFilterSchema).optional(),
+  _max: z.lazy(() => NestedBoolFilterSchema).optional()
 }).strict();
 
 export const ProblemTagCreateNestedManyWithoutProblemInputSchema: z.ZodType<Prisma.ProblemTagCreateNestedManyWithoutProblemInput> = z.object({
@@ -1221,6 +1251,10 @@ export const ProblemCreateNestedOneWithoutProficiencyInputSchema: z.ZodType<Pris
   connect: z.lazy(() => ProblemWhereUniqueInputSchema).optional()
 }).strict();
 
+export const BoolFieldUpdateOperationsInputSchema: z.ZodType<Prisma.BoolFieldUpdateOperationsInput> = z.object({
+  set: z.boolean().optional()
+}).strict();
+
 export const ProblemUpdateOneRequiredWithoutProficiencyNestedInputSchema: z.ZodType<Prisma.ProblemUpdateOneRequiredWithoutProficiencyNestedInput> = z.object({
   create: z.union([ z.lazy(() => ProblemCreateWithoutProficiencyInputSchema),z.lazy(() => ProblemUncheckedCreateWithoutProficiencyInputSchema) ]).optional(),
   connectOrCreate: z.lazy(() => ProblemCreateOrConnectWithoutProficiencyInputSchema).optional(),
@@ -1323,6 +1357,19 @@ export const NestedDateTimeWithAggregatesFilterSchema: z.ZodType<Prisma.NestedDa
   _max: z.lazy(() => NestedDateTimeFilterSchema).optional()
 }).strict();
 
+export const NestedBoolFilterSchema: z.ZodType<Prisma.NestedBoolFilter> = z.object({
+  equals: z.boolean().optional(),
+  not: z.union([ z.boolean(),z.lazy(() => NestedBoolFilterSchema) ]).optional(),
+}).strict();
+
+export const NestedBoolWithAggregatesFilterSchema: z.ZodType<Prisma.NestedBoolWithAggregatesFilter> = z.object({
+  equals: z.boolean().optional(),
+  not: z.union([ z.boolean(),z.lazy(() => NestedBoolWithAggregatesFilterSchema) ]).optional(),
+  _count: z.lazy(() => NestedIntFilterSchema).optional(),
+  _min: z.lazy(() => NestedBoolFilterSchema).optional(),
+  _max: z.lazy(() => NestedBoolFilterSchema).optional()
+}).strict();
+
 export const ProblemTagCreateWithoutProblemInputSchema: z.ZodType<Prisma.ProblemTagCreateWithoutProblemInput> = z.object({
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
@@ -1350,6 +1397,7 @@ export const ProficiencyCreateWithoutProblemInputSchema: z.ZodType<Prisma.Profic
   proficiency: z.number().int(),
   lastSubmissionTime: z.string(),
   nextReviewTime: z.string(),
+  isTracking: z.boolean().optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional()
 }).strict();
@@ -1359,6 +1407,7 @@ export const ProficiencyUncheckedCreateWithoutProblemInputSchema: z.ZodType<Pris
   proficiency: z.number().int(),
   lastSubmissionTime: z.string(),
   nextReviewTime: z.string(),
+  isTracking: z.boolean().optional(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional()
 }).strict();
@@ -1410,6 +1459,7 @@ export const ProficiencyUpdateWithoutProblemInputSchema: z.ZodType<Prisma.Profic
   proficiency: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   lastSubmissionTime: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   nextReviewTime: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  isTracking: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
@@ -1419,6 +1469,7 @@ export const ProficiencyUncheckedUpdateWithoutProblemInputSchema: z.ZodType<Pris
   proficiency: z.union([ z.number().int(),z.lazy(() => IntFieldUpdateOperationsInputSchema) ]).optional(),
   lastSubmissionTime: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   nextReviewTime: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  isTracking: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
   createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
