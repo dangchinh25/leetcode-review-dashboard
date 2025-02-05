@@ -3,7 +3,11 @@ import type { Submission } from "leetcode-query";
 
 import type { AtLeast } from "@/shared/types";
 
-import { getNextReviewTime, isProblemMastered, isProblemReviewDue } from "../../utils/reviews";
+import {
+    getNextReviewTime,
+    isProblemMastered,
+    isProblemReviewDue,
+} from "../../../shared/utils/reviews";
 
 export const buildProficiencyData = (
     problem: AtLeast<Problem, "id">,

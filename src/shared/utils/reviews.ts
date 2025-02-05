@@ -2,9 +2,11 @@ import type { Proficiency } from "@prisma/client";
 
 import type { AtLeast } from "@/shared/types";
 
-import { FORGETTING_CURVE } from "../../shared/constants";
+import { FORGETTING_CURVE } from "../constants";
 
-export const isProblemMastered = (problemProficiency: Proficiency): boolean => {
+export const isProblemMastered = (
+    problemProficiency: AtLeast<Proficiency, "proficiency">,
+): boolean => {
     return problemProficiency.proficiency >= FORGETTING_CURVE.length;
 };
 

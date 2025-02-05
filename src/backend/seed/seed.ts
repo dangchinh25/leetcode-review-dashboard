@@ -1,8 +1,8 @@
 import type { TopicTag } from "leetcode-query";
 
 import { prisma } from "../../../prisma/client";
+import { getNextReviewTime } from "../../shared/utils/reviews";
 import { getLeetcodeClient } from "../libs/leetcode";
-import { getNextReviewTime } from "../utils/reviews";
 import seedData from "./seedData.json";
 
 const getProblemSlugFromUrl = (url: string) => {

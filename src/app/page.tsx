@@ -53,6 +53,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { formatTimeAgo, formatTimeLeft } from "@/shared/time";
 import type { ProblemReviewStatus } from "@/shared/types";
 import { getLeetcodeProblemUrl } from "@/shared/utils";
+import { isProblemMastered } from "@/shared/utils/reviews";
 
 import { trpcClient } from "../app/_trpc/client";
 
@@ -448,13 +449,20 @@ const Home: React.FC = () => {
                                     });
                                 }}
                                 disabled={
-                                    isCancelling &&
-                                    currentCancellingProblem === info.row.original.titleSlug
+                                    (isCancelling &&
+                                        currentCancellingProblem === info.row.original.titleSlug) ||
+                                    isProblemMastered({
+                                        proficiency: info.row.original.proficiency.proficiency,
+                                    })
                                 }
                             >
                                 <Ban className="w-4 h-4" />
                                 <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                                    Stop Tracking
+                                    {isProblemMastered({
+                                        proficiency: info.row.original.proficiency.proficiency,
+                                    })
+                                        ? "Can't cancel tracking not supported"
+                                        : "Stop Tracking"}
                                 </span>
                             </button>
                         </div>

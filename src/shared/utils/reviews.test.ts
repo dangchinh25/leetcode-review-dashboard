@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-import { FORGETTING_CURVE } from "../../shared/constants";
+import { FORGETTING_CURVE } from "../constants";
 import { getNextReviewTime } from "./reviews";
 
 describe("getNextReviewTime", () => {

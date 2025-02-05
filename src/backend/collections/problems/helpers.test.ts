@@ -3,7 +3,7 @@ import type { Submission } from "leetcode-query";
 
 import type { AtLeast } from "@/shared/types";
 
-import * as reviews from "../../utils/reviews";
+import * as reviews from "../../../shared/utils/reviews";
 import { buildProficiencyData } from "./helpers";
 
 describe("buildProficiencyData", () => {

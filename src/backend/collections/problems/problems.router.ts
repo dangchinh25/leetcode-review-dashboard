@@ -3,9 +3,9 @@ import type { Submission } from "leetcode-query";
 import { z } from "zod";
 
 import { getLeetcodeClient } from "@/backend/libs/leetcode";
-import { isProblemMastered, isProblemReviewDue } from "@/backend/utils/reviews";
 import type { ProblemWithProficiency } from "@/shared/types";
 import { ProblemWithProficiencyTagsSchema } from "@/shared/types";
+import { isProblemMastered, isProblemReviewDue } from "@/shared/utils/reviews";
 
 import { prisma } from "../../../../prisma/client";
 import { publicProcedure, router } from "../../routers/router";
