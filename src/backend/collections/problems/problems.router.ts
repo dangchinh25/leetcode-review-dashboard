@@ -254,13 +254,13 @@ export const problemsRouter = router({
                         title: problemDetail.title,
                         titleSlug: problemDetail.titleSlug,
                         difficulty: problemDetail.difficulty,
-                        questionId: problemDetail.questionId,
+                        questionId: problemDetail.questionFrontendId,
                     },
                     create: {
                         title: problemDetail.title,
                         titleSlug: problemDetail.titleSlug,
                         difficulty: problemDetail.difficulty,
-                        questionId: problemDetail.questionId,
+                        questionId: problemDetail.questionFrontendId,
                     },
                 });
 
