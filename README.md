@@ -49,7 +49,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## To Do
 - Integrate NextAuth to handle user authentication.
 - Add `LEETCODE_SUBMISSION_FETCH_LIMIT` to be user's preference => Create user's preferences page
-- Add operations column to interact with each problem (e.g: remove/reset proficiency tracking, sync this individual problem, ...) => Important to not have to rely on the "Sync Problems" button, which is not that reliable.
-- Support filter problems by tags.
+- Support filter problems by tags (just placeholder right now).
 - Add ability to not have to put in LEETCODE_SESSION_COOKIE in the `.env` file by just using Leetcode's handle. => Important as session cookie can change.
-- Add a tab to view problems that are not being tracked.
