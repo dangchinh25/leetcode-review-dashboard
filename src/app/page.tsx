@@ -453,15 +453,16 @@ const Home: React.FC = () => {
                                         currentCancellingProblem === info.row.original.titleSlug) ||
                                     isProblemMastered({
                                         proficiency: info.row.original.proficiency.proficiency,
-                                    })
+                                    }) ||
+                                    info.row.original.proficiency.isTracking === false
                                 }
                             >
                                 <Ban className="w-4 h-4" />
                                 <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                                     {isProblemMastered({
                                         proficiency: info.row.original.proficiency.proficiency,
-                                    })
-                                        ? "Can't cancel tracking not supported"
+                                    }) || info.row.original.proficiency.isTracking === false
+                                        ? "Cancel tracking not supported"
                                         : "Stop Tracking"}
                                 </span>
                             </button>
@@ -518,6 +519,7 @@ const Home: React.FC = () => {
             { id: "reviewDue", label: "Review Due" },
             { id: "reviewScheduled", label: "Review Scheduled" },
             { id: "mastered", label: "Mastered" },
+            { id: "notTracking", label: "Not Tracking" },
         ],
         [],
     );
@@ -531,6 +533,8 @@ const Home: React.FC = () => {
             } else if (tabId === "reviewScheduled") {
                 newState = [{ id: "reviewScheduled", desc: false }];
             } else if (tabId === "mastered") {
+                newState = [];
+            } else if (tabId === "notTracking") {
                 newState = [];
             }
 

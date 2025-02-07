@@ -15,6 +15,7 @@ const ProblemsWithReviewStatusSchema = z.object({
     reviewDue: z.array(ProblemWithProficiencyTagsSchema),
     reviewScheduled: z.array(ProblemWithProficiencyTagsSchema),
     mastered: z.array(ProblemWithProficiencyTagsSchema),
+    notTracking: z.array(ProblemWithProficiencyTagsSchema),
 });
 
 export const problemsRouter = router({
@@ -34,6 +35,7 @@ export const problemsRouter = router({
             reviewDue: [],
             reviewScheduled: [],
             mastered: [],
+            notTracking: [],
         };
 
         for (const problem of problemWithProficiency) {
@@ -42,10 +44,12 @@ export const problemsRouter = router({
             }
 
             if (!problem.proficiency.isTracking) {
-                continue;
-            }
-
-            if (isProblemMastered(problem.proficiency)) {
+                response.notTracking.push({
+                    ...problem,
+                    proficiency: problem.proficiency,
+                    tags: problem.tags.map((t) => t.tag),
+                });
+            } else if (isProblemMastered(problem.proficiency)) {
                 response.mastered.push({
                     ...problem,
                     proficiency: problem.proficiency,

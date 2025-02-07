@@ -5,7 +5,7 @@ import { ProblemSchema, ProficiencySchema, TagSchema } from "../../prisma/genera
 
 export type AtLeast<T, K extends keyof T> = Partial<T> & Pick<T, K>;
 
-const ProblemReviewStatus = ["reviewDue", "reviewScheduled", "mastered"] as const;
+const ProblemReviewStatus = ["reviewDue", "reviewScheduled", "mastered", "notTracking"] as const;
 
 export type ProblemReviewStatus = (typeof ProblemReviewStatus)[number];
 
