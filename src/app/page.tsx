@@ -444,6 +444,24 @@ const Home: React.FC = () => {
                             <button
                                 className="p-1 text-muted-foreground hover:bg-muted rounded-full transition-colors group relative"
                                 onClick={() => {
+                                    // TODO: Implement reset tracking
+                                    console.log("Reset tracking for:", info.row.original.titleSlug);
+                                }}
+                                disabled={
+                                    !info.row.original.proficiency.isTracking ||
+                                    info.row.original.proficiency.proficiency === 0
+                                }
+                            >
+                                <RefreshCw className="w-4 h-4" />
+                                <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                    {!info.row.original.proficiency.isTracking
+                                        ? "Continue tracking and reset progress"
+                                        : "Reset Progress"}
+                                </span>
+                            </button>
+                            <button
+                                className="p-1 text-muted-foreground hover:bg-muted rounded-full transition-colors group relative"
+                                onClick={() => {
                                     cancelProblemProficiencyTrackingMutate({
                                         titleSlug: info.row.original.titleSlug,
                                     });

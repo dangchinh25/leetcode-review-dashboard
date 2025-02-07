@@ -358,4 +358,40 @@ export const problemsRouter = router({
                 },
             };
         }),
+    resetProblemProficiency: publicProcedure
+        .input(z.object({ titleSlug: z.string() }))
+        .mutation(async ({ input }) => {
+            const problem = await prisma.problem.findUnique({
+                where: { titleSlug: input.titleSlug },
+            });
+
+            if (!problem) {
+                return { success: false, error: "Problem not found" };
+            }
+
+            const proficiency = await prisma.proficiency.findUnique({
+                where: { problemId: problem.id },
+            });
+
+            if (!proficiency) {
+                return { success: false, error: "Proficiency not found" };
+            }
+
+            const updatedProficiency = await prisma.proficiency.update({
+                where: { id: proficiency.id },
+                data: {
+                    isTracking: true,
+                    proficiency: 0,
+                    nextReviewTime: Date.now().toString(),
+                },
+            });
+
+            return {
+                success: true,
+                problem: {
+                    ...problem,
+                    proficiency: updatedProficiency,
+                },
+            };
+        }),
 });
