@@ -14,7 +14,7 @@ import {
     getSortedRowModel,
     useReactTable,
 } from "@tanstack/react-table";
-import { Ban, Filter, RefreshCw, RotateCw, Tags, X } from "lucide-react";
+import { Ban, Filter, Play, RefreshCw, RotateCw, Tags, X } from "lucide-react";
 import { toast, Toaster } from "sonner";
 
 import type { RouterOutputs } from "@/backend/routers";
@@ -214,6 +214,19 @@ const Home: React.FC = () => {
             },
             onError: (error) => {
                 toast.error(`Failed to cancel problem proficiency tracking: ${error.message}`);
+            },
+        });
+    const { mutate: resumeProblemProficiencyTrackingMutate, isPending: isResuming } =
+        trpcClient.resumeTrackingProblem.useMutation({
+            onSuccess: (info) => {
+                if (info.success && "problem" in info) {
+                    const updatedProblem = info.problem;
+                    toast.success(`Problem proficiency tracking resumed: ${updatedProblem.title}`);
+                    void refetchProblems();
+                }
+            },
+            onError: (error) => {
+                toast.error(`Failed to resume problem proficiency tracking: ${error.message}`);
             },
         });
 
@@ -421,6 +434,7 @@ const Home: React.FC = () => {
                     header: "Operations",
                     cell: (info) => (
                         <div className="flex items-center gap-2 h-8">
+                            {/* Sync problem button */}
                             <button
                                 className="p-1 text-muted-foreground hover:bg-muted rounded-full transition-colors group relative disabled:opacity-50"
                                 onClick={() =>
@@ -441,24 +455,24 @@ const Home: React.FC = () => {
                                         : "Sync Problem"}
                                 </span>
                             </button>
-                            <button
-                                className="p-1 text-muted-foreground hover:bg-muted rounded-full transition-colors group relative"
-                                onClick={() => {
-                                    // TODO: Implement reset tracking
-                                    console.log("Reset tracking for:", info.row.original.titleSlug);
-                                }}
-                                disabled={
-                                    !info.row.original.proficiency.isTracking ||
-                                    info.row.original.proficiency.proficiency === 0
-                                }
-                            >
-                                <RefreshCw className="w-4 h-4" />
-                                <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                                    {!info.row.original.proficiency.isTracking
-                                        ? "Continue tracking and reset progress"
-                                        : "Reset Progress"}
-                                </span>
-                            </button>
+                            {/* Resume tracking button */}
+                            {activeTab === "notTracking" && (
+                                <button
+                                    className="p-1 text-muted-foreground hover:bg-muted rounded-full transition-colors group relative"
+                                    onClick={() => {
+                                        resumeProblemProficiencyTrackingMutate({
+                                            titleSlug: info.row.original.titleSlug,
+                                        });
+                                    }}
+                                    disabled={isResuming}
+                                >
+                                    <Play className="w-4 h-4" />
+                                    <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                        {isResuming ? "Resuming..." : "Resume Tracking"}
+                                    </span>
+                                </button>
+                            )}
+                            {/* Cancel tracking button */}
                             <button
                                 className="p-1 text-muted-foreground hover:bg-muted rounded-full transition-colors group relative"
                                 onClick={() => {
@@ -484,6 +498,25 @@ const Home: React.FC = () => {
                                         : "Stop Tracking"}
                                 </span>
                             </button>
+                            {/* Reset tracking button */}
+                            <button
+                                className="p-1 text-muted-foreground hover:bg-muted rounded-full transition-colors group relative"
+                                onClick={() => {
+                                    // TODO: Implement reset tracking
+                                    console.log("Reset tracking for:", info.row.original.titleSlug);
+                                }}
+                                disabled={
+                                    !info.row.original.proficiency.isTracking ||
+                                    info.row.original.proficiency.proficiency === 0
+                                }
+                            >
+                                <RefreshCw className="w-4 h-4" />
+                                <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                    {!info.row.original.proficiency.isTracking
+                                        ? "Continue tracking and reset progress"
+                                        : "Reset Progress"}
+                                </span>
+                            </button>
                         </div>
                     ),
                     enableColumnFilter: false,
@@ -505,6 +538,8 @@ const Home: React.FC = () => {
             currentCancellingProblem,
             isCancelling,
             cancelProblemProficiencyTrackingMutate,
+            isResuming,
+            resumeProblemProficiencyTrackingMutate,
         ],
     );
 
