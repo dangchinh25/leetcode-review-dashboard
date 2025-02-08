@@ -96,6 +96,10 @@ export const problemsRouter = router({
 
             const currentSubmission = problemSlugSubmissionsMap.get(problemSlug);
 
+            // TODO: There is a bug here if an old submission is within the fetch window
+            // but was already been proccessed in the proficiency tracking, we should
+            // not include it and use the newer one.
+            // This happen when use has not been really active.
             if (currentSubmission && currentSubmission.timestamp > submission.timestamp) {
                 problemSlugSubmissionsMap.set(problemSlug, submission);
             }
