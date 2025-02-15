@@ -859,9 +859,7 @@ const Home: React.FC = () => {
                     <DialogContent>
                         <DialogHeader>
                             <DialogTitle>{dialogTitle}</DialogTitle>
-                            <DialogDescription>
-                                <pre className="whitespace-pre-wrap text-sm">{dialogContent}</pre>
-                            </DialogDescription>
+                            <DialogDescription>{dialogContent}</DialogDescription>
                         </DialogHeader>
                         <DialogClose />
                     </DialogContent>
