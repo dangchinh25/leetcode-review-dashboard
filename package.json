@@ -15,7 +15,8 @@
     "lint:eslint:check": "pnpm eslint --ext .ts,.tsx,.js,.jsx src",
     "lint:prettier": "pnpm prettier --write 'src/**/*.{ts,tsx,js,jsx}'",
     "lint:prettier:check": "pnpm prettier --check 'src/**/*.{ts,tsx,js,jsx}'",
-    "lint:fix:all": "pnpm lint:eslint && pnpm lint:prettier"
+    "lint:fix:all": "pnpm lint:eslint && pnpm lint:prettier",
+    "test": "jest"
   },
   "prisma": {
     "seed": "ts-node src/backend/seed/seed.ts"

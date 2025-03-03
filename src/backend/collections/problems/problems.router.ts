@@ -1,5 +1,4 @@
 import type { Problem, Proficiency } from "@prisma/client";
-import type { Submission } from "leetcode-query";
 import { z } from "zod";
 
 import { getLeetcodeClient } from "@/backend/libs/leetcode";
@@ -9,7 +8,11 @@ import { isProblemMastered, isProblemReviewDue } from "@/shared/utils/reviews";
 
 import { prisma } from "../../../../prisma/client";
 import { publicProcedure, router } from "../../routers/router";
-import { buildProficiencyData, shouldUpdateProficiency } from "./helpers";
+import {
+    buildProblemSlugSubmissionsMap,
+    buildProficiencyData,
+    shouldUpdateProficiency,
+} from "./helpers";
 
 const ProblemsWithReviewStatusSchema = z.object({
     reviewDue: z.array(ProblemWithProficiencyTagsSchema),
@@ -80,30 +83,9 @@ export const problemsRouter = router({
             return { success: true, updatedProblemProficiencies: [] };
         }
 
-        // Map of problem slug to the earliest accepted submission
-        const problemSlugSubmissionsMap = new Map<string, Submission>();
-
-        for (const submission of submissions) {
-            if (submission.statusDisplay !== "Accepted") {
-                continue;
-            }
-
-            const problemSlug = submission.titleSlug;
-
-            if (!problemSlugSubmissionsMap.has(problemSlug)) {
-                problemSlugSubmissionsMap.set(problemSlug, submission);
-            }
-
-            const currentSubmission = problemSlugSubmissionsMap.get(problemSlug);
-
-            // TODO: There is a bug here if an old submission is within the fetch window
-            // but was already been proccessed in the proficiency tracking, we should
-            // not include it and use the newer one.
-            // This happen when use has not been really active.
-            if (currentSubmission && currentSubmission.timestamp > submission.timestamp) {
-                problemSlugSubmissionsMap.set(problemSlug, submission);
-            }
-        }
+        // TODO: Right now, for each problem, we may fetch problem and proficiency twice (once in buildProblemSlugSubmissionsMap and once in the loop below)
+        // This is not efficient, but fixing it need some big refactoring.
+        const problemSlugSubmissionsMap = await buildProblemSlugSubmissionsMap(submissions);
 
         const updatedProblemProficiencies: ProblemWithProficiency[] = [];
 
