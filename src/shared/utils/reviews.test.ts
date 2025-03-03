@@ -20,8 +20,6 @@ describe("getNextReviewTime", () => {
 
             const result = getNextReviewTime(problemProficiency);
 
-            console.log(result);
-
             const expectedTime = new Date(parseInt(mockDate) + expectedMinutes * 60 * 1000)
                 .getTime()
                 .toString();
