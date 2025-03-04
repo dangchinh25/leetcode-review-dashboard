@@ -73,6 +73,11 @@ const Home: React.FC = () => {
     const [currentSyncingProblem, setCurrentSyncingProblem] = useState<string | null>(null);
     const [currentCancellingProblem, setCurrentCancellingProblem] = useState<string | null>(null);
 
+    const [selectedProblem, setSelectedProblem] = useState<
+        RouterOutputs["getProblems"]["reviewDue"][number] | null
+    >(null);
+    const [problemDialogOpen, setProblemDialogOpen] = useState(false);
+
     const openDialog = (title: string, content: string) => {
         setDialogTitle(title);
         setDialogContent(content);
@@ -619,8 +624,8 @@ const Home: React.FC = () => {
         if (problems && problems.reviewDue && problems.reviewDue.length > 0) {
             const randomIndex = Math.floor(Math.random() * problems.reviewDue.length);
             const randomProblem = problems.reviewDue[randomIndex];
-            const url = getLeetcodeProblemUrl(randomProblem.titleSlug);
-            window.open(url, "_blank");
+            setSelectedProblem(randomProblem);
+            setProblemDialogOpen(true);
         } else {
             toast.error("No problems due for review!");
         }
@@ -879,6 +884,104 @@ const Home: React.FC = () => {
                     {table.getPrePaginationRowModel().rows.length} total problems
                 </div>
             </div>
+            {/* Problem Dialog */}
+            {selectedProblem && (
+                <Dialog open={problemDialogOpen} onOpenChange={setProblemDialogOpen}>
+                    <DialogContent className="sm:max-w-[600px]">
+                        <DialogHeader>
+                            <DialogTitle className="flex items-center justify-between">
+                                <span>{selectedProblem.title}</span>
+                                <span
+                                    className={`text-sm font-medium px-2 py-0.5 rounded-full ${
+                                        selectedProblem.difficulty === "Easy"
+                                            ? "bg-green-100 text-green-700"
+                                            : selectedProblem.difficulty === "Medium"
+                                              ? "bg-yellow-100 text-yellow-700"
+                                              : "bg-red-100 text-red-700"
+                                    }`}
+                                >
+                                    {selectedProblem.difficulty}
+                                </span>
+                            </DialogTitle>
+                            <DialogDescription>
+                                <div className="mt-4 space-y-4">
+                                    <div>
+                                        <h4 className="text-sm font-medium text-muted-foreground mb-1">
+                                            Proficiency
+                                        </h4>
+                                        <div className="flex items-center gap-2">
+                                            <div className="w-full h-2 bg-secondary rounded-full overflow-hidden">
+                                                <div
+                                                    className="h-full bg-primary"
+                                                    style={{
+                                                        width: `${selectedProblem.proficiency.proficiency * 20}%`,
+                                                    }}
+                                                />
+                                            </div>
+                                            <span className="text-muted-foreground whitespace-nowrap">
+                                                {selectedProblem.proficiency.proficiency}/5
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="text-sm font-medium text-muted-foreground mb-1">
+                                            Past Due
+                                        </h4>
+                                        <p>
+                                            {formatTimeAgo(
+                                                Number(selectedProblem.proficiency.nextReviewTime),
+                                            )}
+                                        </p>
+                                    </div>
+
+                                    {selectedProblem.tags && selectedProblem.tags.length > 0 && (
+                                        <div>
+                                            <h4 className="text-sm font-medium text-muted-foreground mb-1">
+                                                Tags
+                                            </h4>
+                                            <div className="flex flex-wrap gap-1 mt-1">
+                                                {selectedProblem.tags.map((tag) => (
+                                                    <span
+                                                        key={tag.slug}
+                                                        className="px-2 py-0.5 bg-primary/10 text-primary hover:bg-primary/20 transition-colors rounded-full text-xs font-medium"
+                                                    >
+                                                        {tag.name}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            </DialogDescription>
+                        </DialogHeader>
+                        <div className="flex justify-end gap-2 mt-4">
+                            <button
+                                className="px-4 py-2 bg-secondary text-secondary-foreground hover:bg-secondary/80 rounded-md text-sm font-medium transition-colors"
+                                onClick={() => setProblemDialogOpen(false)}
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                className="px-4 py-2 bg-secondary text-secondary-foreground hover:bg-secondary/80 rounded-md text-sm font-medium transition-colors flex items-center gap-1"
+                                onClick={handleRandomProblem}
+                            >
+                                <Shuffle className="w-4 h-4" />
+                                Next Random
+                            </button>
+                            <a
+                                href={getLeetcodeProblemUrl(selectedProblem.titleSlug)}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md text-sm font-medium transition-colors"
+                                onClick={() => setProblemDialogOpen(false)}
+                            >
+                                Open Problem
+                            </a>
+                        </div>
+                    </DialogContent>
+                </Dialog>
+            )}
             {dialogOpen && (
                 <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
                     <DialogContent>
