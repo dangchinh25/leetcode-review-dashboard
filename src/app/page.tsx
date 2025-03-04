@@ -14,7 +14,7 @@ import {
     getSortedRowModel,
     useReactTable,
 } from "@tanstack/react-table";
-import { Ban, Filter, Play, RefreshCw, RotateCw, Tags, X } from "lucide-react";
+import { Ban, Filter, Play, RefreshCw, RotateCw, Shuffle, Tags, X } from "lucide-react";
 import { toast, Toaster } from "sonner";
 
 import type { RouterOutputs } from "@/backend/routers";
@@ -615,6 +615,17 @@ const Home: React.FC = () => {
         }
     };
 
+    const handleRandomProblem = useCallback(() => {
+        if (problems && problems.reviewDue && problems.reviewDue.length > 0) {
+            const randomIndex = Math.floor(Math.random() * problems.reviewDue.length);
+            const randomProblem = problems.reviewDue[randomIndex];
+            const url = getLeetcodeProblemUrl(randomProblem.titleSlug);
+            window.open(url, "_blank");
+        } else {
+            toast.error("No problems due for review!");
+        }
+    }, [problems]);
+
     return (
         <div className="p-2 sm:p-4 md:p-6 lg:p-8 w-[98%] sm:w-[95%] md:w-[90%] lg:w-[85%] xl:w-[75%] mx-auto">
             <Toaster
@@ -629,23 +640,37 @@ const Home: React.FC = () => {
                 }}
             />
             <div className="flex justify-between items-center mb-8">
-                <Tabs
-                    value={activeTab}
-                    onValueChange={(value) => onChangeActiveTab(value as ProblemReviewStatus)}
-                    className="w-fit"
-                >
-                    <TabsList className="h-9">
-                        {tabs.map((tab) => (
-                            <TabsTrigger
-                                key={tab.id}
-                                value={tab.id}
-                                className="px-4 h-8 text-sm font-medium"
-                            >
-                                {tab.label}
-                            </TabsTrigger>
-                        ))}
-                    </TabsList>
-                </Tabs>
+                <div className="flex items-center gap-4">
+                    <Tabs
+                        value={activeTab}
+                        onValueChange={(value) => onChangeActiveTab(value as ProblemReviewStatus)}
+                        className="w-fit"
+                    >
+                        <TabsList className="h-9">
+                            {tabs.map((tab) => (
+                                <TabsTrigger
+                                    key={tab.id}
+                                    value={tab.id}
+                                    className="px-4 h-8 text-sm font-medium"
+                                >
+                                    {tab.label}
+                                </TabsTrigger>
+                            ))}
+                        </TabsList>
+                    </Tabs>
+                    {activeTab === "reviewDue" && (
+                        <button
+                            onClick={handleRandomProblem}
+                            className="p-1.5 text-muted-foreground hover:bg-muted rounded-full transition-colors group relative"
+                            disabled={!problems?.reviewDue || problems.reviewDue.length === 0}
+                        >
+                            <Shuffle className="w-5 h-5" />
+                            <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                Random Problem
+                            </span>
+                        </button>
+                    )}
+                </div>
                 <div className="flex items-center gap-4">
                     <div className="relative">
                         <Input
